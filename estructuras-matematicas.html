@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="es-ES" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Las estructuras matemáticas</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Curvas Elípticas">
+<meta property="book:author" content="Rommel J. Contreras G.">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Salta al contenido principal</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="curvas-elipticas.html"><span class="title">Curvas Elípticas:</span> <span class="subtitle">Base criptográfica de las monedas electrónicas</span></a></h1>
+<p class="byline">Rommel J. Contreras G., RJCG (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Índice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Índice</span></button><a class="index-button button" href="backmatter-4.html" title="Índice Alfabético"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Índice Alfabético</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Resultados encontrados: </h2>
+<div id="searchempty" class="searchempty"><span>Ningún resultado.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="cap_2.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="up-button button" href="cap_2.html" title="Arriba"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Arriba</span></a><a class="next-button button" href="parte-segunda.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb R}
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 parts"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Páginas preliminares</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colofón</span></a></div></li>
+<li class="toc-item toc-biography"><div class="toc-title-box"><a href="author-bio.html" class="internal"><span class="title">Biografía del autor</span></a></div></li>
+<li class="toc-item toc-dedication"><div class="toc-title-box"><a href="dedicatoria.html" class="internal"><span class="title">Dedicatoria</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="reconocimiento.html" class="internal"><span class="title">Agradecimientos</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="prefacio.html" class="internal"><span class="title">Prefacio</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="parte-primera.html" class="internal"><span class="codenumber">I</span> <span class="title">El Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminares</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_1-3.html" class="internal"><span class="codenumber">1.1</span> <span class="title">El lenguaje de los matemáticos</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-babilonios" class="internal"><span class="codenumber">1.1.1</span> <span class="title">El Pretérito del Número; Mesopotamia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-griegos" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Los Griegos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-indios" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Los Indios</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#diofanto" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Diofanto de Alejandría</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-arabes" class="internal"><span class="codenumber">1.1.5</span> <span class="title">Los Árabes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#descartes" class="internal"><span class="codenumber">1.1.6</span> <span class="title">René Descartes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#algebra-elemental" class="internal"><span class="codenumber">1.1.7</span> <span class="title">Diversidad numérica y las reglas del álgebra</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cap_2.html" class="internal"><span class="codenumber">2</span> <span class="title">La Nueva Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_2-3.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Álgebra Moderna</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#algebra-abstracta" class="internal"><span class="codenumber">2.1.1</span> <span class="title">El álgebra abstracta</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#ejemplos-objetos" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Ejemplos de objetos matemáticos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="relaciones.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Relaciones Binarias</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relaciones-binarias" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Relación Binaria</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relacion-equivalencia-2" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Relaciones de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#clase-equivalencia" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Clase de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#conjunto-de-cociente" class="internal"><span class="codenumber">2.2.4</span> <span class="title">Conjunto Cociente</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#enteros-mod-n-2" class="internal"><span class="codenumber">2.2.5</span> <span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#aritmetica-modular" class="internal"><span class="codenumber">2.2.6</span> <span class="title">Reglas o axiomas de la Aritmética Modular</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#particion-modular" class="internal"><span class="codenumber">2.2.7</span> <span class="title">Partición modular</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="relaciones.html#relaciones-10" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejecicios y Ejemplos</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="relaciones.html#Ejercicio" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejercicios</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="estructuras-matematicas.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Las estructuras matemáticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#lci-estructuras" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Leyes de Composición Interna</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#base-axiomatica" class="internal"><span class="codenumber">2.3.2</span> <span class="title">La base axiomática</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#grupo" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Grupos</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#permutacion-notacion" class="internal"><span class="codenumber">2.3.4</span> <span class="title">Notación de las permutaciones</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-matricial" class="internal"><span class="codenumber">2.3.4.1</span> <span class="title">Notación Matricial</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-ciclica" class="internal"><span class="codenumber">2.3.4.2</span> <span class="title">Notación Cíclica</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#estructuras-matematicas-7" class="internal"><span class="codenumber">2.3.5</span> <span class="title">Grupos de Simetrías Diedral</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#simetria-triangulo" class="internal"><span class="codenumber">2.3.5.1</span> <span class="title">Simetrías de un triangulo</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#cuerpo" class="internal"><span class="codenumber">2.3.6</span> <span class="title">Cuerpos o Campo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#complejos" class="internal"><span class="codenumber">2.3.7</span> <span class="title">Los Números Complejos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#campos-de-galois-2" class="internal"><span class="codenumber">2.3.8</span> <span class="title">Cuerpos Finitos o Campos de Galois</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="parte-segunda.html" class="internal"><span class="codenumber">II</span> <span class="title">Praxis Moderna del Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_3.html" class="internal"><span class="codenumber">3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="generales-3.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Generalidades</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#aprox-al-lenguaje-matematico" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Aproximación al lenguaje matemático</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#universo-de-variables-3" class="internal"><span class="codenumber">3.1.2</span> <span class="title">El Universo de Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="abstracciones-3.html" class="internal"><span class="codenumber">3.2</span> <span class="title">El poder de la abstracción</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="abstracciones-3.html#campos-de-galois-3" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Los Campos de Galois</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-5.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#curvas-elipticas-etc-3" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Ecuación de Weierstrass: Forma general de una Curva Elíptica</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#subsec-propiedades" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Algunas Propiedades de las Curvas Elípticas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#ley-de-grupos-c" class="internal"><span class="codenumber">3.3.3</span> <span class="title">La Ley de Grupo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-6.html" class="internal"><span class="codenumber">3.4</span> <span class="title">El aspecto de la curva elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_3-6.html#cap_3-6-3" class="internal"><span class="codenumber">3.4.1</span> <span class="title">El plano afín y el plano proyectivo</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Afin" class="internal"><span class="codenumber">3.4.1.1</span> <span class="title">El Plano Afín</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Proyectivo" class="internal"><span class="codenumber">3.4.1.2</span> <span class="title">El Plano Proyectivo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-real-3" class="internal"><span class="codenumber">3.4.2</span> <span class="title">En el plano real:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-comlejo-3" class="internal"><span class="codenumber">3.4.3</span> <span class="title">En el plano complejo:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-recional-3" class="internal"><span class="codenumber">3.4.4</span> <span class="title">El plano racional:</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-7.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Más allá de lo no resuelto</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#conjetura-taniyama-shimura-weill-3" class="internal"><span class="codenumber">3.5.1</span> <span class="title">La conjetura de Taniyama-Shimura-Weill</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#logaritmo-discreto" class="internal"><span class="codenumber">3.5.2</span> <span class="title">El Logaritmo Discreto</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_4.html" class="internal"><span class="codenumber">4</span> <span class="title">Criptografía Elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="criptografia-con-ce-3.html" class="internal"><span class="codenumber">4.1</span> <span class="title">La criptografía con curvas elípticas</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="criptografia-con-ce-3.html#limetes-calculo-ce-3" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Cálculo elíptico minimalista</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="avances-en-criptografia.html" class="internal"><span class="codenumber">4.2</span> <span class="title">El Algoritmo <abbr class="acronym">RSA</abbr></span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Algoritmos de encriptación elíptica</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-5.html#subsec-intercambio-DH" class="internal"><span class="codenumber">4.3.1</span> <span class="title">El intercambio de claves por canales inseguros</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-6.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Las Monedas Electrónicas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-3" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Criptografía elíptica en la vida real</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">El Bitcoin</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#logaritmo-eliptico" class="internal"><span class="codenumber">4.4.2.1</span> <span class="title">El problema del logaritmo discreto en curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-7" class="internal"><span class="codenumber">4.4.2.2</span> <span class="title">Algoritmo de firma digital de curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-9" class="internal"><span class="codenumber">4.4.2.3</span> <span class="title">Computo de la firma y verificación ECDSA</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cap_4-7.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Límites del “cálculo elíptico”</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Páginas finales</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">Referencias y lecturas recomendadas</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sagemath.html" class="internal"><span class="codenumber">A</span> <span class="title">Tutorial SageMath</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Introducción</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="tutorial-sage.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Aritmética Básica</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="aritmetica-modulo-n.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Aritmética modular</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ejemplos-varios.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Ejemplos Varios</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-curvas-elipticas.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Curvas Elípticas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="notacion.html" class="internal"><span class="codenumber">B</span> <span class="title">Notación</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Índice Alfabético</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colofón</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="estructuras-matematicas"><h2 class="heading hide-type">
+<span class="type">Sección</span><span class="space"> </span><span class="codenumber">2.3</span><span class="space"> </span><span class="title">Las estructuras matemáticas</span>
+</h2>
+<section class="introduction" id="estructuras-matematicas-2"><div class="para" id="estructuras-matematicas-2-1">Los conjuntos equipados con operaciones binarias que permiten combinar elementos del conjunto de varias maneras, se dice poseen estructuras algebraicas binarias; estas estructuras algebraicas por lo general se denotan como <span class="process-math">\(\left\langle W,\ast
+\right\rangle\text{,}\)</span> donde ‘<span class="process-math">\(W\)</span>’ sería el conjunto y ‘<span class="process-math">\(\ast \)</span>’ la operación algebraica. No todas las operaciones binarias se denotan con el símbolo ‘<span class="process-math">\(\ast\)</span>’. Existe una gran cantidad de operaciones algebraicas conocidas desde la antigüedad, con sus notaciones estandarizadas. Entre ellas: ‘<span class="process-math">\(+\)</span>’ sobre <span class="process-math">\(\mathbb{Z}\text{;}\)</span> ‘suma’ y ‘<span class="process-math">\(\cdot \)</span>’ o ‘<span class="process-math">\(\times \)</span>’ sobre <span class="process-math">\(\mathbb{R}\text{;}\)</span> ‘producto’ o ‘multiplicación’.</div></section><section class="subsection" id="lci-estructuras"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.1</span><span class="space"> </span><span class="title">Leyes de Composición Interna</span>
+</h3>
+<div class="para" id="lci-estructuras-2">Los matemáticos han clasificado la diversidad de estructuras matemáticas estudiadas desde la antigüedad, mediante un sistema descriptivo axiomático que les clasifica según la cantidad de Leyes de Composición Interna (<abbr class="acronym">LCI</abbr>) que verifican los elementos de cada conjunto; y de las propiedades que cumplen las operaciones con esas leyes de composición.</div>
+<article class="definition definition-like" id="lci-estructuras-3"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Ley de Composición Interna.</span>
+</h4> <div class="para" id="lci-estructuras-3-2-1">En álgebra abstracta, la ley de composición interna, es un tipo de operación binaria entre elementos de un mismo conjunto e.g., <span class="process-math">\(G\)</span> que indica como deben ser manipulados los elementos del conjunto; el resultado es otro elemento del conjunto <span class="process-math">\(G\text{;}\)</span> las propiedades de estas operaciones binarias dan lugar a distintas estructuras algebraicas<a class="xref" id="lci-estructuras-3-2-1-4" href="" data-knowl="./knowl/fn/lci-estructuras-3-2-1-4.html" title="Nota a pie de página 2.3.1"><sup> 1 </sup></a>.</div> <details id="lci-estructuras-3-3" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para" id="lci-estructuras-3-3-1">Una operación binaria o ley de composición en un conjunto <span class="process-math">\(G\)</span> es una función <span class="process-math">\(G
+\oplus G \mapsto G\)</span> que asigna a cada par <span class="process-math">\((a,b) \in G \oplus G\)</span> un único elemento <span class="process-math">\(a \oplus b\)</span> en <span class="process-math">\(G\text{,}\)</span> llamado composición de <span class="process-math">\(a\)</span> ‘mas’ <span class="process-math">\(b\text{.}\)</span>
+</div> <article class="note remark-like" id="lci-estructuras-3-3-2"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.2</span><span class="period">.</span>
+</h5>
+<div class="para" id="lci-estructuras-3-3-2-1">Tener presente que la ley de composición también puede ser definida como una operación binaria o ley de composición ‘multiplicativa’; en ese caso: <span class="process-math">\((a,b) \in G \odot G\)</span> asigna un único elemento <span class="process-math">\(a \odot b\text{,}\)</span> o <span class="process-math">\(ab\)</span> en G, llamado composición de <span class="process-math">\(a\)</span> ‘por’ <span class="process-math">\(b\text{.}\)</span>
+</div></article></article></details></article><section class="paragraphs" id="lci-estructuras-6"><h4 class="heading"><span class="title">Clasificación de las estructuras.</span></h4> <div class="para" id="lci-estructuras-6-2">Es conveniente tratar a la diversidad de estructuras matemáticas de acuerdo a las Leyes de Composición (internas o externas) que verifican y a sus bases axiomáticas; sin embargo, sólo haremos referencia a las estructuras más relevantes para alcanzar el objetivo propuesto; las más necesarias son resaltadas en las tablas siguientes:</div></section><figure class="table table-like" id="propiedades-estructural-1"><figcaption><span class="type">Cuadro</span><span class="space"> </span><span class="codenumber">2.12<span class="period">.</span></span><span class="space"> </span>Algunas estructuras con <dfn class="terminology">una LCI.</dfn></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b2 r2 l1 t1 lines">Una L.C.I</td>
+<td class="c m b2 r1 l0 t1 lines">Asociativa</td>
+<td class="c m b2 r1 l0 t1 lines">Neutro</td>
+<td class="c m b2 r1 l0 t1 lines">Simétrico</td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Magma</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Semigrupo</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Monoide</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines"><a href="estructuras-matematicas.html#grupo" class="internal" title="Subsección 2.3.3: Grupos">Grupo; 2.3.3</a></td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Bucle</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Cuasigrupo</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+</tr>
+</table></div></figure><figure class="table table-like" id="propiedades-estructural-2"><figcaption><span class="type">Cuadro</span><span class="space"> </span><span class="codenumber">2.13<span class="period">.</span></span><span class="space"> </span>Algunas estructuras con <dfn class="terminology">dos LCI.</dfn></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b2 r2 l1 t1 lines">Dos L.C.I</td>
+<td class="c m b2 r1 l0 t1 lines">Distribuitiva</td>
+<td class="c m b2 r1 l0 t1 lines">Asociativa</td>
+<td class="c m b2 r1 l0 t1 lines">Neutro</td>
+<td class="c m b2 r1 l0 t1 lines">Simétrico</td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Anillo</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines">Anillo Unitario</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="c m b1 r2 l1 t0 lines"><a href="estructuras-matematicas.html#cuerpo" class="internal" title="Subsección 2.3.6: Cuerpos o Campo">Campo; 2.3.6</a></td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+<td class="c m b1 r1 l0 t0 lines">Si</td>
+</tr>
+</table></div></figure></section><section class="subsection" id="base-axiomatica"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.2</span><span class="space"> </span><span class="title">La base axiomática</span>
+</h3>
+<article class="assemblage assemblage-like" id="base-axiomatica-2"><div class="para" id="base-axiomatica-2-1">La base axiomática asumida por el álgebra abstracta no difiere (como antes se comentó) de la base axiomática que desde la antigüedad ha venido soportando al álgebra elemental. Los axiomas son las columnas en las que se soportan las matemáticas. Toda afirmación considerada válida debe de tener una base axiomática que la soporte; o debe poder ser demostrada a partir de axiomas. Los axiomas se aceptan como verdaderos; y su veracidad no puede ser demostrada a partir de otros axiomas. Se presenta el axioma de la adición, adaptado de Alexandroff; en base a los números enteros<a href="" class="xref" data-knowl="./knowl/xref/alexandroff_0.html" title="Entrada bibliográfica 1: Introducción a la teoría de los grupos">[1]</a>. Considérese el lector en libertad de cambiar las palabras «números enteros» por las del conjunto que prefiera (numérico o no-numérico).</div></article><article class="axiom theorem-like" id="base-axiomatica-3"><h4 class="heading">
+<span class="type">Axioma</span><span class="space"> </span><span class="codenumber">2.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">de la Adición.</span>
+</h4>
+<div class="para" id="base-axiomatica-3-2-1">Dos números enteros pueden siempre ser «sumados» (operación que denotaremos por: <span class="process-math">\(\oplus\)</span>), si satisfacen las siguientes condiciones conocidas como axiomas de la adición.</div> <div class="para logical" id="base-axiomatica-3-2-2"><ol class="decimal">
+<li id="base-axiomatica-3-2-2-1-1"><div class="para" id="p-derived-base-axiomatica-3-2-2-1-1">Dos números enteros siempre pueden ser sumados: <div class="para" id="base-axiomatica-3-2-2-1-1-1-1">Es decir; dado dos números enteros arbitrarios <span class="process-math">\(a\)</span> y <span class="process-math">\(b\text{,}\)</span> existe otro número entero unívocamente determinado, llamado suma y denotado por <span class="process-math">\(a \oplus b.\)</span>
+</div>
+</div></li>
+<li id="base-axiomatica-3-2-2-1-2"><div class="para" id="p-derived-base-axiomatica-3-2-2-1-2">Propiedad asociativa: <div class="para" id="base-axiomatica-3-2-2-1-2-1-1">Dado, tres números enteros <span class="process-math">\(a,b,c\)</span> la identidad: <span class="process-math">\((a
+\oplus b) \oplus c = a \oplus (b \oplus c)\)</span> es siempre válida.</div>
+</div></li>
+<li id="base-axiomatica-3-2-2-1-3"><div class="para" id="p-derived-base-axiomatica-3-2-2-1-3">Existencia del <em class="emphasis">cero</em>: <div class="para" id="base-axiomatica-3-2-2-1-3-2-1">Existe un número entero determinado, que llamaremos <em class="emphasis">e = 0</em>, tal que todo número entero <span class="process-math">\(a\)</span> satisface la relación <span class="process-math">\(a
+\oplus e = e \oplus a = a\text{.}\)</span>
+</div>
+</div></li>
+<li id="base-axiomatica-3-2-2-1-4"><div class="para" id="p-derived-base-axiomatica-3-2-2-1-4">Existencia de elemento opuesto: <div class="para" id="base-axiomatica-3-2-2-1-4-1-1">Para todo número entero <span class="process-math">\(a\text{,}\)</span> existe otro número entero <span class="process-math">\(-a\)</span> llamado su opuesto.</div>
+</div></li>
+<li id="base-axiomatica-3-2-2-1-5"><div class="para" id="p-derived-base-axiomatica-3-2-2-1-5">Conmutatividad: <div class="para" id="base-axiomatica-3-2-2-1-5-1-1">El orden de operación de los números enteros sumandos no altera la suma, <span class="process-math">\(a \oplus b = b \oplus a\text{.}\)</span>
+</div>
+</div></li>
+</ol></div></article><div class="para" id="base-axiomatica-5">Planteamos la base axiomática aditiva preferente a la base axiomática multiplicativa, pero esta preferencia carece de importancia. Es decir, sólo cambiaría el elemento neutro que en el producto será indicado con <span class="process-math">\(1\text{,}\)</span> y en vez del opuesto, consideraremos el inverso que lo denotamos por <span class="process-math">\(a^{-1}\text{.}\)</span> Si hubiéramos preferido la terminología multiplicativa, entonces llamaríamos a la operación entre los elementos del conjunto por una de las siguientes alternativas: ‘por’, ‘multiplicación’ o ‘producto’; como queda expresado en el axioma más generalizado, siguiente:</div>
+<article class="axiom theorem-like" id="base-axiomatica-6"><h4 class="heading">
+<span class="type">Axioma</span><span class="space"> </span><span class="codenumber">2.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">de la Multiplicación.</span>
+</h4>
+<div class="para" id="base-axiomatica-6-2-1">Para cada par de elementos <span class="process-math">\(a,b\)</span> de un conjunto cualquiera K, deben de estar unívocamente definido el elemento <span class="process-math">\(a \odot b\text{,}\)</span> llamado el producto de los dos elementos dados.</div> <div class="para logical" id="base-axiomatica-6-2-2"><ol class="decimal">
+<li id="base-axiomatica-6-2-2-1-1"><div class="para" id="p-derived-base-axiomatica-6-2-2-1-1">Dos elementos del conjunto K siempre pueden ser multiplicados: <div class="para" id="base-axiomatica-6-2-2-1-1-1-1">Es decir, dado dos elementos arbitrarios <span class="process-math">\(a\)</span> y <span class="process-math">\(b\)</span> del conjunto K, existe otro elemento de K unívocamente determinado, llamado ‘producto’ (‘por’ o ‘multiplicación’); denotado por <span class="process-math">\(a \odot b.\)</span>
+</div>
+</div></li>
+<li id="base-axiomatica-6-2-2-1-2"><div class="para" id="p-derived-base-axiomatica-6-2-2-1-2">Propiedad asociativa: <div class="para" id="base-axiomatica-6-2-2-1-2-1-1">Dado, tres elementos arbitrarios <span class="process-math">\(a,b,c\)</span> del conjunto K, la identidad: <span class="process-math">\((a \odot b) \odot c = a \odot (b \odot c)\)</span> es siempre válida.</div>
+</div></li>
+<li id="base-axiomatica-6-2-2-1-3"><div class="para" id="p-derived-base-axiomatica-6-2-2-1-3">Existencia del elemento neutro: <div class="para" id="base-axiomatica-6-2-2-1-3-1-1">Existe un elemento determinado del conjunto K, que llamaremos identidad <span class="process-math">\(e = 1\text{,}\)</span> tal que todo elemento <span class="process-math">\(a\)</span> del conjunto K, satisface la relación <span class="process-math">\(a \odot e = e \odot a = a\text{.}\)</span>
+</div>
+</div></li>
+<li id="base-axiomatica-6-2-2-1-4"><div class="para" id="p-derived-base-axiomatica-6-2-2-1-4">Existencia de elemento inverso: <div class="para" id="base-axiomatica-6-2-2-1-4-1-1">Para todo elementos <span class="process-math">\(a\)</span> arbitrarios del conjunto K, existe un único elemento <span class="process-math">\(a^{-1}\)</span> llamado su inverso, que satisface la identidad: <span class="process-math">\(a\cdot a^{-1} = a^{-1}\cdot a = e\text{;}\)</span> para todos los elementos del conjunto.</div>
+</div></li>
+<li id="base-axiomatica-6-2-2-1-5"><div class="para" id="p-derived-base-axiomatica-6-2-2-1-5">Conmutatividad: <div class="para" id="base-axiomatica-6-2-2-1-5-1-1">El orden de operación de los elementos no altera el producto, <span class="process-math">\(a
+\odot b = b \odot a\text{.}\)</span>
+</div>
+</div></li>
+</ol></div></article></section><section class="subsection" id="grupo"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.3</span><span class="space"> </span><span class="title">Grupos</span>
+</h3>
+<div class="para" id="grupo-2">Utilizando la base axiomática asumida para la suma, es posible definir con esa única operación y condiciones, la base Axiomática de Definición de Grupo; aunque de ningún modo es la única manera de definir los grupos. La elección de la operación aditiva carece de importancia preferente. Podría igualmente usarse la terminología multiplicativa y usar esta operación entre los elementos con su respectiva terminología. Luego de los trabajos de Galois, los grupos fueron consolidándose dentro de la nueva álgebra. Para finales del siglo XIX, ya estaban arraigándose en el Análisis matemático, en Geometría, en Mecánica, y en la Física teórica. Más de un siglo después (en el primer cuarto del XXI), la teoría de los grupos se ha expandido a todos los campos del saber. Los grupos son la base para el estudio de estructuras más complicadas como los cuerpos y los anillos.</div>
+<div class="para" id="grupo-3">Los grupos forman parte de las estructuras matemáticas que cumplen con una ley de composición interna; una única operación binaria entre dos elementos del conjunto considerado, con álgebra propia; a cada elemento <span class="process-math">\(a\)</span> y <span class="process-math">\(b\)</span> del grupo le hace corresponder el elemento <span class="process-math">\(a + b\)</span> de <span class="process-math">\(G\text{.}\)</span> Estos elementos pueden ser cualquier cosa (rotaciones, sustituciones, números, …, etc.) <a href="" class="xref" data-knowl="./knowl/xref/alexandroff_0.html" title="Entrada bibliográfica 1: Introducción a la teoría de los grupos">[1]</a>.</div>
+<article class="definition definition-like" id="axioma-de-grupo"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Axioma de Grupo.</span>
+</h4> <div class="para" id="axioma-de-grupo-2-1">Se llama Grupo a un conjunto <span class="process-math">\(G\)</span> en el cual está definida una ley de composición interna que llamaremos adición ‘<span class="process-math">\(\oplus\)</span>’, podemos hablar del grupo <span class="process-math">\(\lt G,\oplus \gt\)</span> o del grupo G con la operación <span class="process-math">\(\oplus\)</span> o, simplemente del grupo G (cuando no haya riesgo de confusión). Los grupos deben satisfacer los tres axiomas de definición siguientes para sus leyes de composición interna:</div> <div class="para logical" id="axioma-de-grupo-2-2"><ol class="decimal">
+<li id="axioma-de-grupo-2-2-1-1"><div class="para" id="p-derived-axioma-de-grupo-2-2-1-1">Asociatividad.</div></li>
+<li id="axioma-de-grupo-2-2-1-2"><div class="para" id="p-derived-axioma-de-grupo-2-2-1-2">Existencia de un elemento neutro; si usamos la terminología multiplicativa, el elemento neutro es la unidad, en el caso de la suma es el cero.</div></li>
+<li id="axioma-de-grupo-2-2-1-3"><div class="para" id="p-derived-axioma-de-grupo-2-2-1-3">Existencia de elemento opuesto; si se usa la terminología multiplicativa, hablamos de inverso y lo denotamos por <span class="process-math">\(a^{-1}\text{.}\)</span>
+</div></li>
+</ol></div> <details id="axioma-de-grupo-3" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para logical" id="axioma-de-grupo-3-1">
+<div class="para">Axiomas que deben cumplir las Leyes de Composición Interna para los grupos aditivos:</div>
+<ol class="decimal">
+<li id="axioma-de-grupo-3-1-1-1"><div class="para" id="p-derived-axioma-de-grupo-3-1-1-1">Asociatividad: <div class="para logical" id="axioma-de-grupo-3-1-1-1-1-1">
+<div class="para">Para todo elemento <span class="process-math">\(a, b, c\text{;}\)</span> pertenecientes a un conjunto cualquiera K, se deben cumplir las identidades:</div>
+<div class="displaymath process-math" id="axioma-de-grupo-3-1-1-1-1-1-2">
+\begin{align}
+a \oplus (b \oplus c) \amp = (a \oplus b) \oplus
+c\tag{2.3.1}
+\end{align}
+</div>
+</div>
+</div></li>
+<li id="axioma-de-grupo-3-1-1-2"><div class="para" id="p-derived-axioma-de-grupo-3-1-1-2">Existencia de un elemento neutro: <div class="para" id="axioma-de-grupo-3-1-1-2-1-1">Existe un elemento único <span class="process-math">\(e = 0\)</span> en un conjunto cualquiera K, tal que para todo <span class="process-math">\(a\)</span> elemento de K se verifique la identidad: <span class="process-math">\(a \oplus e = a\text{.}\)</span>
+</div>
+</div></li>
+<li id="axioma-de-grupo-3-1-1-3"><div class="para" id="p-derived-axioma-de-grupo-3-1-1-3">Existencia de elemento opuesto: <div class="para" id="axioma-de-grupo-3-1-1-3-1-1">Para cada <span class="process-math">\(a\)</span> pertenecientes a un conjunto cualquiera K, existe un elemento <span class="process-math">\(-a\)</span> de K (que llamaremos <span class="process-math">\(b\)</span>)<a class="xref" id="axioma-de-grupo-3-1-1-3-1-1-4" href="" data-knowl="./knowl/fn/axioma-de-grupo-3-1-1-3-1-1-4.html" title="Nota a pie de página 2.3.2"><sup> 2 </sup></a>, tal que para todo <span class="process-math">\(a\)</span> perteneciente a K se verifique la identidad: <span class="process-math">\(a
+\oplus b = 0\text{.}\)</span>
+</div>
+</div></li>
+</ol>
+</div></article></details> <article class="note remark-like" id="axioma-de-grupo-4"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.6</span><span class="period">.</span>
+</h5>
+<div class="para" id="axioma-de-grupo-4-1">Los grupos multiplicativos, pueden ser definidos por una operación o ley de composición ‘multiplicativa’.</div></article></article><article class="assemblage assemblage-like" id="simbolismo-matematico"><h4 class="heading"><span class="title">Ejemplo del simbolismo matemático moderno.</span></h4>
+<div class="para logical" id="simbolismo-matematico-2">
+<div class="para">Un matemático comunica la definición de grupo en lenguaje formal matemático; como se ejemplifica en la siguiente definición de grupo multiplicativo [<a href="" class="xref" data-knowl="./knowl/xref/propiedades-estructural-1.html" title="Cuadro 2.12: Algunas estructuras con una LCI.">Cuadro 2.12</a>]:</div>
+<ul class="disc">
+<li id="simbolismo-matematico-2-2-1"><div class="para" id="p-derived-simbolismo-matematico-2-2-1">
+<span class="process-math">\(\exists \; !e\in G: e\odot r=r,\forall \; r\in G\text{.}\)</span> <div class="para" id="simbolismo-matematico-2-2-1-2-1">Que significa: <span class="process-math">\(\left(G,\odot \right)\)</span> es un monoide o semigrupo con elemento neutro; que se puede leer en lenguaje natural: <em class="emphasis">Existe un único elemento <span class="process-math">\(e\)</span> de <span class="process-math">\(G\text{,}\)</span> tal que, <span class="process-math">\(e\)</span> ‘producto’ <span class="process-math">\(r\)</span> es igual a <span class="process-math">\(r\text{,}\)</span> para todo <span class="process-math">\(r\)</span> elemento de <span class="process-math">\(G\)</span></em>.</div>
+</div></li>
+<li id="simbolismo-matematico-2-2-2"><div class="para" id="p-derived-simbolismo-matematico-2-2-2">
+<span class="process-math">\(\forall \; r\in G, \exists \; \bar{r} : r\odot \bar{r} = e\)</span> . <div class="para" id="simbolismo-matematico-2-2-2-2-1">Que significa: <span class="process-math">\(\left(G,\odot \right)\)</span> verifica la existencia de elemento simétrico para cada uno de sus elementos; que se puede leer en lenguaje natural: <em class="emphasis">Para todo <span class="process-math">\(r\)</span> elemento de <span class="process-math">\(G\text{,}\)</span> existe otro <span class="process-math">\(\bar{r}\)</span> elemento de <span class="process-math">\(G\)</span> (llamado simétrico de <span class="process-math">\(r\)</span>), tal que, <span class="process-math">\(r\)</span> ‘producto’ <span class="process-math">\(\bar{r}\)</span> es igual a <span class="process-math">\(e\)</span></em>.</div>
+</div></li>
+</ul>
+</div></article><article class="definition definition-like" id="operacion-potencia"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Operación de Potencia.</span>
+</h4>  <div class="para logical" id="operacion-potencia-3-1">
+<div class="para">Una operación matemática denotada <span class="process-math">\(a^n\text{,}\)</span> donde el exponente (<span class="process-math">\(n\)</span>) indica las veces que <span class="process-math">\(a\)</span> debe ser multiplicado (<span class="process-math">\(\odot\)</span>) por si mismo; siempre que <span class="process-math">\(n\)</span> sea un número entero o natural. La definición varía en su notación, dependiendo del conjunto numérico al que pertenece el exponente <span class="process-math">\(n\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a^n= \underbrace{a \odot ... \odot a}_{n} 
+\end{equation*}
+</div>
+</div> <details id="operacion-potencia-4" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para logical" id="operacion-potencia-4-1">
+<div class="para">Dado un grupo <span class="process-math">\(G\)</span> cuya operación es denotada multiplicativa, definimos la potencia de un elemento <span class="process-math">\(a \in G\text{,}\)</span> para cada entero <span class="process-math">\(n \geq 0 \text{,}\)</span> como:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{cases} a^{n} &amp; =\begin{cases} 1 &amp; si \; n = 0 \\
+a^{m} \otimes a &amp; si \;n = m \oplus 1 \end{cases} \\ a^{-n} &amp; =
+\left(a^{-1} \right)^n \end{cases} 
+\end{equation*}
+</div>
+</div> <div class="para" id="operacion-potencia-4-2">e.g., para <span class="process-math">\(n = 2\text{,}\)</span> <span class="process-math">\(a^2 = a \otimes a\)</span> (podemos obviar <span class="process-math">\(\otimes\text{,}\)</span> y decir <span class="process-math">\(a^2=aa\)</span>).</div> </article></details> <article class="note remark-like" id="operacion-potencia-5"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.8</span><span class="period">.</span>
+</h5>
+<div class="para" id="operacion-potencia-5-1">La definición en general puede aplicarse, tanto a números reales, complejos o a otras estructuras algebraicas abstractas. Observar que cuando la base es igual: <span class="process-math">\((a^m)^n=a^{mn}\text{,}\)</span> pero <span class="process-math">\((a^m)(a^n)=
+a^{m + n}\text{.}\)</span>
+</div></article></article><article class="definition definition-like" id="isomorfismo"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Grupos Isomorfos.</span>
+</h4>     <div class="para" id="isomorfismo-2-1"></div> <div class="para logical" id="isomorfismo-2-2">
+<div class="para">Sea <span class="process-math">\(G\)</span> y <span class="process-math">\(G'\)</span> dos grupos, entre cuyos elementos se ha definido la siguiente correspondencia biunívoca: <span class="process-math">\(g \leftrightarrow g'\text{.}\)</span> Diremos que esa correspondencia define un <dfn class="terminology">isomorfismo</dfn> entre ambos grupos, si ella conserva la adición:</div>
+<ol class="decimal">
+<li id="isomorfismo-2-2-5-1"><div class="para" id="isomorfismo-2-2-5-1-1">Satisface entre los elementos <span class="process-math">\(g_1, g_2, g_3\)</span> de <span class="process-math">\(G\text{,}\)</span> la relación: <span class="process-math">\(g_1 + g_2 = g_3\)</span>
+</div></li>
+<li id="isomorfismo-2-2-5-2"><div class="para" id="isomorfismo-2-2-5-2-1">Satisface entre los elementos <span class="process-math">\(g'_1, g'_2, g'_3\)</span> de <span class="process-math">\(G'\text{,}\)</span> la relación: <span class="process-math">\(g'_1 + g'_2 = g'_3\)</span>
+</div></li>
+</ol>
+<div class="para"><div class="para" id="isomorfismo-2-2-6">donde <span class="process-math">\(g'_1, g'_2, g'_3\)</span> son los correspondientes de <span class="process-math">\(g_1, g_2, g_3\)</span> en concordancia con la relación establecida.</div></div>
+</div>     <article class="note remark-like" id="isomorfismo-3"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.10</span><span class="period">.</span>
+</h5>
+<div class="para" id="isomorfismo-3-1">Diremos que dos grupos son isomórficos si es posible establecer un isomorfismo entre ellos.</div></article></article><article class="definition definition-like" id="grupo-ciclico"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.11</span><span class="period">.</span><span class="space"> </span><span class="title">Grupo Cíclico.</span>
+</h4>  <div class="para" id="grupo-ciclico-3-1"></div> <div class="para" id="grupo-ciclico-3-2">Sea <span class="process-math">\(G\)</span> un grupo, diremos que <span class="process-math">\(G\)</span> es un grupo cíclico si existe <span class="process-math">\(a
+\in G\text{,}\)</span> tal que <span class="process-math">\(a^n\)</span> genera todos los elementos de <span class="process-math">\(G\text{.}\)</span> Los grupos cíclicos se denotan por <span class="process-math">\(\left\langle a \right\rangle =
+\left\langle \left\{ a \right\} \right\rangle = \left\{a^n : n \in
+\mathbb{Z} \right\} \text{;}\)</span> y se le denominan subgrupo cíclico de <span class="process-math">\(G\)</span> generados por <span class="process-math">\(a\text{.}\)</span> Los grupos cíclicos finitos<a class="xref" id="grupo-ciclico-3-2-9" href="" data-knowl="./knowl/fn/grupo-ciclico-3-2-9.html" title="Nota a pie de página 2.3.3"><sup> 3 </sup></a>, son isomorfos al grupo de las rotaciones de un polígono regular.      </div> <article class="note remark-like" id="grupo-ciclico-4"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.12</span><span class="period">.</span>
+</h5>
+<div class="para" id="grupo-ciclico-4-1">Si <span class="process-math">\(G\)</span> es un grupo cíclico entonces <span class="process-math">\(G\)</span> es abeliano  (o conmutativo).</div></article></article><article class="definition definition-like" id="orden-de-grupo"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.13</span><span class="period">.</span><span class="space"> </span><span class="title">Orden de un grupo.</span>
+</h4>  <div class="para" id="orden-de-grupo-3-1">Dado un grupo <span class="process-math">\(G\)</span> y <span class="process-math">\(g \in G\text{,}\)</span> se define el orden de <span class="process-math">\(g\)</span> como el mínimo entero positivo <span class="process-math">\(n\)</span> tal que <span class="process-math">\(g^n = e\)</span> (con <span class="process-math">\(e\)</span> el elemento neutro o unitario). Si tal entero <span class="process-math">\(n\)</span> no existe, se dice que <span class="process-math">\(g\)</span> tiene orden infinito. El orden de <span class="process-math">\(g\)</span> se denota por: <span class="process-math">\(|g| = n\)</span> .</div> <details id="orden-de-grupo-4" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para logical" id="orden-de-grupo-4-1">
+<div class="para">Si <span class="process-math">\(G\)</span> es un grupo y <span class="process-math">\(g \in G\text{,}\)</span> diremos que:</div>
+<ul class="disc">
+<li id="orden-de-grupo-4-1-3-1"><div class="para" id="orden-de-grupo-4-1-3-1-1">Tiene orden infinito, si todas las potencias de <span class="process-math">\(a\)</span> son distintas entre si.</div></li>
+<li id="orden-de-grupo-4-1-3-2"><div class="para" id="orden-de-grupo-4-1-3-2-1">Tiene orden finito, si existen <span class="process-math">\(0 \lt n \lt m\)</span> tales que <span class="process-math">\(a^n
+= a^m\text{.}\)</span>
+</div></li>
+</ul>
+</div></article></details></article></section><section class="subsection" id="permutacion-notacion"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.4</span><span class="space"> </span><span class="title">Notación de las permutaciones</span>
+</h3>
+<section class="introduction" id="permutacion-notacion-2"><div class="para" id="permutacion-notacion-2-1">La permutación de los elementos de un conjunto <span class="process-math">\(X\)</span> es una función biyectiva de dicho conjunto en sí mismo. En la definición de permutación, no se establece condición alguna sobre <span class="process-math">\(X\text{,}\)</span> el cual puede incluso ser infinito. Sin embargo: es común considerar únicamente el caso en que <span class="process-math">\(X\)</span> es un conjunto finito al estudiar permutaciones; la matriz de una permutación es una matriz cuadrada que representa la acción de la permutación en los elementos de un conjunto ordenado.</div></section><section class="subsubsection" id="notacion-matricial"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">2.3.4.1</span><span class="space"> </span><span class="title">Notación Matricial</span>
+</h4>
+<div class="para logical" id="notacion-matricial-2">
+<div class="para">Existen varias formas de denotar una permutación, digamos <span class="process-math">\(\sigma\text{;}\)</span> unas más o menos compactas. En General, un ejemplo con una permutación y su matriz asociada: Supongamos que tenemos la permutación <span class="process-math">\(\sigma = (1,2,3)\)</span> que reorganiza los elementos de un conjunto de 3 elementos. La matriz asociada <span class="process-math">\(P_{\sigma
+}\text{,}\)</span> sería:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sigma
+= \left ( \begin{matrix} 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0\\ 0 &amp; 1
+&amp; 0 \end{matrix} \right)
+\end{equation*}
+</div>
+</div>
+<div class="para" id="notacion-matricial-3">Pero, fundamentalmente las permutaciones se escriben en forma de matriz de dos filas, colocando en la primera fila la cardinalización de los elementos ordenados del dominio (elementos de partida): <span class="process-math">\(1, 2, \ldots, n\text{;}\)</span> y en la segunda fila, las imágenes correspondientes de llegadas: <span class="process-math">\(\sigma_{1},
+\sigma_{2}, \ldots, \sigma_{n}\)</span> (las permutaciones es una función biyectiva de un conjunto en sí mismo).</div>
+<details id="ejemplo-permutacion" class="example example-like born-hidden-knowl"><summary><h5 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.3.14</span><span class="period">.</span><span class="space"> </span><span class="title">Matriz de una permutación.</span>
+</h5></summary><article class="example example-like"> <div class="para logical" id="ejemplo-permutacion-2">
+<div class="para">El ejemplo ilustra la notación matricial de las permutaciones:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sigma = \left ( \begin{matrix} 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6
+&amp; 7 &amp; 8 \\ 3 &amp; 4 &amp; 5 &amp; 7 &amp; 6 &amp; 1 &amp; 8 &amp; 2
+\end{matrix} \right )
+\end{equation*}
+</div>
+<div class="para">La biyectividad de las permutaciones; por definición, permite encontrar una aplicación inversa <span class="process-math">\(\sigma^{-1}\)</span> de forma que <span class="process-math">\(\sigma \otimes
+\sigma^{-1} = 1\)</span> (genera la aplicación identidad). La operación implica, intercambiar las filas y finalmente reordenar las columnas, de modo que los elementos del dominio queden ordenados de forma natural.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sigma^{-1} = \left ( \begin{matrix} 3 &amp; 4 &amp; 5 &amp; 7 &amp; 6
+&amp; 1 &amp; 8 &amp; 2 \\ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7
+&amp; 8 \end{matrix} \right ) = \left ( \begin{matrix} 1 &amp; 2 &amp; 3
+&amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 \\ 6 &amp; 8 &amp; 1 &amp; 2 &amp; 3
+&amp; 5 &amp; 4 &amp; 7 \end{matrix} \right )
+\end{equation*}
+</div>
+</div></article></details></section><section class="subsubsection" id="notacion-ciclica"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">2.3.4.2</span><span class="space"> </span><span class="title">Notación Cíclica</span>
+</h4>
+<div class="para logical" id="notacion-ciclica-2">
+<div class="para">Una notación más compacta e intuitiva, es la que verifica los ciclos dentro de la matriz, revelando más eficientemente la estructura interna de la permutación. El siguiente algoritmo, indica los pasos para usar la notación cíclica.</div>
+<ol class="decimal">
+<li id="notacion-ciclica-2-1-1"><div class="para" id="notacion-ciclica-2-1-1-1">Empezamos con cualquier elemento. Lo escribimos, a su derecha escribimos su imagen, a la derecha de esta, la imagen de su imagen, y seguimos así hasta que se complete un ciclo.</div></li>
+<li id="notacion-ciclica-2-1-2"><div class="para" id="notacion-ciclica-2-1-2-1">Luego cogemos cualquier elemento no contenido en el primer ciclo, volvemos a escribir su imagen a su derecha, y continuamos hasta completar el segundo ciclo.</div></li>
+<li id="notacion-ciclica-2-1-3"><div class="para" id="notacion-ciclica-2-1-3-1">El proceso continúa hasta que la permutación entera ha quedado descrita como producto de ciclos disjuntos.</div></li>
+</ol>
+</div>
+<article class="note remark-like" id="formal-notacion-ciclica"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.3.15</span><span class="period">.</span><span class="space"> </span><span class="title">Notación Cíclica.</span>
+</h5> <div class="para logical" id="formal-notacion-ciclica-2">
+<div class="para">Sea <span class="process-math">\(X_1, X_2, \dots, X_r\)</span> con <span class="process-math">\(1 \leq r \leq n\text{,}\)</span> con: <span class="process-math">\(r\)</span> distintos elementos del conjunto <span class="process-math">\(\left\{1,2,3,\dots,n\right\}\text{.}\)</span> El <span class="process-math">\(r\)</span> ciclo <span class="process-math">\(\left(X_1, X_2, \dots, X_r\right)\)</span> son los llamados elementos <span class="process-math">\(S_n\)</span> que mapean:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\underbrace{X_1 \longrightarrow X_2
+\longrightarrow X_3\longrightarrow ^{\dots} \longrightarrow X_1}_{ciclo}
+\end{equation*}
+</div>
+<div class="para">En particular, el <span class="process-math">\(1-ciclo X_i\)</span> mapea <span class="process-math">\(X_1 \rightarrow X_i\)</span> (el <span class="process-math">\(1-ciclo\)</span> normalmente es omitido).</div>
+</div> <div class="para logical" id="formal-notacion-ciclica-3">
+<div class="para">Por ejemplo:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 2 &amp; 3 &amp; 1
+\end{pmatrix} = \begin{pmatrix} 2 &amp; 1 &amp; 3 \\ 3 &amp; 2 &amp; 1
+\end{pmatrix}
+\end{equation*}
+</div>
+</div> <details id="formal-notacion-ciclica-4" class="hiddenproof born-hidden-knowl"><summary><h6 class="heading"><span class="type">Demostración<span class="period">.</span></span></h6></summary><article class="hiddenproof"><div class="para logical" id="formal-notacion-ciclica-4-1">
+<div class="para">Al operar se debe considerar (para <span class="process-math">\(r \geq 1\)</span>):</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{pmatrix}
+i_1 &amp; i_2 &amp; \dots &amp; i_{r-1} &amp; i_r &amp; i_{r+1} &amp;
+\dots &amp; i_n \\ i_2 &amp; i_3 &amp; \dots &amp; i_{r} &amp; i_1 &amp;
+i_{r+1} &amp; \dots &amp; i_n \end{pmatrix} 
+\end{equation*}
+</div>
+</div> <div class="para logical" id="formal-notacion-ciclica-4-2">
+<div class="para">Lo que implica que podamos hablar enfáticamente de un <span class="process-math">\(r-ciclo\text{,}\)</span> donde quedan expresadas las órbitas de los sub-grupos generados, como sub conjuntos de <span class="process-math">\(n\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left\{i_1, \dots, i_r\right\} ,
+\left\{i_r + 1\right\}, \dots, \left\{i_n\right\}
+\end{equation*}
+</div>
+<div class="para">Podemos abreviar el ciclo, escribiendolo como:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(i_1, \dots, i_r \right)
+\left(i_r + 1 \right) \dots \left(i_n\right)
+\end{equation*}
+</div>
+<div class="para">donde las permutaciones permitidas son puestas alrededor de paréntesis, e.g.:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 \\ 2 &amp; 3 &amp; 1 \end{pmatrix} = \left(2, 3
+\right) \left(1 \right)
+\end{equation*}
+</div>
+</div></article></details></article><details id="notacion-ciclica-4" class="example example-like born-hidden-knowl"><summary><h5 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.3.16</span><span class="period">.</span><span class="space"> </span><span class="title">Notación cíclica.</span>
+</h5></summary><article class="example example-like"> <div class="para logical" id="notacion-ciclica-4-2">
+<div class="para">La notación de ciclos es muy compacta, el siguientes ejemplos la ilustra en comparación con la notación matricial:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sigma = \left ( \begin{matrix} 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp;
+6 &amp; 7 &amp; 8 \\ 3 &amp; 4 &amp; 5 &amp; 7 &amp; 6 &amp; 1 &amp; 8 &amp;
+2 \end{matrix} \right )
+\end{equation*}
+</div>
+<div class="para">En notación de ciclos, <span class="process-math">\(\sigma\)</span> quedaría expresada como la composición de dos ciclos:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sigma = \left (1 \: 3 \; 5 \; 6 \right )\left (2 \; 4
+\; 7 \; 8 \right )
+\end{equation*}
+</div>
+</div></article></details></section></section><section class="subsection" id="estructuras-matematicas-7"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.5</span><span class="space"> </span><span class="title">Grupos de Simetrías Diedral</span>
+</h3>
+<section class="introduction" id="estructuras-matematicas-7-2"><div class="para" id="estructuras-matematicas-7-2-1">La <dfn class="terminology">simetría</dfn> de una figura geométrica, se evidencia por una rotación o reflexión; las cuales preservan la disposición de sus lados, vértices, distancias y ángulos; la figura no sufre deformación, siendo su forma y disposición invariante. Un diagrama del plano de la figura, preservando su simetría, es llamado <dfn class="terminology">movimiento rígido</dfn>. </div>  <div class="para" id="estructuras-matematicas-7-2-2">En matemáticas, un <dfn class="terminology">grupo diedral</dfn> o <dfn class="terminology">grupo diédrico</dfn> es el grupo de simetría de un polígono regular, incluyendo tanto rotaciones como reflexiones. <em class="emphasis">Los grupos diedrales conforman los más simples ejemplos de grupos finitos</em>. Un polígono regular con <span class="process-math">\(n\)</span> lados tiene <span class="process-math">\(2n\)</span> simetrías diferentes: <span class="process-math">\(n\)</span> simetrías de rotación y <span class="process-math">\(n\)</span> simetrías de reflexión. Las rotaciones y reflexiones juntas forman el grupo diedral <span class="process-math">\(D_n\text{.}\)</span> Si <span class="process-math">\(n\)</span> es impar, cada eje de simetría conecta el punto medio de un lado hasta el vértice opuesto. Si <span class="process-math">\(n\)</span> es par, existen <span class="process-math">\(n/2\)</span> ejes de simetrías conectando los puntos medios de lados opuestos y <span class="process-math">\(n/2\)</span> ejes de simetrías conectando vértices opuestos. En cada caso hay <span class="process-math">\(n\)</span> ejes de simetrías y <span class="process-math">\(2n\)</span> elementos en el grupo de simetría; su cardinalidad u orden será: <span class="process-math">\(|D_n| = 2n\text{.}\)</span> Un buen ejemplo es el grupo diedral [<span class="process-math">\(D_8\)</span> <a href="" class="xref" data-knowl="./knowl/xref/figura-grupo-diedral-d8.html" title="Figura 2.14">Figura 2.14</a>] con tabla de operar según la <a href="" class="xref" data-knowl="./knowl/xref/table-mult-z8.html" title="Figura 2.10">Figura 2.10</a>.</div> <figure class="figure figure-like" id="figura-grupo-diedral-d8"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/./images/grupo_diedral_D8.png" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.14<span class="period">.</span></span><span class="space"> </span>El grupo diedral <span class="process-math">\(D_8\)</span></figcaption></figure>  <div class="para" id="estructuras-matematicas-7-2-4">En general, el conjunto de simetrías de una figura plana, conforma un conjunto <span class="process-math">\(G\)</span> en el cual está definida una ley de composición interna, mediante una operación de: giro o reflexión. Las simetrías de una figura plana forma un grupo cíclico; mediante las cuales podemos construir un álgebra que satisfaga los <a href="" class="xref" data-knowl="./knowl/xref/axioma-de-grupo.html" title="Definición 2.3.5: Axioma de Grupo">axiomas de los grupos 2.3.5</a>, manejables sin necesidad de grandes abstracciones, a pesar de que <em class="emphasis">no trabajamos con números</em>. Las simetrías de figuras en dos dimensiones (en general), permiten una diversidad de ejemplos simplificados de grupos cíclicos, en contraste con otros de mayor complejidad como: los cristales, el cubo de <a href="" class="xref" data-knowl="./knowl/xref/cubo-rubik.html" title="Nota 2.1.3: El cubo de Rubik">Rubik 2.1.3</a>; o grupos cíclicos aún más abstractos y complejos como las <dfn class="terminology">curvas elípticas</dfn> (principal objetivo de este libro [<a href="prefacio.html" class="internal" title="Prefacio">Prefacio </a>]; desarrollado en el <a href="cap_3.html" class="internal" title="Capítulo 3: Curvas Elípticas">Capítulo 3</a>).</div></section><section class="subsubsection" id="simetria-triangulo"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">2.3.5.1</span><span class="space"> </span><span class="title">Simetrías de un triangulo</span>
+</h4>
+<div class="para" id="simetria-triangulo-2">Un polígono de tres lados, se llama triángulo. Aquellos, cuyos lados son iguales en longitud, se les llama triángulo equilátero; <span class="process-math">\(\bigtriangleup ABC\text{.}\)</span> A un triángulo equilátero se le puede encontrar las simetrías observando cámo permutan los vértices <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> y <span class="process-math">\(C\text{;}\)</span> y verificando si una determinada permutación genera una simetría para el triángulo. Una <dfn class="terminology">permutación</dfn> de un conjunto <span class="process-math">\(S\)</span> es un mapeo uno a uno de <span class="process-math">\(\pi
+:S \rightarrow S\text{.}\)</span> Tres vértices generan <span class="process-math">\(3! = 6\)</span> permutaciones, por lo que el triángulo tendrá como máximo seis simetrías. Observe que hay tres posibilidades diferentes para el primer vértice, y dos para el segundo; y el vértice restante está determinado por la colocación de los dos primeros.</div>
+<figure class="figure figure-like" id="figura-grupo-triangulo"><div class="image-box" style="width: 55%; margin-left: 22.5%; margin-right: 22.5%;"><img src="external/./images/grupo-triangulo-fc.png" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.15<span class="period">.</span></span><span class="space"> </span>Movimiento rígido de un triangulo.</figcaption></figure><div class="para logical" id="simetria-triangulo-4">
+<div class="para">Diremos que dos rotaciones son idénticas si difieren en un número entero de giros (en múltiplos enteros de <span class="process-math">\(360^{\circ}\)</span>); son rotaciones nulas, ya que disponen los vértices a su posición inicial. De todas las rotaciones posibles del triángulo <span class="process-math">\(\bigtriangleup ABC\text{,}\)</span> hay sólo tres que lo llevan a coincidir consigo mismo: la rotación de <span class="process-math">\(120^{\circ}\text{,}\)</span> la de <span class="process-math">\(240^{\circ}\)</span> y la <dfn class="terminology">rotación nula</dfn> o <dfn class="terminology">rotación identidad</dfn> <a href="" class="xref" data-knowl="./knowl/xref/alexandroff_0.html" title="Entrada bibliográfica 1: Introducción a la teoría de los grupos">[1]</a>. En el triángulo existen <span class="process-math">\(3 \cdot 2 \cdot 1 = 3! = 6\)</span> arreglos diferentes. Para denotar la permutación de los vértices de un triángulo equilátero que envía <span class="process-math">\(A
+\rightarrow B\text{,}\)</span> <span class="process-math">\(B \rightarrow C\text{,}\)</span> y <span class="process-math">\(C \rightarrow A\text{,}\)</span> se puede usar la forma matricial:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/alexandroff_0.html ./knowl/xref/figura-grupo-triangulo.html">
+\begin{equation*}
+\begin{pmatrix}
+A &amp; B &amp; C \\
+B &amp; C &amp; A
+\end{pmatrix}
+\end{equation*}
+</div>
+<div class="para">Observar que ésta particular permutación se corresponde al movimiento rígido de girar el triángulo <span class="process-math">\(120^{\circ}\)</span> en el sentido de las agujas del reloj (<span class="process-math">\(\circlearrowright \)</span>). De hecho, cada permutación da lugar a una simetría del triángulo; todas esas simetrías se muestran en <a href="" class="xref" data-knowl="./knowl/xref/figura-grupo-triangulo.html" title="Figura 2.15">Figura 2.15</a>.</div>
+</div>
+<div class="para logical" id="simetria-triangulo-5">
+<div class="para">Si al movimiento del triángulo <span class="process-math">\(\bigtriangleup ABC\)</span> ocasionado por la operación indicada por la ley de composición interna (digamos la permutación <span class="process-math">\(\rightarrow\)</span>), le sigue otra operación indicada por <span class="process-math">\(\circledast\text{,}\)</span> la simetría resultante será: <span class="process-math">\(\mu_1 \circledast \rho_1\text{;}\)</span> la permutación <span class="process-math">\(\rho_1\)</span> seguida por la permutación <span class="process-math">\(\mu_1\text{.}\)</span> Esto indica una composición de funciones (que se ejecuta de derecha a izquierda<a class="xref" id="simetria-triangulo-5-7" href="" data-knowl="./knowl/fn/simetria-triangulo-5-7.html" title="Nota a pie de página 2.3.4"><sup> 4 </sup></a>):</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/tabla-s3.html" id="simetria-triangulo-5-8">
+\begin{align*}
+(\mu_1 \circledast \rho_1) \rightarrow (A) &amp; = \mu_1 \circledast (
+\rho_1 \rightarrow ( A ) ) = \mu_1 \circledast ( B ) = C\\
+(\mu_1 \circledast \rho_1) \rightarrow (B) &amp; = \mu_1 \circledast (
+\rho_1 \rightarrow ( B ) ) = \mu_1 \circledast ( C ) = B\\
+(\mu_1 \circledast \rho_1) \rightarrow (C) &amp; = \mu_1 \circledast (
+\rho_1 \rightarrow ( C ) ) = \mu_1 \circledast ( A ) = A
+\end{align*}
+</div>
+<div class="para">Para este caso, el resultado será la simetría <span class="process-math">\(\mu_2\text{;}\)</span> como se muestra en la tabla, <a href="" class="xref" data-knowl="./knowl/xref/tabla-s3.html" title="Figura 2.16">Figura 2.16</a>.</div>
+</div>
+<div class="para" id="simetria-triangulo-6">En la tabla de “multiplicación” para las simetrías de un triángulo equilátero <span class="process-math">\(\bigtriangleup
+ABC\text{,}\)</span> para cada operación sobre el triángulo <span class="process-math">\(\alpha\text{,}\)</span> existe otra operación <span class="process-math">\(\beta\text{,}\)</span> tal que <span class="process-math">\(\alpha \beta = \identity\)</span> (identidad <span class="process-math">\(=
+\identity\)</span>); esto implica que para cada operación sobre el triángulo existe otra que lo retorna a su estado original.</div>
+<figure class="figure figure-like" id="tabla-s3"><div class="para logical" id="tabla-s3-2"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c|cccccc}
+\circledast   &amp; \identity     &amp; \rho_1 &amp; \rho_2 &amp; \mu_1 &amp; \mu_2 &amp; \mu_3 \\
+\hline
+\identity     &amp; \identity     &amp; \rho_1 &amp; \rho_2 &amp; \mu_1 &amp; \mu_2 &amp; \mu_3 \\
+\rho_1 &amp; \rho_1 &amp; \rho_2 &amp; \identity     &amp; \mu_3 &amp; \mu_1 &amp; \mu_2 \\
+\rho_2 &amp; \rho_2 &amp; \identity     &amp; \rho_1 &amp; \mu_2 &amp; \mu_3 &amp; \mu_1 \\
+\mu_1  &amp; \mu_1  &amp; \mu_2  &amp; \mu_3  &amp; \identity    &amp; \rho_1&amp; \rho_2\\
+\mu_2  &amp; \mu_2  &amp; \mu_3  &amp; \mu_1  &amp; \rho_2 &amp; \identity    &amp; \rho_1\\
+\mu_3  &amp; \mu_3  &amp; \mu_1  &amp; \mu_2  &amp; \rho_1 &amp; \rho_2&amp; \identity
+\end{array}
+\end{equation*}
+</div></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.16<span class="period">.</span></span><span class="space"> </span>Simetrías de un triángulo equilátero.</figcaption></figure><details id="isomorfismo-grupos-D3" class="example example-like born-hidden-knowl"><summary><h5 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.3.17</span><span class="period">.</span><span class="space"> </span><span class="title">Todos los grupos de orden 3 son isomorfos entre si.</span>
+</h5></summary><article class="example example-like"> <div class="para logical" id="isomorfismo-grupos-D3-2">
+<div class="para">Sean <span class="process-math">\(a_0, a_1, a_2\)</span> los elementos de un grupo cuyo elemento neutro es <span class="process-math">\(a_0\text{,}\)</span> entonces se verifica:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a_0 + a_0 = a_0; a_0 + a_1 = a_1; a_0 +
+a_2 = a_2\text{,}
+\end{equation*}
+</div>
+<div class="para">No es posible que <span class="process-math">\(a_1 + a_1 = a_1\text{,}\)</span> ya que resultaría <span class="process-math">\(a_1
+= a_0\text{,}\)</span> por lo tanto será. <span class="process-math">\(a_1 + a_1 = a_2\)</span> y por el mismo razonamiento <span class="process-math">\(a_1 + a_2 \neq a_2\)</span> y <span class="process-math">\(a_1 + a_2 \neq a_1\text{,}\)</span> se puede concluir que: <span class="process-math">\(a_1 + a_2 = a_0\text{.}\)</span> Análogamente se obtienen, <span class="process-math">\(a_2 + a_1
+= a_0\text{,}\)</span> además, <span class="process-math">\(a_2 + a_2 \neq a_2\)</span> ya que lo contrario no es posible <span class="process-math">\(a_2 = a_0\text{.}\)</span> Igualmente se tiene que <span class="process-math">\(a_2 + a_2 \neq a_0\)</span> ya que <span class="process-math">\(a_1 + a_2 = a_0\text{.}\)</span> Todo ello verifica que <span class="process-math">\(a_2 + a_2 = a_1\text{.}\)</span>
+</div>
+</div> <div class="para" id="isomorfismo-grupos-D3-3">De las consideraciones anteriores, se deduce que para los grupos de orden 3 (todo los factibles), existe una sola tabla de adición posible:</div> <figure class="figure figure-like" id="isomorfismo-s3"><div class="para logical" id="isomorfismo-s3-2"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c|ccc}
+\oplus &amp; a_0 &amp; a_1 &amp; a_2 \\
+\hline
+a_0 &amp; a_0 &amp; a_1 &amp; a_2 \\
+a_1 &amp; a_1 &amp; a_2 &amp; a_0 \\
+a_2 &amp; a_2 &amp; a_0 &amp; a_1 \\
+\end{array}
+\end{equation*}
+</div></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.17<span class="period">.</span></span><span class="space"> </span>Tabla de adición para los grupos de orden 3.</figcaption></figure></article></details></section></section><section class="subsection" id="cuerpo"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.6</span><span class="space"> </span><span class="title">Cuerpos o Campo</span>
+</h3>
+<div class="para" id="cuerpo-2">Los cuerpos o campos satisfacen dos leyes de composición interna binarias: (<span class="process-math">\(\oplus\)</span> y <span class="process-math">\(\odot\)</span>); en otras palabras, son cerrados a dos operaciones definidas binarias que podemos llamar “adición” (<span class="process-math">\(\oplus\)</span>) y “multiplicación” (<span class="process-math">\(\odot\)</span>). Lo que quiere decir, que si operamos dos números pertenecientes a un conjunto K, el resultado será otro número perteneciente al mismo conjunto K.</div>
+<article class="definition definition-like" id="cuerpo-5"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.18</span><span class="period">.</span><span class="space"> </span><span class="title">de Cuerpo o Campo.</span>
+</h4>     <div class="para" id="cuerpo-5-2-1"></div> <div class="para logical" id="cuerpo-5-2-2">
+<div class="para">Se conocen como Cuerpo o Campo, a aquellas estructuras matemáticas que cumplen con los siguientes axiomas de definición para sus leyes de composición interna:</div>
+<ol class="decimal">
+<li id="cuerpo-5-2-2-1-1"><div class="para" id="p-derived-cuerpo-5-2-2-1-1">Asociatividad.</div></li>
+<li id="cuerpo-5-2-2-1-2"><div class="para" id="p-derived-cuerpo-5-2-2-1-2">Conmutatividad.</div></li>
+<li id="cuerpo-5-2-2-1-3"><div class="para" id="p-derived-cuerpo-5-2-2-1-3">Existencia de un elemento neutro.</div></li>
+<li id="cuerpo-5-2-2-1-4"><div class="para" id="p-derived-cuerpo-5-2-2-1-4">Existencia de elemento opuesto y de inverso.</div></li>
+<li id="cuerpo-5-2-2-1-5"><div class="para" id="p-derived-cuerpo-5-2-2-1-5">Distributividad de la multiplicación respecto de la adición.</div></li>
+</ol>
+</div> <details id="cuerpo-5-3" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para logical" id="cuerpo-5-3-1">
+<div class="para">Axiomas que deben cumplir las Leyes de Composición Interna para los cuerpos:</div>
+<ol class="decimal">
+<li id="cuerpo-5-3-1-1-1"><div class="para" id="p-derived-cuerpo-5-3-1-1-1">Asociatividad: <div class="para logical" id="cuerpo-5-3-1-1-1-1-1">
+<div class="para">Para todo elemento <span class="process-math">\(a, b, c\text{;}\)</span> pertenecientes a un conjunto cualquiera K, se deben cumplir las identidades:</div>
+<div class="displaymath process-math" id="cuerpo-5-3-1-1-1-1-1-2">
+\begin{align}
+a \oplus (b \oplus c) \amp = (a \oplus b) \oplus c\tag{2.3.2}\\
+a \odot (b \odot c) \amp = (a \odot b) \odot c\tag{2.3.3}
+\end{align}
+</div>
+</div>
+</div></li>
+<li id="cuerpo-5-3-1-1-2"><div class="para" id="p-derived-cuerpo-5-3-1-1-2">Conmutatividad: <div class="para logical" id="cuerpo-5-3-1-1-2-1-1">
+<div class="para">Para toda <span class="process-math">\(a, b\)</span> pertenecientes a un conjunto cualquiera K, se deben cumplir las identidades:</div>
+<div class="displaymath process-math" id="cuerpo-5-3-1-1-2-1-1-2">
+\begin{gather}
+a \oplus b = b \oplus a\tag{2.3.4}\\
+a \odot b = b \odot a\tag{2.3.5}
+\end{gather}
+</div>
+</div>
+</div></li>
+<li id="cuerpo-5-3-1-1-3"><div class="para" id="p-derived-cuerpo-5-3-1-1-3">Existencia de un elemento neutro: <ol class="lower-alpha">
+<li id="cuerpo-5-3-1-1-3-1-1-1"><div class="para" id="p-derived-cuerpo-5-3-1-1-3-1-1-1">Existe un único elemento <span class="process-math">\(e = 0\)</span> en un conjunto cualquiera K, tal que para todo <span class="process-math">\(a\)</span> elemento de K se verifique la identidad: <span class="process-math">\(a \oplus e = a\)</span>
+</div></li>
+<li id="cuerpo-5-3-1-1-3-1-1-2"><div class="para" id="p-derived-cuerpo-5-3-1-1-3-1-1-2">Existe un elemento <span class="process-math">\(e = 1\)</span> en un conjunto cualquiera K, diferente de <span class="process-math">\(0\text{,}\)</span> tal que para todo <span class="process-math">\(a\)</span> elemento de K se verifique la identidad: <span class="process-math">\(a
+\odot e = a\)</span>
+</div></li>
+</ol>
+</div></li>
+<li id="cuerpo-5-3-1-1-4"><div class="para" id="p-derived-cuerpo-5-3-1-1-4">Existencia de elemento opuesto e inverso: <ol class="lower-alpha">
+<li id="cuerpo-5-3-1-1-4-1-1-1"><div class="para" id="p-derived-cuerpo-5-3-1-1-4-1-1-1">Para cada <span class="process-math">\(a\)</span> pertenecientes a un conjunto cualquiera K, existe un elemento <span class="process-math">\(-a\)</span> de K (que llamaremos <span class="process-math">\(b\)</span>)<a class="xref" id="cuerpo-5-3-1-1-4-1-1-1-4" href="" data-knowl="./knowl/fn/cuerpo-5-3-1-1-4-1-1-1-4.html" title="Nota a pie de página 2.3.5"><sup> 5 </sup></a>, tal que para todo <span class="process-math">\(a\)</span> perteneciente a K se verifique la identidad: <span class="process-math">\(a \oplus b = 0\text{.}\)</span>
+</div></li>
+<li id="cuerpo-5-3-1-1-4-1-1-2"><div class="para" id="p-derived-cuerpo-5-3-1-1-4-1-1-2">Para cada <span class="process-math">\(a \neq 0\)</span> pertenecientes a un conjunto cualquiera K, existe un elemento <span class="process-math">\(a^{-1}\)</span> de K (que llamaremos <span class="process-math">\(b\)</span> )<a class="xref" id="cuerpo-5-3-1-1-4-1-1-2-4" href="" data-knowl="./knowl/fn/cuerpo-5-3-1-1-4-1-1-2-4.html" title="Nota a pie de página 2.3.6"><sup> 6 </sup></a>, tal que para todo <span class="process-math">\(a\)</span> perteneciente a K se verifique la identidad: <span class="process-math">\(a
+\odot b = 1\text{.}\)</span>
+</div></li>
+</ol>
+</div></li>
+<li id="cuerpo-5-3-1-1-5"><div class="para" id="p-derived-cuerpo-5-3-1-1-5">Distributividad de la multiplicación respecto de la adición: <div class="para logical" id="cuerpo-5-3-1-1-5-1-1">
+<div class="para">Para toda <span class="process-math">\(a, b, c\text{;}\)</span> pertenecientes a un conjunto cualquiera K, se debe cumplir la identidad:</div>
+<div class="displaymath process-math" id="cuerpo-5-3-1-1-5-1-1-2">
+\begin{gather}
+a \odot (b \oplus c) = (a \odot b) \oplus (a \odot
+c)\tag{2.3.6}
+\end{gather}
+</div>
+</div>
+</div></li>
+</ol>
+</div></article></details></article><div class="para" id="cuerpo-6">Los números reales (el conjunto de todos ellos: <a href="" class="xref" data-knowl="./knowl/xref/recta-real.html" title="Nota 2.1.2: La Recta Real">Nota 2.1.2</a>), representa un buen ejemplo de la estructura matemática llamada «cuerpo»<a class="xref" id="cuerpo-6-3" href="" data-knowl="./knowl/fn/cuerpo-6-3.html" title="Nota a pie de página 2.3.7"><sup> 7 </sup></a>; ya que cumple con las dos premisas que se exigen para definirlos: aquellos conjuntos donde es posible utilizar dos operaciones básicas (‘adición’ y ‘multiplicación’); donde estas “funcionan” correctamente. Hay que hacer un alto, para re-explicar el porque del entrecomillado: las mencionadas operaciones, no tienen que ser iguales a las operaciones aritméticas de suma y producto, aunque sus propiedades intrínsecas al respecto de las <em class="emphasis">leyes de composición interna</em> son idénticas si se aplican sobre un cuerpo o campo; pero tal ‘adición’ o ‘multiplicación’ no tienen necesariamente que ser operaciones de suma o producto, pudiera ser de otros tipos: rotación, transformaciones, o cualquier otra par de operaciones que cumpla con los axiomas indicados en la <a href="estructuras-matematicas.html#base-axiomatica" class="internal" title="Subsección 2.3.2: La base axiomática">Subsección 2.3.2</a>. Otros ejemplo de cuerpo, son los conjuntos numéricos: <span class="process-math">\(\mathbb{Q}\text{,}\)</span> <span class="process-math">\(\mathbb{R}\)</span> y <span class="process-math">\(\mathbb{C}\text{;}\)</span> con este último símbolo se designan los números llamados «imaginarios» o «complejos».</div></section><section class="subsection" id="complejos"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.7</span><span class="space"> </span><span class="title">Los Números Complejos</span>
+</h3>
+<div class="para" id="complejos-2">Los números complejos son una extensión de los números reales y forman un cuerpo algebraicamente cerrado. El conjunto de los números complejos se designa con la notación <span class="process-math">\(\mathbb {C}\text{.}\)</span> Los números reales están estrictamente contenidos en <span class="process-math">\(\mathbb
+{C}\text{;}\)</span> como indicamos en <a href="" class="xref" data-knowl="./knowl/xref/conjuntos-de-numeros.html" title="Ecuación 2.3.7">(2.3.7)</a>, se cumple que <span class="process-math">\(\mathbb
+{R} \subset \mathbb {C}\text{.}\)</span> Los números complejos incluyen todas las raíces de los polinomios; a diferencia de los reales. Los números complejos agrupan todas las estructuras, cuerpos y conjuntos numéricos hasta ahora mencionados; su análisis estructural no difiere sustancialmente de lo dicho para los otros conjuntos numéricos.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/conjuntos-de-numeros.html" id="conjuntos-de-numeros">
+\begin{equation}
+\mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C} \tag{2.3.7}
+\end{equation}
+</div>
+<div class="para" id="complejos-4">Todo número complejo puede representarse como la suma de un número real y un número imaginario: <span class="process-math">\(z = x +iy\text{;}\)</span> la unidad imaginaria, se indica con la letra <span class="process-math">\(i\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="numeros-complejos"><div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="external/./images/plano_complejo.png" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.18<span class="period">.</span></span><span class="space"> </span>Plano complejo: los números reales se representan en el eje de coordenadas <span class="process-math">\(X\)</span> y los imaginarios en el eje de coordenadas vertical <span class="process-math">\(Y\text{.}\)</span></figcaption></figure></section><section class="subsection" id="campos-de-galois-2"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.3.8</span><span class="space"> </span><span class="title">Cuerpos Finitos o Campos de Galois</span>
+</h3>
+<section class="introduction" id="campos-de-galois-2-2"><div class="para" id="campos-de-galois-2-2-1">Un cuerpo o campo: es cualquier conjunto de elementos que satisface los axiomas de campo tanto para la suma como para la multiplicación y es una división algebraica conmutativa. Un nombre arcaico para un campo es dominio racional. El término francés para un campo es cuerpo y la palabra alemana es Körper, ambos significan ‘cuerpo’.</div> <div class="para" id="campos-de-galois-2-2-2">Los cuerpos de elementos finitos (sub conjuntos de <span class="process-math">\(\mathbb{R}\text{,}\)</span> <span class="process-math">\(\mathbb{C}\)</span> … o de <span class="process-math">\(\mathbb{Q}\)</span>), pueden definirse como objetos matemáticos algebraicos, e.g., los elementos que cumplen con las identidades y sus expresiones geométricas; algunos de esos conjuntos son conocidos desde la antigüedad, en forma de ecuaciones o funciones, e.g., la línea recta: <span class="process-math">\(f(x) = m.x+b\)</span> ; e.g., las ecuaciones Diofantinas <a href="" class="xref" data-knowl="./knowl/xref/rommel_1.html" title="Entrada bibliográfica 10: El Problema de los Números Congruentes">[10]</a>. El hecho de que que los cuerpos finitos tengan una cardinalidad delimitada, implican que son sub conjunto de algún campo numérico, e.g., <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div> <div class="para" id="campos-de-galois-2-2-3">Un cuerpo con un número finito de elementos <span class="process-math">\(q\)</span> se conoce como Cuerpo Finito o Campo de Galois; poseen una cardinalidad finita (llamada orden <span class="process-math">\(q\)</span>); cuyo antecedente son los grupos cíclicos [<a href="" class="xref" data-knowl="./knowl/xref/grupo-ciclico.html" title="Definición 2.3.11: Grupo Cíclico">Definición 2.3.11</a>]. Los Campos de Galois son denotado como <span class="process-math">\(GF\left(q\right)\)</span> (del inglés Galois <i class="foreign">fiel</i>); sus propiedades son de extrema importancia en el álgebra abstracta y la teoría de números; principalmente porque todos los cuerpos finitos del mismo orden son isomorfos entre sí (sus estructuras matemáticas son idénticas).</div> <article class="definition definition-like" id="campos-de-galois-2-2-4"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.3.19</span><span class="period">.</span><span class="space"> </span><span class="title">Cuerpos Finitos o Campos de Galois.</span>
+</h4>  <div class="para logical" id="campos-de-galois-2-2-4-3-1">
+<div class="para">Hay una y solo una manera posible de definir un cuerpo finito o campo de Galois: Para algún número primo<a class="xref" id="campos-de-galois-2-2-4-3-1-1" href="" data-knowl="./knowl/fn/campos-de-galois-2-2-4-3-1-1.html" title="Nota a pie de página 2.3.8"><sup> 8 </sup></a> <span class="process-math">\(p\)</span> y algún entero positivo <span class="process-math">\(n\text{,}\)</span> existe un objeto matemático llamado Cuerpo Finito o Campo de Galois, con cardinalidad (u orden) <span class="process-math">\(q\)</span> definida por: <span class="process-math">\(q=p^{n}\text{.}\)</span>
+</div>
+<ol class="decimal">
+<li id="campos-de-galois-2-2-4-3-1-6-1"><div class="para" id="p-derived-campos-de-galois-2-2-4-3-1-6-1">Cada elemento del cuerpo representa una clase de equivalencia; <a href="relaciones.html#relacion-equivalencia-2" class="internal" title="Subsección 2.2.2: Relaciones de Equivalencia">Subsección 2.2.2</a>.</div></li>
+<li id="campos-de-galois-2-2-4-3-1-6-2"><div class="para" id="p-derived-campos-de-galois-2-2-4-3-1-6-2">Para un campo finito <span class="process-math">\(GF\left(q\right)\)</span> todos los enteros que “son congruentes” a cada otro <span class="process-math">\(\pmod{n}\)</span> representa una clase de equivalencia; <a href="" class="xref" data-knowl="./knowl/xref/congruencia-modulo-2.html" title="Definición 2.2.6: Congruencia">Definición 2.2.6</a>.</div></li>
+</ol>
+</div></article> <div class="para" id="campos-de-galois-2-2-5">Cuando los parámetros y las variables de las ecuaciones son elementos de un cuerpo finito <span class="process-math">\(GF\left(q\right)\text{,}\)</span> una ecuación algebraica define una curva dentro del cuerpo finito, en consecuencia, se tratan de curvas algebraicas ya que las ecuaciones vienen siempre expresadas por polinomios. En un cuerpo finito todas las funciones son polinómicas, por ello el número de puntos de las curvas consideradas se corresponde al número de soluciones del correspondiente sistema de ecuaciones.</div></section></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="cap_2.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="parte-segunda.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+</body>
+</html>

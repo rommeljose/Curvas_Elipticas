@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Curva Elíptica Koblitz SECP25k1.</span></h4> <div class="para logical">
+<div class="para">La curva elíptica base para la seguridad del <abbr class="acronym">Bitcoin</abbr> es la Koblitz <a class="external" href="https://en.bitcoin.it/wiki/Secp256k1" target="_blank"><code class="code-inline tex2jax_ignore">secp256k1</code></a>. Esta curva elíptica, no está especificada en el artículo original de Satoshi Nakamoto (el Libro Blanco del <abbr class="acronym">Bitcoin</abbr>) <a href="" class="xref" data-knowl="./knowl/xref/nakamoto_2008.html" title="Entrada bibliográfica 25: Bitcoin: A Peer-to-Peer Electronic Cash System">[25]</a>; fue seleccionada por consenso y cumple con: <i class="foreign">Recommended Elliptic Curve Domain Parameters</i> (<abbr class="acronym">SEC</abbr>) <a href="" class="xref" data-knowl="./knowl/xref/sec_1.html" title="Entrada bibliográfica 33: Standards for Efficient Cryptography / SEC 1: Elliptic Curve Cryptography">[33–34]</a> y el <i class="foreign">Digital Signature Standard</i> (<abbr class="acronym">DSS</abbr>) de <abbr class="acronym">NIST</abbr>, para los algoritmos que se deben de utilizar para generar una firma digital <a href="" class="xref" data-knowl="./knowl/xref/fips-186-5.html" title="Entrada bibliográfica 26: Digital Signature Standard (DSS)">[26]</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nakamoto_2008.html  ./knowl/xref/fips-186-5.html">
+\begin{equation}
+y^2=x^3+ax + b \pmod{p}\tag{4.4.1}
+\end{equation}
+</div>
+</div> <div class="para">Con el sextuple <span class="process-math">\(T = (p, a, b, G, n, h)\text{,}\)</span> se especifican los coeficientes y parámetros de <span class="process-math">\(E\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nakamoto_2008.html  ./knowl/xref/fips-186-5.html ./knowl/xref/ce_SECP25k1.html">
+\begin{align*}
+a = \; \amp 0\\
+b = \; \amp 7\\
+p = \; \amp 2^{256}-2^{32}-2^9-2^8-2^7-2^6-2^4-1\\
+G = \; \amp 0x79BE667E F9DCBBAC 55A06295 CE870B07\\
+\amp \quad \; 029BFCDB 2DCE28D9 59F2815B 16F81798\\
+n = \; \amp 0xFFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE\\
+\amp \quad \; BAAEDCE6 AF48A03B BFD25E8C D0364141\\
+h = \; \amp 1
+\end{align*}
+</div> <div class="para">Donde <span class="process-math">\(G\)</span> es solo la coordenada <span class="process-math">\(x\)</span> del punto generador <span class="process-math">\(G\text{;}\)</span> <span class="process-math">\(G_y\)</span> se obtiene despejando y evaluando los otros parámetros en <span class="process-math">\(E\)</span> <a href="" class="xref" data-knowl="./knowl/xref/ce_SECP25k1.html" title="Ecuación 4.4.1">(4.4.1)</a>. El parámetro <span class="process-math">\(n\)</span> (o <span class="process-math">\(N\)</span>) es un número primo; suborden del subgrupo de puntos en la curva elíptica (el orden de <span class="process-math">\(G\)</span>). El cofactor (o cofactor de seguridad) <span class="process-math">\(h\)</span> es un parámetro asociado a la curva elíptica definida sobre un cuerpo finito <span class="process-math">\(\mathrm{F}(p)\text{;}\)</span> se calcula como la división del número total de puntos en la curva (<span class="process-math">\(\#E(F_p)\)</span>) entre el orden del grupo de puntos generados por un punto base <span class="process-math">\(n\text{:}\)</span> <span class="process-math">\(h =
+\#E(\mathrm{F}(p))/n\text{.}\)</span> Si <span class="process-math">\(h\)</span> es pequeño o igual a 1, la curva se considera “segura”; un cofactor grande podría indicar una debilidad.</div></section><span class="incontext"><a class="internal" href="cap_4-6.html#SECP25k1">en contexto</a></span>
+</body>
+</html>

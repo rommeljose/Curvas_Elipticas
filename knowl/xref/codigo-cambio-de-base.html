@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Conversión de base numerica: <span class="process-math">\(base_{10}\&gt; a \&gt;  base_{60}\)</span>.</span>
+</h2> <div class="para">Este código convertirá el número <span class="process-math">\(14646\)</span> de <span class="process-math">\(base_{10}\&gt; a \&gt;  base_{60}\)</span> y mostrará el resultado.</div> <pre id="codigo-cambio-de-base-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">def base10_to_base60(number):
+	if number == 0:
+		return "0"
+
+	base60_digits = []
+	while number:
+		number, remainder = divmod(number, 60)
+		base60_digits.append(str(remainder))
+
+	return "".join(reversed(base60_digits))
+
+# Ejemplo con el número 14646
+number_in_base60 = base10_to_base60(14646)
+print(number_in_base60)
+</script></pre></article><span class="incontext"><a class="internal" href="sec-ejemplos-varios.html#codigo-cambio-de-base">en contexto</a></span>
+</body>
+</html>

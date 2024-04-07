@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.4.2</span><span class="period">.</span><span class="space"> </span><span class="title">parametrización de Kusner-Bryant de la superficie de Boy.</span>
+</h2> <div class="para">Parametrización de Kusner-Bryant para la superficie de Boy; visualiza la superficie en 3D utilizando matplotlib. Con las librerías necesarias instaladas, este código puede ser ejecutado en Python o Sage.</div> <pre id="codigo-superficie-boy-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def boy_surface(u, v):
+	x = np.sin(u) * np.sqrt(2 * np.cos(2 * u)) * np.sin(2 * v) / (np.sqrt(2) +
+	np.sin(u) ** 2 * np.sin(2 * v))
+	y = np.sin(u) * np.sqrt(2 * np.cos(2 * u)) * np.cos(2 * v) / (np.sqrt(2) +
+	np.sin(u) ** 2 * np.sin(2 * v))
+	z = np.sqrt(2) * np.sin(u) * np.cos(u) / (np.sqrt(2) + np.sin(u) ** 2 * np.sin(2
+	* v))
+	return x, y, z
+
+u = np.linspace(0, 2 * np.pi, 300)
+v = np.linspace(0, np.pi, 150)
+u, v = np.meshgrid(u, v)
+x, y, z = boy_surface(u, v)
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(x, y, z, cmap='viridis', rstride=5, cstride=5, linewidth=0,
+antialiased=True)
+plt.show()
+</script></pre></article><span class="incontext"><a class="internal" href="sec-ejemplos-varios.html#codigo-superficie-boy">en contexto</a></span>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="es-ES" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Algoritmos de encriptación elíptica</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Curvas Elípticas">
+<meta property="book:author" content="Rommel J. Contreras G.">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Salta al contenido principal</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="curvas-elipticas.html"><span class="title">Curvas Elípticas:</span> <span class="subtitle">Base criptográfica de las monedas electrónicas</span></a></h1>
+<p class="byline">Rommel J. Contreras G., RJCG (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Índice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Índice</span></button><a class="index-button button" href="backmatter-4.html" title="Índice Alfabético"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Índice Alfabético</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Resultados encontrados: </h2>
+<div id="searchempty" class="searchempty"><span>Ningún resultado.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="avances-en-criptografia.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="up-button button" href="cap_4.html" title="Arriba"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Arriba</span></a><a class="next-button button" href="cap_4-6.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb R}
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 parts"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Páginas preliminares</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colofón</span></a></div></li>
+<li class="toc-item toc-biography"><div class="toc-title-box"><a href="author-bio.html" class="internal"><span class="title">Biografía del autor</span></a></div></li>
+<li class="toc-item toc-dedication"><div class="toc-title-box"><a href="dedicatoria.html" class="internal"><span class="title">Dedicatoria</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="reconocimiento.html" class="internal"><span class="title">Agradecimientos</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="prefacio.html" class="internal"><span class="title">Prefacio</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="parte-primera.html" class="internal"><span class="codenumber">I</span> <span class="title">El Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminares</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_1-3.html" class="internal"><span class="codenumber">1.1</span> <span class="title">El lenguaje de los matemáticos</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-babilonios" class="internal"><span class="codenumber">1.1.1</span> <span class="title">El Pretérito del Número; Mesopotamia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-griegos" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Los Griegos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-indios" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Los Indios</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#diofanto" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Diofanto de Alejandría</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-arabes" class="internal"><span class="codenumber">1.1.5</span> <span class="title">Los Árabes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#descartes" class="internal"><span class="codenumber">1.1.6</span> <span class="title">René Descartes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#algebra-elemental" class="internal"><span class="codenumber">1.1.7</span> <span class="title">Diversidad numérica y las reglas del álgebra</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_2.html" class="internal"><span class="codenumber">2</span> <span class="title">La Nueva Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_2-3.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Álgebra Moderna</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#algebra-abstracta" class="internal"><span class="codenumber">2.1.1</span> <span class="title">El álgebra abstracta</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#ejemplos-objetos" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Ejemplos de objetos matemáticos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="relaciones.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Relaciones Binarias</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relaciones-binarias" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Relación Binaria</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relacion-equivalencia-2" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Relaciones de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#clase-equivalencia" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Clase de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#conjunto-de-cociente" class="internal"><span class="codenumber">2.2.4</span> <span class="title">Conjunto Cociente</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#enteros-mod-n-2" class="internal"><span class="codenumber">2.2.5</span> <span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#aritmetica-modular" class="internal"><span class="codenumber">2.2.6</span> <span class="title">Reglas o axiomas de la Aritmética Modular</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#particion-modular" class="internal"><span class="codenumber">2.2.7</span> <span class="title">Partición modular</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="relaciones.html#relaciones-10" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejecicios y Ejemplos</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="relaciones.html#Ejercicio" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejercicios</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="estructuras-matematicas.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Las estructuras matemáticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#lci-estructuras" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Leyes de Composición Interna</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#base-axiomatica" class="internal"><span class="codenumber">2.3.2</span> <span class="title">La base axiomática</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#grupo" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Grupos</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#permutacion-notacion" class="internal"><span class="codenumber">2.3.4</span> <span class="title">Notación de las permutaciones</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-matricial" class="internal"><span class="codenumber">2.3.4.1</span> <span class="title">Notación Matricial</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-ciclica" class="internal"><span class="codenumber">2.3.4.2</span> <span class="title">Notación Cíclica</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#estructuras-matematicas-7" class="internal"><span class="codenumber">2.3.5</span> <span class="title">Grupos de Simetrías Diedral</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#simetria-triangulo" class="internal"><span class="codenumber">2.3.5.1</span> <span class="title">Simetrías de un triangulo</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#cuerpo" class="internal"><span class="codenumber">2.3.6</span> <span class="title">Cuerpos o Campo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#complejos" class="internal"><span class="codenumber">2.3.7</span> <span class="title">Los Números Complejos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#campos-de-galois-2" class="internal"><span class="codenumber">2.3.8</span> <span class="title">Cuerpos Finitos o Campos de Galois</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="parte-segunda.html" class="internal"><span class="codenumber">II</span> <span class="title">Praxis Moderna del Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_3.html" class="internal"><span class="codenumber">3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="generales-3.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Generalidades</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#aprox-al-lenguaje-matematico" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Aproximación al lenguaje matemático</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#universo-de-variables-3" class="internal"><span class="codenumber">3.1.2</span> <span class="title">El Universo de Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="abstracciones-3.html" class="internal"><span class="codenumber">3.2</span> <span class="title">El poder de la abstracción</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="abstracciones-3.html#campos-de-galois-3" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Los Campos de Galois</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-5.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#curvas-elipticas-etc-3" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Ecuación de Weierstrass: Forma general de una Curva Elíptica</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#subsec-propiedades" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Algunas Propiedades de las Curvas Elípticas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#ley-de-grupos-c" class="internal"><span class="codenumber">3.3.3</span> <span class="title">La Ley de Grupo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-6.html" class="internal"><span class="codenumber">3.4</span> <span class="title">El aspecto de la curva elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_3-6.html#cap_3-6-3" class="internal"><span class="codenumber">3.4.1</span> <span class="title">El plano afín y el plano proyectivo</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Afin" class="internal"><span class="codenumber">3.4.1.1</span> <span class="title">El Plano Afín</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Proyectivo" class="internal"><span class="codenumber">3.4.1.2</span> <span class="title">El Plano Proyectivo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-real-3" class="internal"><span class="codenumber">3.4.2</span> <span class="title">En el plano real:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-comlejo-3" class="internal"><span class="codenumber">3.4.3</span> <span class="title">En el plano complejo:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-recional-3" class="internal"><span class="codenumber">3.4.4</span> <span class="title">El plano racional:</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-7.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Más allá de lo no resuelto</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#conjetura-taniyama-shimura-weill-3" class="internal"><span class="codenumber">3.5.1</span> <span class="title">La conjetura de Taniyama-Shimura-Weill</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#logaritmo-discreto" class="internal"><span class="codenumber">3.5.2</span> <span class="title">El Logaritmo Discreto</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cap_4.html" class="internal"><span class="codenumber">4</span> <span class="title">Criptografía Elíptica</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="criptografia-con-ce-3.html" class="internal"><span class="codenumber">4.1</span> <span class="title">La criptografía con curvas elípticas</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="criptografia-con-ce-3.html#limetes-calculo-ce-3" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Cálculo elíptico minimalista</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="avances-en-criptografia.html" class="internal"><span class="codenumber">4.2</span> <span class="title">El Algoritmo <abbr class="acronym">RSA</abbr></span></a></div></li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="cap_4-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Algoritmos de encriptación elíptica</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-5.html#subsec-intercambio-DH" class="internal"><span class="codenumber">4.3.1</span> <span class="title">El intercambio de claves por canales inseguros</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-6.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Las Monedas Electrónicas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-3" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Criptografía elíptica en la vida real</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">El Bitcoin</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#logaritmo-eliptico" class="internal"><span class="codenumber">4.4.2.1</span> <span class="title">El problema del logaritmo discreto en curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-7" class="internal"><span class="codenumber">4.4.2.2</span> <span class="title">Algoritmo de firma digital de curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-9" class="internal"><span class="codenumber">4.4.2.3</span> <span class="title">Computo de la firma y verificación ECDSA</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cap_4-7.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Límites del “cálculo elíptico”</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Páginas finales</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">Referencias y lecturas recomendadas</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sagemath.html" class="internal"><span class="codenumber">A</span> <span class="title">Tutorial SageMath</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Introducción</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="tutorial-sage.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Aritmética Básica</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="aritmetica-modulo-n.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Aritmética modular</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ejemplos-varios.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Ejemplos Varios</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-curvas-elipticas.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Curvas Elípticas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="notacion.html" class="internal"><span class="codenumber">B</span> <span class="title">Notación</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Índice Alfabético</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colofón</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="cap_4-5"><h2 class="heading hide-type">
+<span class="type">Sección</span><span class="space"> </span><span class="codenumber">4.3</span><span class="space"> </span><span class="title">Algoritmos de encriptación elíptica</span>
+</h2>
+<blockquote class="blockquote" id="cap_4-5-2">
+<div class="para" id="cap_4-5-2-1">
+<em class="emphasis">Puedes pensar que es una rosquilla junto con configuraciones delicadas y específicas de puntos racionales que se colocan muy cuidadosamente… Todo el juego en las matemáticas de las curvas elípticas es determinar si la rosquilla tiene salpicaduras y, de ser así, dónde se colocan exactamente las salpicaduras</em> <a href="" class="xref" data-knowl="./knowl/xref/ono_0.html" title="Entrada bibliográfica 15: The math of doughnuts: ’Moonshine’ sheds light on elliptic curves">[15]</a>.</div> <cite class="attribution">―Duncan J.;Ono, K. (2017)</cite>
+</blockquote>
+<figure class="figure figure-like" id="forma-dona-ce-plano-complejo-3"><div class="image-box" style="width: 55%; margin-left: 22.5%; margin-right: 22.5%;"><img src="external/images/forma-dona-ce-plano-complejo.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">4.3<span class="period">.</span></span><span class="space"> </span>Al final, la criptografía elíptica puede resumirse en: ¿determinar si la rosquilla tiene salpicaduras y, de ser así, dónde se colocan exactamente las salpicaduras?</figcaption></figure><section class="introduction" id="cap_4-5-4"><div class="para" id="cap_4-5-4-1">En el <a href="cap_3.html" class="internal" title="Capítulo 3: Curvas Elípticas">Capítulo 3</a>, tratamos las curvas elípticas sobre distintos campos numéricos. Estudiamos la ecuación de Weierstrass sobre un campo finito y la Ley de Grupo que explica la estructuración de los puntos que las conforman. Podemos usar toda esa información para ilustrar la criptografía con curvas elípticas. Mientras que en <abbr class="acronym">RSA</abbr>, el reto gira en función de encontrar los factores primos (factorizando un número ‘grande’), al trabajar en criptografía de Curvas Elípticas tratamos con el logaritmo discreto elíptico (<abbr class="acronym">ECDLP</abbr> <em class="emphasis">Elliptic Curve Discrete Logarithm Problem</em>); en este caso el reto es encontrar cuántas veces tiene que sumarse cierto número para obtener otro.</div> <div class="para" id="cap_4-5-4-2">Exploramos las propiedades de una curva elíptica <span class="process-math">\(E\text{,}\)</span> la cual consiste en un conjunto de puntos k-racional que conforman un sub cuerpo finito y pertenecen a un campo numérico algebraico determinado. Cada punto en la curva se representa como una pareja de coordenadas <span class="process-math">\(P=(x,y)\text{,}\)</span> cumpliendo con la ecuación de la curva expresada como el modelo de Weierstrass; <a href="cap_3-5.html#curvas-elipticas-etc-3" class="internal" title="Subsección 3.3.1: Ecuación de Weierstrass: Forma general de una Curva Elíptica">Subsección 3.3.1</a>. Los coeficientes <span class="process-math">\(k_i\)</span> de esta ecuación pertenecen a un campo específico <span class="process-math">\(k =
+\mathbb{F}_{p}\text{,}\)</span> donde <span class="process-math">\(\mathbb{F}_{p}\)</span> representa un campo de Galois.</div> <div class="para" id="cap_4-5-4-3">Una curva elíptica se puede considerar simultáneamente como un grupo abeliano bajo la operación de suma geométrica y como parte de un campo numérico algebraico; cada punto en la curva pertenece a una extensión finita de un campo específico. Recordando que, la identidad aditiva en este caso, es un punto especial ubicado en el infinito (<span class="process-math">\(\mathcal {O}\)</span>). La Ley de Grupo permite operar (sumar y multiplicar) con los puntos de una curva elíptica; <a href="cap_3-5.html#ley-de-grupos-c" class="internal" title="Subsección 3.3.3: La Ley de Grupo">Subsección 3.3.3</a>. Sobre la suma geométrica repetitiva de los puntos de <span class="process-math">\(E\)</span> o método «construcciones de secantes y de tangentes», regidos por la Ley de Grupo, está sostenida la criptografía elíptica. Esta suma repetitiva, ya la hemos definido como Multiplicación Escalar: <span class="process-math">\(P=nG\)</span> es una adición repetitiva: <span class="process-math">\(P = \underbrace{G
++ G + \cdots + G}_{n \;
+veces} \text{.}\)</span>
+</div></section><section class="subsection" id="subsec-intercambio-DH"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">4.3.1</span><span class="space"> </span><span class="title">El intercambio de claves por canales inseguros</span>
+</h3>
+<div class="para" id="subsec-intercambio-DH-2">El objetivo del intercambio de claves es garantizar que ambas partes de la comunicación puedan calcular información secreta compartida que pueda usarse como clave para cifrar algunos datos reales; entre partes que no han tenido contacto previo, utilizando un canal inseguro y de manera anónima (no autenticada) <a href="" class="xref" data-knowl="./knowl/xref/wiky_DH.html" title='Entrada bibliográfica 41: "Intercambio de claves de Diffie-Hellman. Wikipedia, La enciclopedia libre"'>[41]</a>. El intercambio de claves <em class="emphasis">Elliptic Curve Diffie-Hellman</em> (<abbr class="acronym">ECDH</abbr>) hace exactamente eso; utilizando los puntos <span class="process-math">\(k\)</span>-racionales de una curva elíptica —sobre un campo finito dado— como estructura de grupo subyacente.</div>
+<section class="paragraphs" id="ecdh"><h4 class="heading"><span class="title"><abbr class="acronym">ECDH</abbr>.</span></h4> <div class="para" id="ecdh-2">Dos partes (Jhon y Fafa) quieren comunicarse y acuerdan una curva elíptica y un generador de sus puntos donde iniciar: supongamos usan la CE en la forma corta de Weierstrass: <span class="process-math">\(E = y^2=x^3-2x+15\text{,}\)</span> con el generador <span class="process-math">\(G=[4,5]\text{,}\)</span> en un campo finito <span class="process-math">\(\mathrm{F}(23)\text{.}\)</span> Para realizar un intercambio de claves seguro, cada uno debe elegir un número secreto: Jhon elige un número aleatorio: <span class="process-math">\(a=3\)</span> y Fafa elige: <span class="process-math">\(b=7\text{.}\)</span> Con el generador <span class="process-math">\(G\)</span> y sus números secretos <span class="process-math">\(a\)</span> y <span class="process-math">\(b\text{,}\)</span> ahora multiplican el generador por ellos y crean así sus puntos públicos: <span class="process-math">\(A=aG=3(4,5)=[13,22]\)</span> y <span class="process-math">\(B=bG=7(4,5)=[17,8]\text{;}\)</span> recordar que ese producto escalar se hace bajo las propiedades de la Ley de Grupo; para la curva elíptica <span class="process-math">\(E\)</span> utilizada [<a href="" class="xref" data-knowl="./knowl/xref/geometria-ley-de-grupo-c-e.html" title="Figura 3.3">Figura 3.3</a> y <a href="" class="xref" data-knowl="./knowl/xref/proff_ley_de_grupo.html" title="Definición 3.3.4: Adición de Puntos, con la Ley de Grupos">Definición 3.3.4</a>]. Estos puntos públicos se pueden intercambiar de forma segura a través de un canal de comunicación inseguro.</div> <div class="para" id="ecdh-3">Con sus puntos públicos intercambiados, cada uno de ellos ahora realiza la misma multiplicación escalar, pero comienza con el punto recibido en lugar del generador. De esta manera, ambas partes llegan al mismo punto, por tanto, calculan su secreto compartido. Supongamos que el punto secreto sea: <span class="process-math">\(S=(15,5)\text{,}\)</span> luego: <span class="process-math">\(S = aB = bA = abG = baG\text{.}\)</span> Ambas partes terminan con el mismo punto <span class="process-math">\(S\text{,}\)</span> aunque parece imposible, ya que cada uno de ellos desconoce la clave secreta de la otra parte y los puntos públicos que puede ver un atacante son inútiles sin ella.</div> <div class="para" id="ecdh-4">No existe una forma factible de averiguar los números <span class="process-math">\(a\)</span> y <span class="process-math">\(b\)</span> a partir de los puntos <span class="process-math">\(A\)</span> y <span class="process-math">\(B\text{.}\)</span> Para obtener el punto <span class="process-math">\(S\)</span> es necesario tener (al menos) uno de ellos (ya sea <span class="process-math">\(a\)</span> o <span class="process-math">\(b\)</span>) y el punto público de la otra parte.</div> <div class="para" id="ecdh-5">El mecanismo de intercambio de claves <abbr class="acronym">ECDH</abbr>, se utiliza para establecer una comunicación segura a través de un canal no seguro; es utilizado ampliamente, como en el protocolo <abbr class="acronym">TLS</abbr><a class="xref" id="ecdh-5-3" href="" data-knowl="./knowl/fn/ecdh-5-3.html" title="Nota a pie de página 4.3.1"><sup> 1 </sup></a>; utilizado para encriptar las comunicaciones en la Internet.</div></section></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="avances-en-criptografia.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="cap_4-6.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+</body>
+</html>

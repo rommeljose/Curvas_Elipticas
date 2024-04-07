@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">RIF Venezuela; programa del código corrector.</span>
+</h2> <div class="para">Codigo Python (puede ser ejecutado en SageMath)</div> <pre id="rif-venezuela-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">def digito_rif(ci):
+	'''
+	Toma un número de cédula o RIF y verifica
+	el dígito validador.
+	Ejemplo: V08446211 o J12345678
+	'''
+	base = {'V': 1 * 4, 'E': 2 * 4, 'J': 3 * 4}
+	oper = [0, 3, 2, 7, 6, 5, 4, 3, 2]
+	for i in range(len(ci[:9])):
+		if i == 0:
+			val = base.get(ci[0], 0)
+		else:
+			val += oper[i] * int(ci[i])
+	digit = 11 - (val % 11)
+	return '%s%s' % (ci[:9], str(digit)[-1])
+
+# Ejemplo de uso
+resultado = digito_rif('V08446211')
+print(resultado)
+</script></pre> <div class="para">Al ejecutar la función <code class="code-inline tex2jax_ignore">digito_rif("V08446211")</code>, se obtiene: <span class="process-math">\(V084462116\text{;}\)</span> el número <span class="process-math">\(6\text{;}\)</span> es el código de verificación agregado.</div></article><span class="incontext"><a class="internal" href="sec-ejemplos-varios.html#rif-venezuela">en contexto</a></span>
+</body>
+</html>

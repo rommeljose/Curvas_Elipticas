@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.5.2</span><span class="period">.</span><span class="space"> </span><span class="title">Curva Elíptica en cuerpo finito.</span>
+</h2> <div class="para">Curva elíptica <span class="process-math">\(y^2=x^3-3x+1 \pmod{8761}\text{,}\)</span> graficada sobre cuerpo finito <span class="process-math">\({\mathbb{F}^{*}}_{8761}\text{.}\)</span>
+</div> <pre id="sage-ce-en-cuerpo-finito-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage"># Definir el anillo Z/8761Z
+Z_8761 = Integers(8761)
+
+# Definir la curva elíptica
+E_mod_8761 = EllipticCurve(Z_8761, [0, 0, 0, -3, 1])
+
+# Graficar la curva elíptica
+#plot(E_mod_8761, color='blue', legend_label='y^2 = x^3 - 3x + 1 (mod 8761)')
+plot(E_mod_8761, color='blue')
+</script></pre></article><span class="incontext"><a class="internal" href="sec-curvas-elipticas.html#sage-ce-en-cuerpo-finito">en contexto</a></span>
+</body>
+</html>

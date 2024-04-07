@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="es-ES" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Las Monedas Electrónicas</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Curvas Elípticas">
+<meta property="book:author" content="Rommel J. Contreras G.">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Salta al contenido principal</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="curvas-elipticas.html"><span class="title">Curvas Elípticas:</span> <span class="subtitle">Base criptográfica de las monedas electrónicas</span></a></h1>
+<p class="byline">Rommel J. Contreras G., RJCG (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Índice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Índice</span></button><a class="index-button button" href="backmatter-4.html" title="Índice Alfabético"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Índice Alfabético</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Resultados encontrados: </h2>
+<div id="searchempty" class="searchempty"><span>Ningún resultado.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="cap_4-5.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="up-button button" href="cap_4.html" title="Arriba"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Arriba</span></a><a class="next-button button" href="cap_4-7.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb R}
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 parts"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Páginas preliminares</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colofón</span></a></div></li>
+<li class="toc-item toc-biography"><div class="toc-title-box"><a href="author-bio.html" class="internal"><span class="title">Biografía del autor</span></a></div></li>
+<li class="toc-item toc-dedication"><div class="toc-title-box"><a href="dedicatoria.html" class="internal"><span class="title">Dedicatoria</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="reconocimiento.html" class="internal"><span class="title">Agradecimientos</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="prefacio.html" class="internal"><span class="title">Prefacio</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="parte-primera.html" class="internal"><span class="codenumber">I</span> <span class="title">El Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminares</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_1-3.html" class="internal"><span class="codenumber">1.1</span> <span class="title">El lenguaje de los matemáticos</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-babilonios" class="internal"><span class="codenumber">1.1.1</span> <span class="title">El Pretérito del Número; Mesopotamia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-griegos" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Los Griegos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-indios" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Los Indios</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#diofanto" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Diofanto de Alejandría</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-arabes" class="internal"><span class="codenumber">1.1.5</span> <span class="title">Los Árabes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#descartes" class="internal"><span class="codenumber">1.1.6</span> <span class="title">René Descartes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#algebra-elemental" class="internal"><span class="codenumber">1.1.7</span> <span class="title">Diversidad numérica y las reglas del álgebra</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_2.html" class="internal"><span class="codenumber">2</span> <span class="title">La Nueva Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_2-3.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Álgebra Moderna</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#algebra-abstracta" class="internal"><span class="codenumber">2.1.1</span> <span class="title">El álgebra abstracta</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#ejemplos-objetos" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Ejemplos de objetos matemáticos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="relaciones.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Relaciones Binarias</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relaciones-binarias" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Relación Binaria</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relacion-equivalencia-2" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Relaciones de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#clase-equivalencia" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Clase de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#conjunto-de-cociente" class="internal"><span class="codenumber">2.2.4</span> <span class="title">Conjunto Cociente</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#enteros-mod-n-2" class="internal"><span class="codenumber">2.2.5</span> <span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#aritmetica-modular" class="internal"><span class="codenumber">2.2.6</span> <span class="title">Reglas o axiomas de la Aritmética Modular</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#particion-modular" class="internal"><span class="codenumber">2.2.7</span> <span class="title">Partición modular</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="relaciones.html#relaciones-10" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejecicios y Ejemplos</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="relaciones.html#Ejercicio" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejercicios</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="estructuras-matematicas.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Las estructuras matemáticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#lci-estructuras" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Leyes de Composición Interna</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#base-axiomatica" class="internal"><span class="codenumber">2.3.2</span> <span class="title">La base axiomática</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#grupo" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Grupos</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#permutacion-notacion" class="internal"><span class="codenumber">2.3.4</span> <span class="title">Notación de las permutaciones</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-matricial" class="internal"><span class="codenumber">2.3.4.1</span> <span class="title">Notación Matricial</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-ciclica" class="internal"><span class="codenumber">2.3.4.2</span> <span class="title">Notación Cíclica</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#estructuras-matematicas-7" class="internal"><span class="codenumber">2.3.5</span> <span class="title">Grupos de Simetrías Diedral</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#simetria-triangulo" class="internal"><span class="codenumber">2.3.5.1</span> <span class="title">Simetrías de un triangulo</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#cuerpo" class="internal"><span class="codenumber">2.3.6</span> <span class="title">Cuerpos o Campo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#complejos" class="internal"><span class="codenumber">2.3.7</span> <span class="title">Los Números Complejos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#campos-de-galois-2" class="internal"><span class="codenumber">2.3.8</span> <span class="title">Cuerpos Finitos o Campos de Galois</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="parte-segunda.html" class="internal"><span class="codenumber">II</span> <span class="title">Praxis Moderna del Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_3.html" class="internal"><span class="codenumber">3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="generales-3.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Generalidades</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#aprox-al-lenguaje-matematico" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Aproximación al lenguaje matemático</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#universo-de-variables-3" class="internal"><span class="codenumber">3.1.2</span> <span class="title">El Universo de Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="abstracciones-3.html" class="internal"><span class="codenumber">3.2</span> <span class="title">El poder de la abstracción</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="abstracciones-3.html#campos-de-galois-3" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Los Campos de Galois</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-5.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#curvas-elipticas-etc-3" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Ecuación de Weierstrass: Forma general de una Curva Elíptica</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#subsec-propiedades" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Algunas Propiedades de las Curvas Elípticas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#ley-de-grupos-c" class="internal"><span class="codenumber">3.3.3</span> <span class="title">La Ley de Grupo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-6.html" class="internal"><span class="codenumber">3.4</span> <span class="title">El aspecto de la curva elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_3-6.html#cap_3-6-3" class="internal"><span class="codenumber">3.4.1</span> <span class="title">El plano afín y el plano proyectivo</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Afin" class="internal"><span class="codenumber">3.4.1.1</span> <span class="title">El Plano Afín</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Proyectivo" class="internal"><span class="codenumber">3.4.1.2</span> <span class="title">El Plano Proyectivo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-real-3" class="internal"><span class="codenumber">3.4.2</span> <span class="title">En el plano real:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-comlejo-3" class="internal"><span class="codenumber">3.4.3</span> <span class="title">En el plano complejo:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-recional-3" class="internal"><span class="codenumber">3.4.4</span> <span class="title">El plano racional:</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-7.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Más allá de lo no resuelto</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#conjetura-taniyama-shimura-weill-3" class="internal"><span class="codenumber">3.5.1</span> <span class="title">La conjetura de Taniyama-Shimura-Weill</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#logaritmo-discreto" class="internal"><span class="codenumber">3.5.2</span> <span class="title">El Logaritmo Discreto</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cap_4.html" class="internal"><span class="codenumber">4</span> <span class="title">Criptografía Elíptica</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="criptografia-con-ce-3.html" class="internal"><span class="codenumber">4.1</span> <span class="title">La criptografía con curvas elípticas</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="criptografia-con-ce-3.html#limetes-calculo-ce-3" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Cálculo elíptico minimalista</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="avances-en-criptografia.html" class="internal"><span class="codenumber">4.2</span> <span class="title">El Algoritmo <abbr class="acronym">RSA</abbr></span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Algoritmos de encriptación elíptica</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-5.html#subsec-intercambio-DH" class="internal"><span class="codenumber">4.3.1</span> <span class="title">El intercambio de claves por canales inseguros</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="cap_4-6.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Las Monedas Electrónicas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-3" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Criptografía elíptica en la vida real</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">El Bitcoin</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#logaritmo-eliptico" class="internal"><span class="codenumber">4.4.2.1</span> <span class="title">El problema del logaritmo discreto en curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-7" class="internal"><span class="codenumber">4.4.2.2</span> <span class="title">Algoritmo de firma digital de curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-9" class="internal"><span class="codenumber">4.4.2.3</span> <span class="title">Computo de la firma y verificación ECDSA</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cap_4-7.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Límites del “cálculo elíptico”</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Páginas finales</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">Referencias y lecturas recomendadas</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sagemath.html" class="internal"><span class="codenumber">A</span> <span class="title">Tutorial SageMath</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Introducción</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="tutorial-sage.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Aritmética Básica</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="aritmetica-modulo-n.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Aritmética modular</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ejemplos-varios.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Ejemplos Varios</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-curvas-elipticas.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Curvas Elípticas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="notacion.html" class="internal"><span class="codenumber">B</span> <span class="title">Notación</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Índice Alfabético</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colofón</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="cap_4-6"><h2 class="heading hide-type">
+<span class="type">Sección</span><span class="space"> </span><span class="codenumber">4.4</span><span class="space"> </span><span class="title">Las Monedas Electrónicas</span>
+</h2>
+<section class="introduction" id="cap_4-6-2"></section><section class="subsection" id="cap_4-6-3"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">4.4.1</span><span class="space"> </span><span class="title">Criptografía elíptica en la vida real</span>
+</h3>
+<section class="introduction" id="cap_4-6-3-2"><div class="para" id="cap_4-6-3-2-1">Al igual que los números abstractos, cuya estructura y manejo ya no dependen de los objetos que designan, el valor de las nuevas monedas digitales-encriptadas, no tienen las ataduras clásicas del antiguo dinero (monedas, billetes, papeles, bonos, etc.): solo representan una abstracción de nuestras pertenencias; garantizadas por las matemáticas.</div></section><div class="para" id="cap_4-6-3-3">La tecnología desarrollada por la plataforma <abbr class="acronym">NEM</abbr> (Movimiento de la Nueva Economía; por sus siglas en inglés), basa su fortaleza elíptica en el <em class="emphasis">numerito</em> primo <span class="process-math">\(2^{255}-19\text{.}\)</span> Este ejemplar le permite al cuerpo finito que contiene la curva elíptica: <span class="process-math">\(-x^2 + y^2 = 1 - \frac{121665}{121666}x^2y^2\text{;}\)</span> <dfn class="terminology">Twisted Edwards Ed25519</dfn> <a href="" class="xref" data-knowl="./knowl/xref/NEM_0.html" title="Entrada bibliográfica 27: NEM Technical Reference, version 1.2.1">[27]</a>, un impresionante número de elementos de campo para la seguridad del sistema:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/NEM_0.html" id="cap_4-6-3-4">
+\begin{align*}
+2^{255}-19 = \amp 5789604461865809771178549250434395392663499\\
+\amp continúa \; 2332820282019728792003956564819949
+\end{align*}
+</div>
+<div class="para" id="cap_4-6-3-5">aunque no todos los elementos de ese descomunal campo de enteros están disponibles; sólo la siguiente cantidad de ellos:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/NEM_0.html" id="cap_4-6-3-6">
+\begin{align*}
+q \amp = 2^{252}-27742317777372353535851937790883648493 = \\
+= \amp 72370055773322622139731865630429942408016317238251628\\
+\amp continúa \; 98930247062703686954003.
+\end{align*}
+</div>
+<div class="para" id="cap_4-6-3-7">Considere ese inmenso y extraordinario conjunto de elementos disponibles para una selectividad aleatoria garantizada. Dicho espécimen cardinal hace que la granularidad finita —aparente infinita— e inagotable.</div>
+<div class="para" id="cap_4-6-3-8">Por un momento deténgase a imaginar la probabilidad de acertar un valor específico del formidable conjunto de elementos que se forma cuando <span class="process-math">\(p\)</span> y <span class="process-math">\(m\)</span> tienen los valores utilizados en las criptomonedas como <abbr class="acronym">Bitcoin</abbr>, <abbr class="acronym">NEM</abbr> o <abbr class="acronym">Ethereum</abbr>; y mucho menos intentar encontrar el logaritmo discreto <span class="process-math">\(e
+= \log_pP\)</span> a partir de la clave pública <span class="process-math">\(P\text{;}\)</span> a pesar de que son del dominio público: la ecuación elíptica <span class="process-math">\(E\text{,}\)</span> el primo <span class="process-math">\(p\)</span> y otros parámetros de la curva elíptica utilizada; e infinidades de claves públicas de los usuarios. Un método eficaz para resolver el <abbr class="acronym">ECDLP</abbr> pondría en jaque toda la seguridad mundial.</div></section><section class="subsection" id="cap_4-6-4"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">4.4.2</span><span class="space"> </span><span class="title">El Bitcoin</span>
+</h3>
+<section class="introduction" id="cap_4-6-4-2"><div class="para" id="cap_4-6-4-2-1"><blockquote class="blockquote" id="cap_4-6-4-2-1-1"> <div class="para" id="cap_4-6-4-2-1-1-2"><em class="emphasis">Definimos una moneda electrónica como una cadena de firmas digitales. Cada propietario transfiere la moneda al siguiente firmando digitalmente un hash de la transacción anterior y la clave pública del siguiente propietario y agregándolos al final de la moneda. Un beneficiario puede verificar las firmas para verificar la cadena de propiedad.</em></div> <cite class="attribution">―Satoshi Nakamoto</cite>
+</blockquote></div> <div class="para" id="cap_4-6-4-2-2"><em class="emphasis">El problema, por supuesto, es que el beneficiario no puede verificar que uno de los propietarios no haya gastado dos veces la misma moneda. La solución habitual es introducir una autoridad central de confianza, o casa de la moneda, que comprueba cada transacción para que eso no se produzca. Tras cada transacción, la moneda debe regresar a la casa de la moneda para distribuir una nueva moneda, y solo las monedas emitidas directamente desde ella están libres de la sospecha de doble gasto. El problema de esta solución es que el destino de todo el sistema de dinero depende de la compañía que gestiona la casa de la moneda, por la cual pasa cada transacción, igual que un banco. Necesitamos una forma de que el beneficiario sepa que los propietarios previos no han firmado transacciones anteriores. Para nuestros propósitos, la transacción más temprana es la que cuenta, así que no nos preocupamos de los intentos de doble gasto posteriores. La única manera de confirmar la ausencia de una transacción es tener conocimiento de todas las transacciones. En el modelo de la casa de la moneda, esta tiene conocimiento de todas las transacciones y decide cuáles llegaron primero. Para lograr esto sin la participación de una parte de confianza, las transacciones han de ser anunciadas públicamente, y necesitamos un sistema para que los participantes estén de acuerdo en un único historial del orden en que fueron recibidas<a class="xref" id="cap_4-6-4-2-2-1-1" href="" data-knowl="./knowl/fn/cap_4-6-4-2-2-1-1.html" title="Nota a pie de página 4.4.1"><sup> 1 </sup></a>. El beneficiario necesita prueba de que en el momento de la transacción la mayor parte de los nodos estaban de acuerdo en que esa fue la primera que se recibió <a href="" class="xref" data-knowl="./knowl/xref/nakamoto_2008.html" title="Entrada bibliográfica 25: Bitcoin: A Peer-to-Peer Electronic Cash System">[25]</a>.</em></div> <figure class="figure figure-like" id="blockchain"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/blockchain.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">4.4<span class="period">.</span></span><span class="space"> </span>Diagrama de la cadena propiedad (cadena de bloque o ‘<em class="emphasis">blockchain</em>’); tomado del artículo original de Satoshi Nakamoto <a href="" class="xref" data-knowl="./knowl/xref/nakamoto_2008.html" title="Entrada bibliográfica 25: Bitcoin: A Peer-to-Peer Electronic Cash System">[25]</a>.</figcaption></figure></section><section class="paragraphs" id="SECP25k1"><h4 class="heading"><span class="title">Curva Elíptica Koblitz SECP25k1.</span></h4> <div class="para logical" id="SECP25k1-2">
+<div class="para">La curva elíptica base para la seguridad del <abbr class="acronym">Bitcoin</abbr> es la Koblitz <a class="external" href="https://en.bitcoin.it/wiki/Secp256k1" target="_blank"><code class="code-inline tex2jax_ignore">secp256k1</code></a>. Esta curva elíptica, no está especificada en el artículo original de Satoshi Nakamoto (el Libro Blanco del <abbr class="acronym">Bitcoin</abbr>) <a href="" class="xref" data-knowl="./knowl/xref/nakamoto_2008.html" title="Entrada bibliográfica 25: Bitcoin: A Peer-to-Peer Electronic Cash System">[25]</a>; fue seleccionada por consenso y cumple con: <i class="foreign">Recommended Elliptic Curve Domain Parameters</i> (<abbr class="acronym">SEC</abbr>) <a href="" class="xref" data-knowl="./knowl/xref/sec_1.html" title="Entrada bibliográfica 33: Standards for Efficient Cryptography / SEC 1: Elliptic Curve Cryptography">[33–34]</a> y el <i class="foreign">Digital Signature Standard</i> (<abbr class="acronym">DSS</abbr>) de <abbr class="acronym">NIST</abbr>, para los algoritmos que se deben de utilizar para generar una firma digital <a href="" class="xref" data-knowl="./knowl/xref/fips-186-5.html" title="Entrada bibliográfica 26: Digital Signature Standard (DSS)">[26]</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nakamoto_2008.html  ./knowl/xref/fips-186-5.html" id="ce_SECP25k1">
+\begin{equation}
+y^2=x^3+ax + b \pmod{p}\tag{4.4.1}
+\end{equation}
+</div>
+</div> <div class="para" id="SECP25k1-3">Con el sextuple <span class="process-math">\(T = (p, a, b, G, n, h)\text{,}\)</span> se especifican los coeficientes y parámetros de <span class="process-math">\(E\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nakamoto_2008.html  ./knowl/xref/fips-186-5.html ./knowl/xref/ce_SECP25k1.html" id="SECP25k1-4">
+\begin{align*}
+a = \; \amp 0\\
+b = \; \amp 7\\
+p = \; \amp 2^{256}-2^{32}-2^9-2^8-2^7-2^6-2^4-1\\
+G = \; \amp 0x79BE667E F9DCBBAC 55A06295 CE870B07\\
+\amp \quad \; 029BFCDB 2DCE28D9 59F2815B 16F81798\\
+n = \; \amp 0xFFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE\\
+\amp \quad \; BAAEDCE6 AF48A03B BFD25E8C D0364141\\
+h = \; \amp 1
+\end{align*}
+</div> <div class="para" id="SECP25k1-5">Donde <span class="process-math">\(G\)</span> es solo la coordenada <span class="process-math">\(x\)</span> del punto generador <span class="process-math">\(G\text{;}\)</span> <span class="process-math">\(G_y\)</span> se obtiene despejando y evaluando los otros parámetros en <span class="process-math">\(E\)</span> <a href="" class="xref" data-knowl="./knowl/xref/ce_SECP25k1.html" title="Ecuación 4.4.1">(4.4.1)</a>. El parámetro <span class="process-math">\(n\)</span> (o <span class="process-math">\(N\)</span>) es un número primo; suborden del subgrupo de puntos en la curva elíptica (el orden de <span class="process-math">\(G\)</span>). El cofactor (o cofactor de seguridad) <span class="process-math">\(h\)</span> es un parámetro asociado a la curva elíptica definida sobre un cuerpo finito <span class="process-math">\(\mathrm{F}(p)\text{;}\)</span> se calcula como la división del número total de puntos en la curva (<span class="process-math">\(\#E(F_p)\)</span>) entre el orden del grupo de puntos generados por un punto base <span class="process-math">\(n\text{:}\)</span> <span class="process-math">\(h =
+\#E(\mathrm{F}(p))/n\text{.}\)</span> Si <span class="process-math">\(h\)</span> es pequeño o igual a 1, la curva se considera “segura”; un cofactor grande podría indicar una debilidad.</div></section><aside class="aside aside-like" id="cap_4-6-4-4"><div class="para logical" id="cap_4-6-4-4-1">
+<div class="para">Nota: Los parámetros recomendados asociados con la curva Koblitz SECP25k1, se eligieron seleccionando repetidamente parámetros que admitieran un endomorfismo eficientemente computable, hasta que se encontró una curva de orden primo <a href="" class="xref" data-knowl="./knowl/xref/sec_2.html" title="Entrada bibliográfica 34: Standards for Efficient Cryptography / SEC 2: Recommended Elliptic Curve Domain Parameters">[34]</a>. Es necesario aclarar que la base de un campo binario, es una base polinómica —llamada polinomio de campo— que debe de estar especificada por un polinomio irreducible módulo 2; según recomendaciones del: <i class="foreign">Digital Signature Standard</i> (<abbr class="acronym">DSS</abbr>) <a href="" class="xref" data-knowl="./knowl/xref/fips-186-5.html" title="Entrada bibliográfica 26: Digital Signature Standard (DSS)">[26]</a>. Debido a ello, a pesar de que la base prima <span class="process-math">\(p\)</span> cumple con la identidad:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sec_2.html ./knowl/xref/fips-186-5.html">
+\begin{equation*}
+2^{256}-2^{32}-2^9-2^8-2^7-2^6-2^4-1
+\equiv 2^{256} - 2^{32} - 977\text{,}
+\end{equation*}
+</div>
+<div class="para">lo correcto es expresarla y usarla en forma polinómica para un campo binario. Los números que se expresan iniciados con <span class="process-math">\(0x\text{,}\)</span> indican que están en base hexadecimal (<span class="process-math">\(base_{16}\)</span>).</div>
+</div></aside><figure class="figure figure-like" id="curva-Bitcoin"><div class="image-box" style="width: 65%; margin-left: 17.5%; margin-right: 17.5%;"><img src="external/images/bitcoin.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">4.5<span class="period">.</span></span><span class="space"> </span>Aspecto de la traza de la curva elíptica SECP25k1 en <span class="process-math">\(\mathbb{R}^2\text{;}\)</span> no es posible presentar la traza en <span class="process-math">\(\mathbb{F}_p\)</span> ya que no tendría sentido alguno; y la potencia de cálculo y despliegue necesaria está alejada de cualquier realidad.</figcaption></figure><section class="subsubsection" id="logaritmo-eliptico"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">4.4.2.1</span><span class="space"> </span><span class="title">El problema del logaritmo discreto en curva elíptica</span>
+</h4>
+<section class="introduction" id="logaritmo-eliptico-2"><div class="para" id="logaritmo-eliptico-2-1">Un esquema de firma digital se basa en propiedades matemáticas para demostrar la autenticidad de un documento digital<a class="xref" id="logaritmo-eliptico-2-1-1" href="" data-knowl="./knowl/fn/logaritmo-eliptico-2-1-1.html" title="Nota a pie de página 4.4.2"><sup> 2 </sup></a>. La firma digital utiliza criptografía asimétrica <abbr class="acronym">PKI</abbr> [<a href="" class="xref" data-knowl="./knowl/xref/pki.html" title="Párrafo: Infraestructura de clave pública: PKI">Párrafo </a>]; permite, por ejemplo, que cuando Fafa quiere firmar un documento, calcule el <i class="foreign">hash</i> del mismo, lo cifre con su clave privada y lo envíe a Jhon. Jhon lo descifra usando la clave pública de Fafa, con lo que verifica la integridad y autenticidad del documento. Para trabajar con criptografía asimétrica con curvas elípticas, hay que tener un mecanismo parecido al usado por <abbr class="acronym">RSA</abbr>; <a href="avances-en-criptografia.html" class="internal" title="Sección 4.2: El Algoritmo RSA">Sección 4.2</a>.</div> <div class="para" id="logaritmo-eliptico-2-2">Ya vimos que los criptosistemas tradicionales, aquieren cierta fortaleza con claves grandes, alrededor de 2048 bits; lo que puede ser impráctico para dispositivos con limitaciones de capacidad de cálculo y almacenamiento, como alternativa: surge el uso de las curvas elípticas (esquema inicialmente propuesto por Neal Koblitz y Victor Miller en 1985). Este mecanismo utiliza una curva elíptica para definir un sistema de cifrado asimétrico, con claves más cortas y un nivel de seguridad equivalente. Aunque la operación de suma y producto escalar en curvas elípticas es más compleja, ofrece beneficios en términos de eficiencia y seguridad. Se ha evolucionado sobre diversos enfoques hasta llegar al actual algoritmo <abbr class="acronym">ECDSA</abbr>. El mensaje o dato que se va a firmar digitalmente, el <em class="emphasis">targe</em> u objetivo depende del algoritmo de firma; en <abbr class="acronym">Bitcoin</abbr> se usa <abbr class="acronym">ECDSA</abbr>.</div></section></section><section class="subsubsection" id="cap_4-6-4-7"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">4.4.2.2</span><span class="space"> </span><span class="title">Algoritmo de firma digital de curva elíptica</span>
+</h4>
+<div class="para" id="cap_4-6-4-7-2">El algoritmo <i class="foreign">Elliptic Curve Digital Signature Algorithm</i> (<abbr class="acronym">ECDSA</abbr>) resuelve el problema del logaritmo discreto en curvas elípticas. Es ampliamente utilizado en la firma digital de transacciones criptográficas, como en la tecnología <i class="foreign">blockchain</i>, donde se asegura la autenticidad y la integridad de las transacciones.</div>
+<ul class="disc">
+<li id="cap_4-6-4-7-3-1"><div class="para" id="cap_4-6-4-7-3-1-1">Denotamos la clave secreta como <span class="process-math">\(e\text{,}\)</span> que debe satisfacer lo siguiente: <span class="process-math">\(eG
+= P\text{;}\)</span> donde <span class="process-math">\(P\)</span> es la clave pública y <span class="process-math">\(e\)</span> la clave privada.</div></li>
+<li id="cap_4-6-4-7-3-2"><div class="para" id="cap_4-6-4-7-3-2-1">El objetivo o <em class="emphasis">targe</em> al que vamos a apuntar es un número <span class="process-math">\((k)\)</span> aleatorio de 256 bits; hacemos <span class="process-math">\(kG = R\text{.}\)</span>
+</div></li>
+<li id="cap_4-6-4-7-3-3"><div class="para" id="cap_4-6-4-7-3-3-1">
+<span class="process-math">\(R\)</span> es ahora el objetivo al que apuntamos. De hecho, sólo importa la coordenada <span class="process-math">\(x\)</span> de <span class="process-math">\(R\text{,}\)</span> a la que llamremos <span class="process-math">\(r\text{;}\)</span> de randomica.</div></li>
+<li id="cap_4-6-4-7-3-4">
+<div class="para" id="cap_4-6-4-7-3-4-1">La siguiente ecuación <span class="process-math">\(uG + vP = kG\)</span> es equivalente al problema del logaritmo discreto: donde <span class="process-math">\(k\)</span> es elegido al azar, <span class="process-math">\(u, v \neq 0\text{;}\)</span> pueden ser elegidos por el firmante; mientras que <span class="process-math">\(G\)</span> y <span class="process-math">\(P\)</span> son conocidos. Esto se debe al hecho de que:</div>
+<div class="para logical" id="cap_4-6-4-7-3-4-2">
+<div class="para">
+<span class="process-math">\(uG + vP = kG\)</span> implica <span class="process-math">\(vP = (k - u)G\text{.}\)</span> Dado que <span class="process-math">\(v \neq 0\text{,}\)</span> podemos dividir por el múltiplo escalar <span class="process-math">\(v\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+P = (\frac{k - u}{v})G
+\end{equation*}
+</div>
+</div>
+</li>
+<li id="cap_4-6-4-7-3-5">
+<div class="para logical" id="cap_4-6-4-7-3-5-1">
+<div class="para">Si conocemos <span class="process-math">\(e\text{,}\)</span> tenemos: </div>
+<div class="displaymath process-math">
+\begin{equation*}
+e = \frac{k - u}{v}
+\end{equation*}
+</div>
+</div>
+<div class="para" id="cap_4-6-4-7-3-5-2">Esto significa que cualquier combinación <span class="process-math">\((u,v)\)</span> que satisfaga la ecuación precedente será suficiente. Si no conocemos <span class="process-math">\(e\text{,}\)</span> tendremos que jugar con <span class="process-math">\((u,v)\)</span> hasta que <span class="process-math">\(e = \frac{k - u}{v}\text{.}\)</span> Si pudiéramos resolver esto con cualquier combinación <span class="process-math">\((u,v)\text{,}\)</span> eso significaría que habríamos resuelto <span class="process-math">\(P = eG\)</span> mientras conocemos solo <span class="process-math">\(P\)</span> y <span class="process-math">\(G\text{.}\)</span> En otras palabras, así se resuelve el problema del logaritmo discreto de manera elíptica.</div>
+</li>
+</ul>
+<div class="para" id="cap_4-6-4-7-4">Para proporcionar <span class="process-math">\((u,v)\)</span> correctos, debemos resolver el problema del logaritmo discreto o conocer el secreto <span class="process-math">\(e\text{.}\)</span> Como acordamos que el logaritmo discreto es difícil (o imposible), podemos asumir que se supone que <span class="process-math">\(e\)</span> es conocido por quien ideó <span class="process-math">\((u,v)\text{.}\)</span>
+</div>
+<div class="para" id="cap_4-6-4-7-5">Tenemos que incorporar la razón o propósito de nuestra intensión para que pueda ser verificada. ¿Cómo saber que hemos acertado al <i class="foreign">targe</i> esperado? En el lenguaje de firma/verificación, esto se llama <i class="foreign">hash</i> de firma [<a href="" class="xref" data-knowl="./knowl/xref/funcion-hash.html" title="Párrafo: La función hash">Párrafo </a>]; la “huella digital” del mensaje que contiene el objetivo buscado, que cualquiera que pretenda verificar el mensaje, ya debe de conocer; denotado con <span class="process-math">\(z\text{.}\)</span>
+</div>
+<div class="para" id="cap_4-6-4-7-6">El <i class="foreign">hash</i> del mensaje (<span class="process-math">\(z\)</span>): podemos incorporarlo a nuestro cálculo de <span class="process-math">\(uG + vP\)</span> de esta manera: <span class="process-math">\(u = z/s\)</span> y <span class="process-math">\(v = r/s\text{.}\)</span> Ahora tenemos el propósito <span class="process-math">\(z\)</span> incorporado en <span class="process-math">\(u\text{,}\)</span> y el motivo (objetivo o <i class="foreign">targe</i> <span class="process-math">\(r\)</span>) incorporado en <span class="process-math">\(v\text{;}\)</span> ambos son ahora parte de la ecuación. Y con un poco de álgebra podemos sensatear lo que buscamos: la base del algoritmo de firma; cuyos dos números son <span class="process-math">\(r\)</span> y <span class="process-math">\(s\text{.}\)</span> La firma digital <abbr class="acronym">ECDSA</abbr> consta de dos componentes: <span class="process-math">\(r\)</span> y <span class="process-math">\(s\text{;}\)</span> a la coordenada <span class="process-math">\(x\)</span> de <span class="process-math">\(R\)</span> (un punto en la curva elíptica), llamamos <span class="process-math">\(r\)</span> que es una parte de la firma; la otra parte, está relacionada con el valor del <i class="foreign">hash</i> del mensaje que se está firmando, y la llamamos <span class="process-math">\(s\text{.}\)</span>
+</div>
+<div class="para logical" id="cap_4-6-4-7-7">
+<div class="displaymath process-math">
+\begin{equation*}
+uG + vP = R = kG
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+uG + veG = kG
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+u + ve = k
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{z}{s} + \frac{re}{s} = k
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{z + re}{s} = k
+\end{equation*}
+</div>
+<div class="displaymath process-math" id="cap_4-6-4-7-7-6">
+\begin{align*}
+s \amp = \frac{z + re}{k} 
+\end{align*}
+</div>
+</div>
+<div class="para" id="cap_4-6-4-7-8">En resumen: en la firma digital <abbr class="acronym">ECDSA</abbr>, tenemos <span class="process-math">\(u\)</span> y <span class="process-math">\(v\)</span> que son componentes calculados, <span class="process-math">\(R\)</span> es un punto en la curva elíptica, <span class="process-math">\(k\)</span> es un valor aleatorio, <span class="process-math">\(z\)</span> es el <i class="foreign">hash</i> del mensaje, <span class="process-math">\(e\)</span> es la clave privada y <span class="process-math">\(s\)</span> es una parte de la firma.</div>
+<div class="para logical" id="cap_4-6-4-7-9">
+<div class="para">La verificación es sencilla; <span class="process-math">\(uG + vP\)</span> donde <span class="process-math">\(u,v \neq 0\)</span> resultando:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+uG
++ vP = (\frac{z}{s})G + (\frac{re}{s})G = (\frac{z + re}{s})G = (\frac{z +
+re}{(z + re)/k)})G = kG = (r,y)
+\end{equation*}
+</div>
+</div>
+<div class="para" id="cap_4-6-4-7-10">En este punto, es importante indicar que podemos divulgar <span class="process-math">\(R\text{,}\)</span> pero <span class="process-math">\(k\)</span> debe mantenerse en secreto, ya que su revelación equivale a revelar la clave privada <span class="process-math">\(e\text{:}\)</span> <span class="process-math">\(uG + vP = R \therefore uG + veG = kG \therefore (k - u)/v =
+e\text{.}\)</span>     </div>
+<section class="paragraphs" id="cap_4-6-4-7-11"><h5 class="heading"><span class="title">Verificando una firma <abbr class="acronym">ECDSA</abbr>.</span></h5> <div class="para" id="cap_4-6-4-7-11-2">Cuando se generan firmas digitales en <abbr class="acronym">Bitcoin</abbr>, estas firman un valor de longitud fija, que es nuestro <em class="emphasis">propósito</em> y tiene 32 bytes. La elección de 32 bytes, equivalente a 256 bits, no es coincidencia, ya que lo que estamos firmando será un escalar para <span class="process-math">\(G\text{.}\)</span> Para asegurarnos de que lo que firmamos tenga exactamente 32 bytes, aplicamos primero una función <i class="foreign">hash</i> al documento. En Bitcoin, se utiliza la función <abbr class="acronym">hash256</abbr>, que consiste en dos rondas de <abbr class="acronym">sha256</abbr><a class="xref" id="cap_4-6-4-7-11-2-7" href="" data-knowl="./knowl/fn/cap_4-6-4-7-11-2-7.html" title="Nota a pie de página 4.4.3"><sup> 3 </sup></a>. Esto garantiza que el resultado tenga la longitud deseada; es llamado “hash de firma” o <span class="process-math">\(z\text{.}\)</span> Las firmas que tendremos que verificar, también tienen dos componentes <span class="process-math">\((r,s)\text{;}\)</span> donde igual <span class="process-math">\(x\)</span> es la coordenada de algún punto <span class="process-math">\(R\)</span> y <span class="process-math">\(s\)</span> es nuestra ecuación anterior: <span class="process-math">\(s = \frac{z + re}{k}\text{.}\)</span>
+</div> <div class="para logical" id="cap_4-6-4-7-11-3">
+<div class="para">Conocemos <span class="process-math">\(e\)</span> (a partir de: <span class="process-math">\(P = eG\text{,}\)</span> o lo que estamos demostrando que sabemos en primer lugar), conocemos <span class="process-math">\(k\)</span> (de: <span class="process-math">\(kG = R\)</span>) y conocemos <span class="process-math">\(z\text{.}\)</span> Ahora construiremos <span class="process-math">\(R = uG + vP\)</span> definiendo <span class="process-math">\(u\)</span> y <span class="process-math">\(v\)</span> de esta manera: <span class="process-math">\(u=z/s\)</span> y <span class="process-math">\(v=r/s\text{,}\)</span> luego:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+uG + vP = (\frac{z}{s})G + (\frac{r}{s})P = (\frac{z}{s})G + (\frac{re}{s})G = (\frac{z
++ re}{s})G 
+\end{equation*}
+</div>
+</div> <div class="para" id="cap_4-6-4-7-11-4">Como conocemos: <span class="process-math">\(s = \frac{z + re}{k}\text{,}\)</span> resulta:</div> <div class="para logical" id="cap_4-6-4-7-11-5"><div class="displaymath process-math">
+\begin{equation*}
+uG + vP = (\frac{(z + re)}{(z + re)/k})G = kG = R
+\end{equation*}
+</div></div> <div class="para" id="cap_4-6-4-7-11-6">Hemos elegido con éxito <span class="process-math">\(u\)</span> y <span class="process-math">\(v\)</span> de tal manera que generamos <span class="process-math">\(R\)</span> como pretendíamos. Además, usamos <span class="process-math">\(r\)</span> en el cálculo de <span class="process-math">\(v\text{,}\)</span> lo que demuestra que sabíamos cuál sería <span class="process-math">\(R\text{.}\)</span> La única forma en que podemos conocer los detalles de <span class="process-math">\(R\)</span> de antemano es si conocemos <span class="process-math">\(e\text{.}\)</span>
+</div> <article class="assemblage assemblage-like" id="verificando_firma_ecds"><h6 class="heading"><span class="title">Algoritmo de verificación de firma <abbr class="acronym">ECDSA</abbr>.</span></h6>
+<div class="para logical" id="verificando_firma_ecds-2">
+<div class="para">Algoritmo <abbr class="acronym">ECDSA</abbr> para verificar una firma digital:</div>
+<ol class="decimal">
+<li id="verificando_firma_ecds-2-2-1"><div class="para" id="verificando_firma_ecds-2-2-1-1">A partir de <span class="process-math">\((r,s)\)</span> como la firma, <span class="process-math">\(z\)</span> como el <i class="foreign">hash</i> de la ‘cadena de texto’ que se está firmando y <span class="process-math">\(P\)</span> como la clave pública (o punto elíptico público) del firmante.</div></li>
+<li id="verificando_firma_ecds-2-2-2"><div class="para" id="verificando_firma_ecds-2-2-2-1">Se calcula: <span class="process-math">\(u = \frac{z}{s}\)</span> y <span class="process-math">\(v = \frac{r}{s}\text{;}\)</span> donde <span class="process-math">\((u,v)\)</span> se obtienen mediante el inverso multiplicativo de <span class="process-math">\(s\text{,}\)</span> con: <span class="process-math">\(u = z \times s^{-1}
+\pmod{N}\)</span> y <span class="process-math">\(v = r \times
+s^{-1} \pmod{N}\)</span> [En Sage: <a href="" class="xref" data-knowl="./knowl/xref/inverso-multiplicativo-sage.html" title="Nota A.2.6: Inverso Multiplicativo">Nota A.2.6</a>]; donde <span class="process-math">\(N\)</span> es el suborden del subgrupo de puntos en la curva elíptica SECP25k1<a class="xref" id="verificando_firma_ecds-2-2-2-1-9" href="" data-knowl="./knowl/fn/verificando_firma_ecds-2-2-2-1-9.html" title="Nota a pie de página 4.4.4"><sup> 4 </sup></a>.</div></li>
+<li id="verificando_firma_ecds-2-2-3"><div class="para" id="verificando_firma_ecds-2-2-3-1">Se calcula: <span class="process-math">\(uG + vP = R\text{.}\)</span>
+</div></li>
+<li id="verificando_firma_ecds-2-2-4"><div class="para" id="verificando_firma_ecds-2-2-4-1">Si la coordenada <span class="process-math">\(x\)</span> de <span class="process-math">\(R\)</span> es igual a <span class="process-math">\(r\text{,}\)</span> la firma es válida.</div></li>
+</ol>
+</div></article></section></section><article class="assemblage assemblage-like" id="firmando_ecdsa"><h4 class="heading"><span class="title">Algoritmo de Firma <abbr class="acronym">ECDSA</abbr>.</span></h4>
+<div class="para" id="firmando_ecdsa-2">Suponiendo que la clave pública <span class="process-math">\(P\)</span> es del conocimiento de quien quiera verificarla; y ese verificador conoce <span class="process-math">\(z\text{;}\)</span> el <i class="foreign">hash</i> de la ‘cadena de texto’ que se está firmando.</div>
+<div class="para logical" id="firmando_ecdsa-3"><ol class="decimal">
+<li id="firmando_ecdsa-3-1-1"><div class="para" id="firmando_ecdsa-3-1-1-1">Se elije una <span class="process-math">\(k\)</span> aleatoria.</div></li>
+<li id="firmando_ecdsa-3-1-2"><div class="para" id="firmando_ecdsa-3-1-2-1">Tenemos <span class="process-math">\(z\)</span> y conocemos <span class="process-math">\(e\)</span> tal que <span class="process-math">\(eG = P\text{.}\)</span>
+</div></li>
+<li id="firmando_ecdsa-3-1-3"><div class="para" id="firmando_ecdsa-3-1-3-1">Se obtiene <span class="process-math">\(R = kG\text{;}\)</span> con <span class="process-math">\(r = R_x\)</span> (coordenada <span class="process-math">\(x\)</span> de <span class="process-math">\(R\)</span>).</div></li>
+<li id="firmando_ecdsa-3-1-4"><div class="para" id="firmando_ecdsa-3-1-4-1">Se calcula <span class="process-math">\(s = \frac{z + re}{k}\text{.}\)</span>
+</div></li>
+<li id="firmando_ecdsa-3-1-5"><div class="para" id="firmando_ecdsa-3-1-5-1">La firma es <span class="process-math">\((r,s)\text{.}\)</span>
+</div></li>
+</ol></div></article><section class="subsubsection" id="cap_4-6-4-9"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">4.4.2.3</span><span class="space"> </span><span class="title">Computo de la firma y verificación ECDSA</span>
+</h4>
+<div class="para" id="cap_4-6-4-9-2">En <a class="external" href="http://www.sagemath.org/index.html" target="_blank"><code class="code-inline tex2jax_ignore">Sage</code></a>, conocidos los parámetros de la curva elíptica a utilizar (en nuestro caso SECP25k1); se puede firmar y verificar un mensaje secreto (<span class="process-math">\(m\)</span>); como en el código anexo <a href="" class="xref" data-knowl="./knowl/xref/buchanan_0.html" title="Entrada bibliográfica 7: Sage and ECDSA (secp256k1)">[7–21]</a>.</div>
+<pre id="cap_4-6-4-9-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage"># Notación:
+# - n: suborden del subgrupo de puntos en la CE
+# - p: base prima del campo finito
+# - G: punto Generador de la CE
+# - k: valor aleatorio
+# - P: clave pública o punto elíptico público; eG = P
+# - z: hash de la cadena de texto
+# - R: punto de la CE; kG = R
+# - r: coordenada x de R
+# - e: clave privada
+# - m: texto del mensaje a firmar
+# - s: hash del mensaje que se firma
+
+import hashlib
+
+# Parámetros de la curva elíptica
+a = 0
+b = 7
+p = 2**256 - 2**32 - 2**9 - 2**8 - 2**7 - 2**6 - 2**4 - 1                       
+
+# Orden del subgrupo de puntos en la curva elíptica
+n = int('0xfffffffffffffffffffffffffffffff' + 'ebaaedce6af48a03bbfd25e8cd0364141',16)
+
+# Campo finito y curva elíptica
+F = FiniteField(p)
+
+Fn = FiniteField(n)
+
+E  = EllipticCurve(F, [a, b])
+
+# Coordenadas del punto generador de la CE
+G_x = int('0x79be667ef9dcbbac55a06295ce870b07' + '029bfcdb2dce28d959f2815b16f81798',16)
+G_y = int('0x483ada7726a3c4655da4fbfc0e1108a8' + 'fd17b448a68554199c47d08ffb10d4b8',16)
+
+# Punto G en la curva elíptica
+G = E.point([G_x, G_y])
+
+def hashit(m):
+    # Función de hash utilizando SHA-256
+    return Integer('0x' + hashlib.sha256(m.encode()).hexdigest())
+
+def keygen():
+    # Generar clave privada y clave pública correspondiente
+    d = randint(1, n - 1)
+    P = d * G
+    return (P, d)
+
+def ecdsa_sign(d, m):
+    # firma ECDSA
+    r = 0
+    s = 0
+    while s == 0:
+        k = 1
+        while r == 0:
+            k = randint(1, n - 1)
+            R = k * G
+            (x1, y1) = R.xy()
+            r = Fn(x1)
+        z = hashit(m)
+        s = Fn(k)^(-1) * (z + d * r)
+    return [r, s]
+
+def ecdsa_verify(P, m, r, s):
+    # Verificar firma ECDSA
+    z = hashit(m)
+    w = s^(-1)
+    u = z * w
+    v = r * w
+    R1 = Integer(u) * G
+    R2 = Integer(v) * P
+    R = R1 + R2
+    (x, y) = R.xy()
+    g = Fn(x)
+    return g == r
+
+# Generar claves pública y privada
+(P, e) = keygen()
+
+# Mensaje a firmar
+m = 'archipetaquiremandefua'
+
+# Firmar el mensaje
+[r, s] = ecdsa_sign(e, m)
+
+# Verificar la firma
+result = ecdsa_verify(P, m, r, s)
+
+# Imprimir resultados en formato hexadecimal
+print(f"Mensaje: {m}")
+print(f"Clave Publica (Coordenada x): {hex(P.xy()[0])}")
+print(f"Clave Publica (Coordenada y): {hex(P.xy()[1])}")
+print(f"Clave privada: {hex(e)}")
+print("=== FIRMA ===")
+print(f" r = {hex(r)}")
+print(f" s = {hex(s)}")
+print(f"Verificacion: {result}")
+</script></pre>
+<div class="para" id="cap_4-6-4-9-4"></div></section></section><section class="conclusion" id="cap_4-6-5"><div class="para" id="cap_4-6-5-1">Las curvas elípticas son protagonistas en la cadena de bloques de las monedas electrónicas, constituyendo los pilares fundamentales de su estructura (<a href="" class="xref" data-knowl="./knowl/xref/blockchain.html" title="Figura 4.4">Figura 4.4</a>). Junto con la firma digital, su verificación, algoritmos de <i class="foreign">hash</i> y otros mecanismos de seguridad, estas curvas contribuyen a hacer de estas monedas valores singulares e independientes. Firmar y verificar mediante algoritmos como <abbr class="acronym">ECDSA</abbr> no solo garantiza el valor de dichas monedas, sino que también profundiza en la abstracción del valor que representan. Los propietarios tienen el control total sobre el destino de su moneda, sin ningún intermediario; solo deben dejar constancia de sus acciones en la <i class="foreign">Blockchain</i>.</div></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="cap_4-5.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="cap_4-7.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+</body>
+</html>

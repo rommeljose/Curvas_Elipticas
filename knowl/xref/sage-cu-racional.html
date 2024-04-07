@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Períodos Reticulares.</span>
+</h2> <div class="para">Curva Elíptica con dos puntos resaltados: uno de valores enteros y otro de valores racionales.</div> <pre id="sage-cu-racional-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage"># Definir la curva elíptica y^2 = x^3 - 25*x sobre un campo racional
+a = -25
+b = 0
+E = EllipticCurve([a, b])
+# Definir el punto (-4, 6) en la curva
+P = E.point((-4, 6))
+Q = E.point((1681/144,62279/1728))
+# Graficar la curva elíptica y resaltar los puntos P y Q
+plot_curve_and_point = E.plot((-7, 13), aspect_ratio=0.2, color='green', figsize=(5, 5)) +  \
+point2d((-4, 6), color='red', size=30) + \
+point2d((1681/144,62279/1728), color='green', size=30) + \
+line([P.xy(), Q.xy()], linestyle='--', color='purple')
+
+# Etiquetar los puntos con letras
+plot_curve_and_point += text('P', (-4, 6), color='blue', horizontal_alignment='right', vertical_alignment='bottom', fontsize=10)
+plot_curve_and_point += text('Q', (1681/144, 62279/1728), color='blue', horizontal_alignment='left', vertical_alignment='top', fontsize=10)
+
+# Mostrar el gráfico en el cuaderno interactivo
+plot_curve_and_point
+</script></pre></article><span class="incontext"><a class="internal" href="sec-curvas-elipticas.html#sage-cu-racional">en contexto</a></span>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.5.4</span><span class="period">.</span><span class="space"> </span><span class="title">Encriptación RSA.</span>
+</h2> <div class="para">Supongamos que queremos enviar un mensaje <abbr class="acronym">RSA</abbr> —letra por letra— : “CIUDAD DE CUMANA”. Y nuestras claves privada y pública son: <span class="process-math">\(e=50253\)</span> y <span class="process-math">\(d
+= 27917\text{;}\)</span> provenientes de los números primos: <span class="process-math">\(p = 251\)</span> y <span class="process-math">\(q = 260\text{,}\)</span> donde <span class="process-math">\(n = p \times q = 67519\text{;}\)</span> con <span class="process-math">\(\varphi(67519)=67000\)</span>
+</div> <pre id="sage-RSA-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage"># Funciones para cifrar y descifrar usando RSA
+def rsa_encrypt(message, e, n):
+	return [pow(ord(char), e, n) for char in message]
+
+def rsa_decrypt(ciphertext, d, n):
+	return ''.join([chr(pow(char, d, n)) for char in ciphertext])
+
+# Mensaje original
+message = "CIUDAD DE CUMANA"
+
+# Claves pública y privada
+e = 50253
+d = 27917
+n = 67519
+
+# Codificación RSA
+ciphertext = rsa_encrypt(message, e, n)
+
+# Decodificación RSA
+decrypted_message = rsa_decrypt(ciphertext, d, n)
+# Imprimir resultados
+print("Mensaje original:", message)
+print("Cifrado RSA:", ciphertext)
+print("Descifrado RSA:", decrypted_message)
+</script></pre></article><span class="incontext"><a class="internal" href="sec-curvas-elipticas.html#sage-RSA">en contexto</a></span>
+</body>
+</html>

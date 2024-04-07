@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="es-ES" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Relaciones Binarias</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Curvas Elípticas">
+<meta property="book:author" content="Rommel J. Contreras G.">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Salta al contenido principal</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="curvas-elipticas.html"><span class="title">Curvas Elípticas:</span> <span class="subtitle">Base criptográfica de las monedas electrónicas</span></a></h1>
+<p class="byline">Rommel J. Contreras G., RJCG (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Índice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Índice</span></button><a class="index-button button" href="backmatter-4.html" title="Índice Alfabético"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Índice Alfabético</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Resultados encontrados: </h2>
+<div id="searchempty" class="searchempty"><span>Ningún resultado.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="cap_2-3.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="up-button button" href="cap_2.html" title="Arriba"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Arriba</span></a><a class="next-button button" href="parte-segunda.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb R}
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 parts"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Páginas preliminares</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colofón</span></a></div></li>
+<li class="toc-item toc-biography"><div class="toc-title-box"><a href="author-bio.html" class="internal"><span class="title">Biografía del autor</span></a></div></li>
+<li class="toc-item toc-dedication"><div class="toc-title-box"><a href="dedicatoria.html" class="internal"><span class="title">Dedicatoria</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="reconocimiento.html" class="internal"><span class="title">Agradecimientos</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="prefacio.html" class="internal"><span class="title">Prefacio</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="parte-primera.html" class="internal"><span class="codenumber">I</span> <span class="title">El Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminares</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_1-3.html" class="internal"><span class="codenumber">1.1</span> <span class="title">El lenguaje de los matemáticos</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-babilonios" class="internal"><span class="codenumber">1.1.1</span> <span class="title">El Pretérito del Número; Mesopotamia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-griegos" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Los Griegos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-indios" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Los Indios</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#diofanto" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Diofanto de Alejandría</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#los-arabes" class="internal"><span class="codenumber">1.1.5</span> <span class="title">Los Árabes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#descartes" class="internal"><span class="codenumber">1.1.6</span> <span class="title">René Descartes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_1-3.html#algebra-elemental" class="internal"><span class="codenumber">1.1.7</span> <span class="title">Diversidad numérica y las reglas del álgebra</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cap_2.html" class="internal"><span class="codenumber">2</span> <span class="title">La Nueva Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_2-3.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Álgebra Moderna</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#algebra-abstracta" class="internal"><span class="codenumber">2.1.1</span> <span class="title">El álgebra abstracta</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_2-3.html#ejemplos-objetos" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Ejemplos de objetos matemáticos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="relaciones.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Relaciones Binarias</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relaciones-binarias" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Relación Binaria</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relacion-equivalencia-2" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Relaciones de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#clase-equivalencia" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Clase de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#conjunto-de-cociente" class="internal"><span class="codenumber">2.2.4</span> <span class="title">Conjunto Cociente</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#enteros-mod-n-2" class="internal"><span class="codenumber">2.2.5</span> <span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#aritmetica-modular" class="internal"><span class="codenumber">2.2.6</span> <span class="title">Reglas o axiomas de la Aritmética Modular</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#particion-modular" class="internal"><span class="codenumber">2.2.7</span> <span class="title">Partición modular</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="relaciones.html#relaciones-10" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejecicios y Ejemplos</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="relaciones.html#Ejercicio" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejercicios</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="estructuras-matematicas.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Las estructuras matemáticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#lci-estructuras" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Leyes de Composición Interna</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#base-axiomatica" class="internal"><span class="codenumber">2.3.2</span> <span class="title">La base axiomática</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#grupo" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Grupos</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#permutacion-notacion" class="internal"><span class="codenumber">2.3.4</span> <span class="title">Notación de las permutaciones</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-matricial" class="internal"><span class="codenumber">2.3.4.1</span> <span class="title">Notación Matricial</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-ciclica" class="internal"><span class="codenumber">2.3.4.2</span> <span class="title">Notación Cíclica</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#estructuras-matematicas-7" class="internal"><span class="codenumber">2.3.5</span> <span class="title">Grupos de Simetrías Diedral</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#simetria-triangulo" class="internal"><span class="codenumber">2.3.5.1</span> <span class="title">Simetrías de un triangulo</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#cuerpo" class="internal"><span class="codenumber">2.3.6</span> <span class="title">Cuerpos o Campo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#complejos" class="internal"><span class="codenumber">2.3.7</span> <span class="title">Los Números Complejos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#campos-de-galois-2" class="internal"><span class="codenumber">2.3.8</span> <span class="title">Cuerpos Finitos o Campos de Galois</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="parte-segunda.html" class="internal"><span class="codenumber">II</span> <span class="title">Praxis Moderna del Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_3.html" class="internal"><span class="codenumber">3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="generales-3.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Generalidades</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#aprox-al-lenguaje-matematico" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Aproximación al lenguaje matemático</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#universo-de-variables-3" class="internal"><span class="codenumber">3.1.2</span> <span class="title">El Universo de Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="abstracciones-3.html" class="internal"><span class="codenumber">3.2</span> <span class="title">El poder de la abstracción</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="abstracciones-3.html#campos-de-galois-3" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Los Campos de Galois</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-5.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#curvas-elipticas-etc-3" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Ecuación de Weierstrass: Forma general de una Curva Elíptica</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#subsec-propiedades" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Algunas Propiedades de las Curvas Elípticas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-5.html#ley-de-grupos-c" class="internal"><span class="codenumber">3.3.3</span> <span class="title">La Ley de Grupo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-6.html" class="internal"><span class="codenumber">3.4</span> <span class="title">El aspecto de la curva elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_3-6.html#cap_3-6-3" class="internal"><span class="codenumber">3.4.1</span> <span class="title">El plano afín y el plano proyectivo</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Afin" class="internal"><span class="codenumber">3.4.1.1</span> <span class="title">El Plano Afín</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_3-6.html#subsubsec-El-Plano-Proyectivo" class="internal"><span class="codenumber">3.4.1.2</span> <span class="title">El Plano Proyectivo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-real-3" class="internal"><span class="codenumber">3.4.2</span> <span class="title">En el plano real:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-comlejo-3" class="internal"><span class="codenumber">3.4.3</span> <span class="title">En el plano complejo:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-6.html#ce-plano-recional-3" class="internal"><span class="codenumber">3.4.4</span> <span class="title">El plano racional:</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_3-7.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Más allá de lo no resuelto</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#conjetura-taniyama-shimura-weill-3" class="internal"><span class="codenumber">3.5.1</span> <span class="title">La conjetura de Taniyama-Shimura-Weill</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_3-7.html#logaritmo-discreto" class="internal"><span class="codenumber">3.5.2</span> <span class="title">El Logaritmo Discreto</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_4.html" class="internal"><span class="codenumber">4</span> <span class="title">Criptografía Elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="criptografia-con-ce-3.html" class="internal"><span class="codenumber">4.1</span> <span class="title">La criptografía con curvas elípticas</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="criptografia-con-ce-3.html#limetes-calculo-ce-3" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Cálculo elíptico minimalista</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="avances-en-criptografia.html" class="internal"><span class="codenumber">4.2</span> <span class="title">El Algoritmo <abbr class="acronym">RSA</abbr></span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Algoritmos de encriptación elíptica</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-5.html#subsec-intercambio-DH" class="internal"><span class="codenumber">4.3.1</span> <span class="title">El intercambio de claves por canales inseguros</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-6.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Las Monedas Electrónicas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-3" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Criptografía elíptica en la vida real</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">El Bitcoin</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#logaritmo-eliptico" class="internal"><span class="codenumber">4.4.2.1</span> <span class="title">El problema del logaritmo discreto en curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-7" class="internal"><span class="codenumber">4.4.2.2</span> <span class="title">Algoritmo de firma digital de curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-9" class="internal"><span class="codenumber">4.4.2.3</span> <span class="title">Computo de la firma y verificación ECDSA</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cap_4-7.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Límites del “cálculo elíptico”</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Páginas finales</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">Referencias y lecturas recomendadas</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sagemath.html" class="internal"><span class="codenumber">A</span> <span class="title">Tutorial SageMath</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Introducción</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="tutorial-sage.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Aritmética Básica</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="aritmetica-modulo-n.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Aritmética modular</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ejemplos-varios.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Ejemplos Varios</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-curvas-elipticas.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Curvas Elípticas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="notacion.html" class="internal"><span class="codenumber">B</span> <span class="title">Notación</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Índice Alfabético</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colofón</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="relaciones"><h2 class="heading hide-type">
+<span class="type">Sección</span><span class="space"> </span><span class="codenumber">2.2</span><span class="space"> </span><span class="title">Relaciones Binarias</span>
+</h2>
+<section class="introduction" id="relaciones-2"><div class="para" id="relaciones-2-1">Las relaciones binarias juegan un papel importante en todas las ciencias porque permiten clasificar los elementos del universo de conjuntos en el que están definidos. La importancia en matemáticas de las relaciones binarias, se debe a que una gran parte de las asociaciones entre elementos de conjuntos, tanto numéricos como no numéricos, se hace de dos en dos elementos, sean elementos de un único conjunto o de dos conjuntos distintos.</div></section><section class="subsection" id="relaciones-binarias"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.1</span><span class="space"> </span><span class="title">Relación Binaria</span>
+</h3>
+<div class="para" id="relaciones-binarias-2">Diferenciamos las relaciones binarias entre homogénea: relación binaria entre los elementos de un único conjunto, lo que determina su estructura interna. Y relación heterogénea: relaciones entre dos conjuntos distintos, lo que da lugar a operaciones o funciones matemáticas de cálculo.</div>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel bottom" style="width:30%;"><figure class="figure figure-like" id="relacion-homogena"><img src="external/./images/300px-Relacion_binaria_11_homogenea.png" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.4<span class="period">.</span></span><span class="space"> </span>Relación homogénea.</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:30%;"><figure class="figure figure-like" id="relacion-heterogenea"><img src="external/./images/300px-Relacion_binaria_12_heterogenea.png" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.5<span class="period">.</span></span><span class="space"> </span>Relación heterogénea.</figcaption></figure></div>
+</div></div>
+<article class="definition definition-like" id="relacion-binaria"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Relación binaria.</span>
+</h4>  <div class="para" id="relacion-binaria-5-1">En matemáticas, una relación binaria es una relación <span class="process-math">\(\mathcal{R}\)</span> definida entre los elementos de dos conjuntos <span class="process-math">\(A\)</span> y <span class="process-math">\(B\text{;}\)</span> que igual puede darse entre los elementos de un mismo conjunto.</div> <details id="relacion-binaria-6" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para" id="relacion-binaria-6-1">Una relación <span class="process-math">\(\mathcal {R}\)</span> de <span class="process-math">\(A\)</span> en <span class="process-math">\(B\)</span> se puede representar mediante pares ordenados <span class="process-math">\((a,b)\)</span> para los cuales se cumple alguna propiedad <span class="process-math">\(\mathcal {P}(a,b )\text{,}\)</span> de forma que <span class="process-math">\((a,b) \in A
+\times B\text{.}\)</span> Se denota: <span class="process-math">\(\mathcal{R} = \left\{\left(a,b \right) \in A
+\times B \mid \mathcal{P} \left(a,b\right) \right\}\text{.}\)</span> Que en lenguaje natural se lee: <em class="emphasis">la relación binaria <span class="process-math">\(\mathcal {R}\)</span> es el conjunto de pares ordenados <span class="process-math">\(\left(a,b \right)\)</span> pertenecientes al producto cartesiano <span class="process-math">\(A \times B \text{,}\)</span> para los cuales se cumple la propiedad <span class="process-math">\(\mathcal {P}\)</span> que los relaciona</em> .</div></article></details></article><details id="producto-cartesiano" class="example example-like born-hidden-knowl"><summary><h4 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Producto Cartesiano.</span>
+</h4></summary><article class="example example-like"> <div class="para logical" id="producto-cartesiano-2">
+<div class="para">El producto cartesiano de dos conjuntos <span class="process-math">\(A\)</span> y <span class="process-math">\(B\)</span> es una operación, que tiene como resultado otro conjunto <span class="process-math">\(A \times B\text{,}\)</span> cuyos elementos son todos los posibles emparejamientos que pueden formarse a partir de los conjuntos originales; de forma que el primer elemento del par ordenado pertenezca al primer conjunto <span class="process-math">\(A\)</span> y el segundo elemento pertenezca al segundo conjunto <span class="process-math">\(B\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+Ax B=\left\{\left(a,b \right): a \in A \;y\; b \in B \right\} \text{.}
+\end{equation*}
+</div>
+</div>   <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0% 0%;">
+<div class="sbspanel bottom" style="width:25%;"><figure class="figure figure-like" id="productos-cartecianos1"><img src="external/./images/Producto_cartesiano_de_conjuntos.png" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.6<span class="period">.</span></span><span class="space"> </span>Producto cartesiano de dos conjuntos.</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:25%;"><figure class="figure figure-like" id="productos-cartecianos2"><img src="external/./images/800px-CartesianPlane.png" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.7<span class="period">.</span></span><span class="space"> </span>Plano cartesiano <span class="process-math">\(R^2=R \times R\text{.}\)</span></figcaption></figure></div>
+<div class="sbspanel bottom" style="width:25%;"><figure class="figure figure-like" id="productos-cartecianos3"><img src="external/./images/torus-circle-topology-homeomorphism.png" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.8<span class="period">.</span></span><span class="space"> </span>Espacio cartesiano ‘toroidal’.</figcaption></figure></div>
+</div></div> </article></details></section><section class="subsection" id="relacion-equivalencia-2"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.2</span><span class="space"> </span><span class="title">Relaciones de Equivalencia</span>
+</h3>
+<div class="para" id="relacion-equivalencia-2-2">Toda relación entre los elementos de un conjunto que comparten alguna característica o propiedad común, es llamada relación de equivalencia. Estas relaciones permiten agrupar a los elementos de un conjunto en clases de equivalencia, mediante las cuales se puede clasificar toda la gama de objetos del conjunto; de manera tal que cada elemento pertenece a una y sólo a una clase; e.g., la relación de igualdad sobre cualquier conjunto es una relación de equivalencia.</div>
+<article class="definition definition-like" id="relacion-equivalencia-2-3"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Relación de equivalencia.</span>
+</h4>  <div class="para" id="relacion-equivalencia-2-3-3-1">Las relaciones de equivalencia son relaciones entre los elementos de un conjunto cualquiera, y su característica principal es que abstraen el concepto de igualdad.</div> <details id="relacion-equivalencia-2-3-4" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para logical" id="relacion-equivalencia-2-3-4-1">
+<div class="para">Sean <span class="process-math">\(a\)</span> y <span class="process-math">\(b\)</span> elementos de un conjunto cualquiera <span class="process-math">\(\color{blue}
+\bigstar\)</span> (<span class="process-math">\(a,b \in \color{blue} \bigstar \)</span>). Si <span class="process-math">\(a\)</span> tiene alguna relación con <span class="process-math">\(b\text{,}\)</span> la denotaremos por <span class="process-math">\(\color{red}
+\heartsuit\)</span> (para este ejemplo). Si es una Relación de Equivalencia, debe satisfacer:</div>
+<ul class="disc">
+<li id="relacion-equivalencia-2-3-4-1-8-1"><div class="para" id="relacion-equivalencia-2-3-4-1-8-1-1">Reflexividad: <span class="process-math">\(a \color{red} \heartsuit \color{black} a\)</span> para toda <span class="process-math">\(a\)</span> en <span class="process-math">\(\color{blue} \bigstar\)</span> .</div></li>
+<li id="relacion-equivalencia-2-3-4-1-8-2"><div class="para" id="relacion-equivalencia-2-3-4-1-8-2-1">Simetría: Si <span class="process-math">\(a \color{red} \heartsuit \color{black} b\text{,}\)</span> entonces <span class="process-math">\(b \color{red} \heartsuit \color{black} a\text{.}\)</span>
+</div></li>
+<li id="relacion-equivalencia-2-3-4-1-8-3"><div class="para" id="relacion-equivalencia-2-3-4-1-8-3-1">Transitividad: Si <span class="process-math">\(a \color{red} \heartsuit \color{black} b\)</span> y <span class="process-math">\(b \color{red} \heartsuit \color{black} c\text{,}\)</span> entonces <span class="process-math">\(a
+\color{red} \heartsuit \color{black} c\text{.}\)</span>
+</div></li>
+</ul>
+</div> <div class="para" id="relacion-equivalencia-2-3-4-2">Nota: Con el <span class="process-math">\(\color{blue} \bigstar\)</span> y el <span class="process-math">\(\color{red} \heartsuit\text{,}\)</span> recordar a <a href="" class="xref" data-knowl="./knowl/xref/hilbert-jarra.html" title="párrafo">Hilbert </a> … Los conceptos son independientes de los objetos físicos o abstractos que los representan, solo importan las relaciones lógicas entre ellos.</div></article></details></article></section><section class="subsection" id="clase-equivalencia"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="space"> </span><span class="title">Clase de Equivalencia</span>
+</h3>
+<div class="para" id="clase-equivalencia-2">Una relación de equivalencia divide, parte o separa. Cada clase de equivalencia es una parte; toda relación de equivalencia induce una partición en el conjunto donde está definida. Las clases de equivalencia clasifican a los elementos del conjunto, poniéndolos en sus correspondientes clases de equivalencia.</div>
+<article class="definition definition-like" id="clase-de-equivalencia"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Clase de equivalencia.</span>
+</h4>  <div class="para" id="clase-de-equivalencia-7-1">Sea <span class="process-math">\(\mathcal{R}\)</span> una relación de equivalencia sobre un conjunto <span class="process-math">\(K\text{.}\)</span> Para cada <span class="process-math">\(a \in K\text{,}\)</span> llamaremos clase de equivalencia de <span class="process-math">\(a\text{,}\)</span> al conjunto formado por todos los elementos de <span class="process-math">\(K\)</span> que estén relacionados con el elemento <span class="process-math">\(a\text{.}\)</span> La denotaremos <span class="process-math">\(\left[a\right]\text{,}\)</span> es decir, <span class="process-math">\(\left[a\right]
+= \left\{x \in K : x \; \mathcal{R} \;a \right\}\text{;}\)</span> <span class="process-math">\(a\)</span> es un representante de la clase <span class="process-math">\(\left[a\right]\text{.}\)</span>
+</div> <details id="clase-de-equivalencia-8" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para" id="clase-de-equivalencia-8-1">Una partición <span class="process-math">\(\mathcal{P}\)</span> de un conjunto <span class="process-math">\(X\)</span> es una colección de conjuntos no vacíos <span class="process-math">\(X_{1}, X_{2},...\)</span> tales que <span class="process-math">\(X_{i} \cap X_{j} =
+0\)</span> para todo <span class="process-math">\(i \neq j\)</span> y <span class="process-math">\(\bigcup_{k}X_{k} = X\)</span> (donde <span class="process-math">\(\bigcup_{k}\)</span> denota la unión de todos estos conjuntos; representa el conjunto de elementos que pertenecen a al menos uno de los conjuntos <span class="process-math">\(X_{1},
+X_{2},..., X_{k}\)</span>). Sea <span class="process-math">\(\sim \)</span> una relación de equivalencia sobre el conjunto <span class="process-math">\(X\)</span> y <span class="process-math">\(x \in X\text{.}\)</span> Entonces <span class="process-math">\(\left[a\right] = \left\{y
+\in X : y \; \sim \; x \right\}\)</span> se llama <em class="emphasis">clase de equivalencia</em> de x.</div></article></details></article></section><section class="subsection" id="conjunto-de-cociente"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="space"> </span><span class="title">Conjunto Cociente</span>
+</h3>
+<div class="para" id="conjunto-de-cociente-2">El conjunto formado por todas las clases de equivalencia de un determinado conjunto <span class="process-math">\(X\text{,}\)</span> presenta una de las propiedades más importantes de las clases de equivalencia; este conjunto de clases de equivalencia, denotado por <span class="process-math">\(\tilde{X}\text{,}\)</span> está formado por elementos que representan las propiedades en común entre los elementos del conjunto <span class="process-math">\(X\text{.}\)</span>
+</div>
+<article class="definition definition-like" id="conjunto-cociente"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Conjunto cociente.</span>
+</h4>  <div class="para logical" id="conjunto-cociente-3-1">
+<div class="para">Dado un conjunto <span class="process-math">\(X\text{,}\)</span> todos los elementos de una determinada clase en <span class="process-math">\(X\)</span> conforman un conjunto, y a su vez todas las clases de equivalencias conforman otro conjunto que llamaremos Conjunto Cociente y podemos denotar e.g., como <span class="process-math">\(\tilde{X}\text{,}\)</span> lo que implica:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\tilde{X} =
+\left\{\left[a\right]\mid a \in X \right\} \text{.}
+\end{equation*}
+</div>
+<div class="para">En lenguaje natural decimos: <em class="emphasis">El conjunto <span class="process-math">\(\tilde{X}\)</span> está formado por todas las clases de equivalencia <span class="process-math">\(\left[a\right]\text{,}\)</span> donde <span class="process-math">\(a\)</span> es un elemento de <span class="process-math">\(X\)</span></em>.</div>
+</div></article></section><section class="subsection" id="enteros-mod-n-2"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="space"> </span><span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span>
+</h3>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:80%;"><div class="para" id="enteros-mod-n-2-2-1">La aritmética modular o congruencia modular, es un tipo de operación con aritmética binaria propia; sus propiedades son de gran trascendencia. A veces es llamada aritmética del reloj, ya que en sus operaciones el conteo numérico se reinicia al alcanzar un determinado valor llamado módulo; como se observa en el reloj al paso de las horas.</div></div>
+<div class="sbspanel top" style="width:15%;"><figure class="figure figure-like" id="reloj-modular"><img src="external/./images/reloj1.jpg" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.9<span class="period">.</span></span><span class="space"> </span><span class="process-math">\(19 \equiv 7\pmod{12}\)</span></figcaption></figure></div>
+</div></div>
+<div class="para" id="enteros-mod-n-2-3">Esta modularidad o congruencia satisfacen una serie de propiedades importantes, por ello son indispensables en la teoría y aplicaciones del álgebra y en la teoría de números. Son usados en criptografía, teoría de códigos, y en la detección de errores. Por ejemplo, las operaciones aritméticas que realizan las computadoras son de aritmética modular (booleana); donde el módulo es <span class="process-math">\(2^b\text{,}\)</span> el número de bit de la palabra digital sobre la que se opera es <span class="process-math">\(b\text{,}\)</span> y 2 es la base del sistema numérico utilizado: el binario.</div>
+<div class="para" id="enteros-mod-n-2-4">En notación de Gauss, esa clase de congruencia se expresa como: <span class="process-math">\(A \equiv B
+\pmod{n}\)</span> y se lee: <span class="process-math">\(A\)</span> es congruente con <span class="process-math">\(B\)</span> módulo <span class="process-math">\(n\text{;}\)</span> también puede leerse: en módulo <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(A\)</span> y <span class="process-math">\(B\)</span> son congruentes. Como ejemplos: <span class="process-math">\(83 \equiv 63 \pmod{10}\text{;}\)</span> ya que <span class="process-math">\(63\)</span> y <span class="process-math">\(83\)</span> dejan el mismo resto <span class="process-math">\(3\)</span> al dividirlos por <span class="process-math">\(10\text{,}\)</span> o usando <span class="process-math">\(83 - 63 = 20\text{,}\)</span> que verifica un resultado múltiplo de <span class="process-math">\(10\text{.}\)</span> También <span class="process-math">\(19 \equiv 7\pmod{12}\text{,}\)</span> ya que <span class="process-math">\(19 - 7\)</span> verifica la modularidad; todo número es múltiplo de si mismo <a href="" class="xref" data-knowl="./knowl/xref/reloj-modular.html" title="Figura 2.9">Figura 2.9</a>.</div>
+<article class="definition definition-like" id="congruencia-modulo-2"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Congruencia.</span>
+</h4>  <div class="para" id="congruencia-modulo-2-4-1">Dos elementos <span class="process-math">\(A\)</span> y <span class="process-math">\(B\)</span> son congruentes módulo <span class="process-math">\(n\text{,}\)</span> si ellos generan el mismo residuo <span class="process-math">\(r\)</span> cuando se dividen por <span class="process-math">\(n\text{.}\)</span>
+</div> <details id="congruencia-modulo-2-5" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para" id="congruencia-modulo-2-5-1">Sean <span class="process-math">\(A\)</span> y <span class="process-math">\(B\)</span> dos enteros y supongamos que <span class="process-math">\(n \in \mathbb{N}\text{.}\)</span> Diremos que: <span class="process-math">\(A\)</span> es congruente a <span class="process-math">\(B\)</span> módulo <span class="process-math">\(n\text{;}\)</span> o: en módulo <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(A\)</span> es congruente a <span class="process-math">\(B\text{,}\)</span> si y sólo si <span class="process-math">\(A - B\)</span> es divisible por <span class="process-math">\(n\text{;}\)</span> es decir, <span class="process-math">\(A - B = nk\)</span> para algún <span class="process-math">\(k \in
+\mathbb{Z}\text{.}\)</span> En este caso escribimos <span class="process-math">\(A \equiv B \pmod{n} \text{.}\)</span> e.g., <span class="process-math">\(41
+\equiv 17\pmod{8} \)</span> pues <span class="process-math">\(41 - 17 = 24\)</span> es divisible por <span class="process-math">\(8\text{.}\)</span>
+</div></article></details> <article class="note remark-like" id="congruencia-modulo-2-6"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span>
+</h5>
+<div class="para" id="congruencia-modulo-2-6-1">Afirmativamente la congruencia módulo <span class="process-math">\(n\)</span> es una <em class="emphasis">relación de equivalencia</em> en <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Ciertamente cualquier entero <span class="process-math">\(r\)</span> es equivalente a si mismo pues <span class="process-math">\(r - r = 0\)</span> es divisible por <span class="process-math">\(n\text{.}\)</span> Mostraremos ahora que la relación es simétrica. Si <span class="process-math">\(A \equiv B \pmod{n} \text{,}\)</span> entonces <span class="process-math">\(A - B = - (B - A) \)</span> es divisible por <span class="process-math">\(n\text{.}\)</span> Así <span class="process-math">\(B - A\)</span> es divisible por <span class="process-math">\(n\)</span> y <span class="process-math">\(B \equiv A \pmod{n}) \text{.}\)</span> Ahora supongamos que <span class="process-math">\(A \equiv B \pmod{n} \)</span> y <span class="process-math">\(B \equiv t \pmod{n} \text{.}\)</span> Entonces existen algunos enteros <span class="process-math">\(k\)</span> y <span class="process-math">\(l\)</span> tales que <span class="process-math">\(A - B = kn\)</span> y <span class="process-math">\(B
+- t = ln\text{.}\)</span>
+</div> <div class="para" id="congruencia-modulo-2-6-2">En esta definición se ha utilizado la notación tradicional aritmética para la suma y la resta: <span class="process-math">\((+,\; -)\text{;}\)</span> el producto queda supuesto entre <span class="process-math">\(A\)</span> y <span class="process-math">\(B\text{,}\)</span> cuando se escribe <span class="process-math">\(AB\text{.}\)</span>
+</div></article></article></section><section class="subsection" id="aritmetica-modular"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="space"> </span><span class="title">Reglas o axiomas de la Aritmética Modular</span>
+</h3>
+<span class="process-math">\(n\)</span><span class="process-math">\(\mathbb{Z}\text{,}\)</span><article class="definition definition-like" id="reglas-relaciones-equivalencia"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Reglas de las Relaciones de Equivalencias.</span>
+</h4>  <div class="para" id="reglas-relaciones-equivalencia-5-1"></div> <div class="para logical" id="reglas-relaciones-equivalencia-5-2">
+<div class="para">Si <span class="process-math">\(A \equiv B \pmod{n} \)</span> y <span class="process-math">\(C \equiv D \pmod{n} \text{,}\)</span> entonces se cumplen las siguientes reglas:</div>
+<ul class="disc">
+<li id="reglas-relaciones-equivalencia-5-2-3-1"><div class="para" id="reglas-relaciones-equivalencia-5-2-3-1-1">Suma modular: <span class="process-math">\(A \oplus C \equiv B \oplus D \pmod{n} \text{.}\)</span>
+</div></li>
+<li id="reglas-relaciones-equivalencia-5-2-3-2"><div class="para" id="reglas-relaciones-equivalencia-5-2-3-2-1">Resta modular: <span class="process-math">\(A \ominus C \equiv B \ominus D \pmod{n} \text{.}\)</span>
+</div></li>
+<li id="reglas-relaciones-equivalencia-5-2-3-3"><div class="para" id="reglas-relaciones-equivalencia-5-2-3-3-1">Producto modular: <span class="process-math">\(A \otimes C \equiv B \otimes D \text{.}\)</span>
+</div></li>
+</ul>
+</div></article><article class="definition definition-like" id="maximo-comun-divisor"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Máximo Común Divisor.</span>
+</h4>  <div class="para" id="maximo-comun-divisor-3"></div> <div class="para logical" id="maximo-comun-divisor-4">
+<div class="para">Dado <span class="process-math">\(a,b\)</span> <span class="process-math">\(\in \mathbb{Z}\text{,}\)</span> se dice que <span class="process-math">\(d \in \mathbb{Z}^+\)</span> es un máximo común divisor, abreviado mcd. de a y b, si:</div>
+<ol class="lower-roman">
+<li id="maximo-comun-divisor-4-4-1"><div class="para" id="maximo-comun-divisor-4-4-1-1">Es posible: <span class="process-math">\(d | a\)</span> y <span class="process-math">\(d | b\text{.}\)</span>
+</div></li>
+<li id="maximo-comun-divisor-4-4-2"><div class="para" id="maximo-comun-divisor-4-4-2-1">Otro entero <span class="process-math">\(d'\)</span> satisface: <span class="process-math">\(d' | a\)</span> y <span class="process-math">\(d' | b\text{,}\)</span> entonces debe ser posible: <span class="process-math">\(d' | d\text{.}\)</span>
+</div></li>
+</ol>
+<div class="para">Si <span class="process-math">\(d\)</span> u otro entero <span class="process-math">\(d_1\)</span> satisface (i) e (ii) entonces <span class="process-math">\(d = d_1\)</span>
+</div>
+</div> <article class="note remark-like" id="maximo-comun-divisor-5"><h5 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">2.2.10</span><span class="period">.</span>
+</h5>Con la notación <span class="process-math">\(\mathbb{Z}^+\)</span> se indican los enteros sin el cero. Con la barra vertical ‘<span class="process-math">\(\mid \)</span>’ se indica la división entera; no se ha encerrado en círculo como en el caso de las otras operaciones aritméticas (<span class="process-math">\(\oplus,
+\ominus, \otimes\)</span>); debido a que la división no siempre es una operación interna, puede dar resultados fuera del conjunto donde opera.</article></article><article class="proposition theorem-like" id="aritmetica-modular-8"><h4 class="heading">
+<span class="type">Proposición</span><span class="space"> </span><span class="codenumber">2.2.11</span><span class="period">.</span><span class="space"> </span><span class="title">Propiedades de Clases de Equivalencia <span class="process-math">\(\pmod{n}\)</span>.</span>
+</h4>
+<div class="para" id="aritmetica-modular-8-2-1"></div> <div class="para logical" id="aritmetica-modular-8-2-2">
+<div class="para">Sea <span class="process-math">\(\mathbb{Z}n\)</span> el conjunto de clases de equivalencia de los enteros <span class="process-math">\(\pmod{n}\text{,}\)</span> y <span class="process-math">\(A,B,C \in \mathbb{Z}_{n}\text{.}\)</span>
+</div>
+<ul class="disc">
+<li id="aritmetica-modular-8-2-2-4-1"><div class="para" id="aritmetica-modular-8-2-2-4-1-1">La adición y la multiplicación son conmutativas.</div></li>
+<li id="aritmetica-modular-8-2-2-4-2"><div class="para" id="aritmetica-modular-8-2-2-4-2-1">La adición y la multiplicación son asociativas.</div></li>
+<li id="aritmetica-modular-8-2-2-4-3"><div class="para" id="aritmetica-modular-8-2-2-4-3-1">Existe la identidad aditiva y multiplicativa.</div></li>
+<li id="aritmetica-modular-8-2-2-4-4"><div class="para" id="aritmetica-modular-8-2-2-4-4-1">La multiplicación es distributiva respecto a la adición.</div></li>
+<li id="aritmetica-modular-8-2-2-4-5"><div class="para" id="aritmetica-modular-8-2-2-4-5-1">Para cada entero <span class="process-math">\(A\)</span> existe un inverso aditivo <span class="process-math">\(-A\text{.}\)</span>
+</div></li>
+<li id="aritmetica-modular-8-2-2-4-6"><div class="para" id="aritmetica-modular-8-2-2-4-6-1">Existe un entero <span class="process-math">\(B\)</span> que llamaremos Máximo Común Divisor (mcd) entre <span class="process-math">\(A\)</span> y <span class="process-math">\(n\text{.}\)</span>
+</div></li>
+</ul>
+</div></article><details id="aritmetica-modular-8-3" class="hiddenproof born-hidden-knowl"><summary><h4 class="heading"><span class="type">Demostración<span class="period">.</span></span></h4></summary><article class="hiddenproof"><div class="para logical" id="aritmetica-modular-8-3-1">
+<div class="para">Sea <span class="process-math">\(\mathbb{Z}n\)</span> el conjunto de clases de equivalencia de los enteros <span class="process-math">\(\pmod{n}\text{,}\)</span> y <span class="process-math">\(A,B,C \in \mathbb{Z}_{n}\text{,}\)</span> entonces <span class="process-math">\(A,B,C\)</span> cumplen con:</div>
+<ul class="disc">
+<li id="aritmetica-modular-8-3-1-5-1">
+<div class="para logical" id="aritmetica-modular-8-3-1-5-1-1">
+<div class="para">Conmutatividad:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A \oplus B \equiv B \oplus A \pmod{n}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A
+\otimes B \equiv B \otimes A \pmod{n}.
+\end{equation*}
+</div>
+</div>
+<div class="para" id="aritmetica-modular-8-3-1-5-1-2">La adición y la multiplicación son conmutativas <span class="process-math">\(\pmod{n}\)</span> ya que el remanente de <span class="process-math">\(A \oplus B\)</span> dividido por <span class="process-math">\(n\)</span> es lo mismo que el remanente de <span class="process-math">\(B \oplus A\)</span> dividido por <span class="process-math">\(n\text{.}\)</span>
+</div>
+</li>
+<li id="aritmetica-modular-8-3-1-5-2"><div class="para logical" id="aritmetica-modular-8-3-1-5-2-1">
+<div class="para">Asociatividad:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(A \oplus B) \oplus C \equiv A \oplus (B
+\oplus C) \pmod{n}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(A \otimes B)\otimes C \equiv A \otimes (B
+\otimes C) (\pmod{n}.
+\end{equation*}
+</div>
+</div></li>
+<li id="aritmetica-modular-8-3-1-5-3"><div class="para logical" id="aritmetica-modular-8-3-1-5-3-1">
+<div class="para">Identidades:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A \oplus 0 \equiv A
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A \otimes 1 \equiv A
+\pmod{n}.
+\end{equation*}
+</div>
+</div></li>
+<li id="aritmetica-modular-8-3-1-5-4"><div class="para logical" id="aritmetica-modular-8-3-1-5-4-1">
+<div class="para">Distributividad:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A \otimes (B \oplus C) \equiv A \otimes B
+\oplus A \otimes C .
+\end{equation*}
+</div>
+</div></li>
+<li id="aritmetica-modular-8-3-1-5-5"><div class="para logical" id="aritmetica-modular-8-3-1-5-5-1">
+<div class="para">Inverso aditivo:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A \oplus (-A) \equiv 0 \pmod{n}\text{.}
+\end{equation*}
+</div>
+</div></li>
+<li id="aritmetica-modular-8-3-1-5-6">
+<div class="para" id="aritmetica-modular-8-3-1-5-6-1">Máximo Común Divisor:</div>
+<div class="para" id="aritmetica-modular-8-3-1-5-6-2">Sea <span class="process-math">\(A\)</span> un número entero distinto de cero. Entonces existe un máximo común divisor (mcd) de valor <span class="process-math">\(B\)</span> entre <span class="process-math">\(A\)</span> y <span class="process-math">\(n\text{,}\)</span> tal que <span class="process-math">\(A \otimes B \equiv 1 \pmod{n}\text{.}\)</span>
+</div>
+<div class="para" id="aritmetica-modular-8-3-1-5-6-3">Supongamos que <span class="process-math">\(mcd(A,n) = 1\text{.}\)</span> Entonces existe un entero <span class="process-math">\(r\)</span> y <span class="process-math">\(s\)</span> tal que <span class="process-math">\(A \otimes r \oplus n \otimes s = 1\text{.}\)</span> Como <span class="process-math">\(n
+\otimes s = 1 - A \otimes r\text{,}\)</span> este debe ser el caso de que <span class="process-math">\(A \otimes r
+\equiv 1 \pmod{n}\text{.}\)</span> Permitiendo que <span class="process-math">\(B\)</span> sea la clase de equivalencia de <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(A \otimes B \equiv 1 \pmod{n}\text{.}\)</span>
+</div>
+<div class="para" id="aritmetica-modular-8-3-1-5-6-4">Como caso contrario, supongamos que existe un número entero <span class="process-math">\(B\)</span> tal que <span class="process-math">\(A \otimes B \equiv 1 \pmod{n}\text{.}\)</span> Entonces <span class="process-math">\(n\)</span> divide a <span class="process-math">\(A
+\otimes B - 1\text{,}\)</span> luego existe un número entero <span class="process-math">\(k\)</span> tal que <span class="process-math">\(A
+\otimes B - n \otimes K = 1 \text{.}\)</span> Sea <span class="process-math">\(d = mcd (A, \; n)\text{.}\)</span> Como <span class="process-math">\(d\)</span> divide a <span class="process-math">\(A \otimes B - n \otimes k\text{,}\)</span> <span class="process-math">\(d\)</span> debe también dividir a <span class="process-math">\(1\text{;}\)</span> por lo tanto <span class="process-math">\(d = 1\text{.}\)</span>
+</div>
+</li>
+</ul>
+</div></article></details></section><section class="subsection" id="particion-modular"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="space"> </span><span class="title">Partición modular</span>
+</h3>
+<div class="para" id="particion-modular-2">En principio la aritmética modular difiere de la aritmética tradicional; pero su estructura matemática, como relación de equivalencia es en esencia igual a cualquier otra. La partición modular está asociada a la teoría de números y se refiere a la descomposición de un número entero positivo en la suma de números positivos. La congruencia módulo <span class="process-math">\(n\)</span> induce una partición en el conjunto en el que está definida. Es una operación que separa el conjunto, creando o generando así Clases de Equivalencia, también conocidas como Clases de Congruencias <a href="" class="xref" data-knowl="./knowl/xref/clase-de-equivalencia.html" title="Definición 2.2.4: Clase de equivalencia">Definición 2.2.4</a>; e.g., los enteros <span class="process-math">\(\pmod{n}\)</span> dividen <span class="process-math">\(\mathbb{Z}\)</span> en <span class="process-math">\(n\)</span> diferentes clases de equivalencias; denotamos al conjunto de estas clases de equivalencias por <span class="process-math">\(\mathbb{Z}_{n}\)</span> .</div>
+<div class="para logical" id="particion-modular-3">
+<div class="para">Por ejemplo, el entero módulo <span class="process-math">\(12\text{,}\)</span> particiona a los enteros de las siguientes <span class="process-math">\(12\)</span> clases de congruencias:</div>
+<div class="displaymath process-math" id="particion-modular-3-3">
+\begin{align*}
+{[0]} &amp; = \{ \ldots, -12, 0, 12, 24, \ldots \},\\
+{[1]} &amp; = \{ \ldots, -11, 1, 13, 25, \ldots \},\\
+{[2]} &amp; = \{ \ldots, -10, 2, 14, 26, \ldots \},\\
+&amp; \vdots\\
+{[11]} &amp; = \{ \ldots, -1, 11, 23, 35, \ldots \}
+\end{align*}
+</div>
+</div>
+<div class="para" id="particion-modular-4">La unión de las distintas particiones de un conjunto lo conforman: <span class="process-math">\([0] \cup [1]
+\cup [2] ...\cup [n] = \mathbb{Z}\text{.}\)</span> Los conjuntos <span class="process-math">\([0], [1], [2] ... [n]\)</span> forman una partición de enteros.</div>
+<div class="para" id="particion-modular-5">En el aparte referido al conjunto cociente [<a href="relaciones.html#conjunto-de-cociente" class="internal" title="Subsección 2.2.4: Conjunto Cociente">Subsección 2.2.4</a>], se muestra cómo determinar y denotar todas las clases de equivalencias de un conjunto; en el caso del conjunto <span class="process-math">\(\mathbb{Z}\)</span> serían infinitas. Sin embargo, para <span class="process-math">\(\mathbb{Z}_{n}\)</span> (un conjunto finito) se pueden determinar todas y cada una de sus <span class="process-math">\(n\)</span> clases de equivalencia; siempre que las dimensiones de <span class="process-math">\(n\)</span> permitan operar con los recursos de cómputos disponibles; dentro del límite de la eficiencia útil y oportuna.</div>
+<div class="para" id="particion-modular-6">A estas clases de equivalencias o de congruencias, se les define una aritmética <span class="process-math">\(\mathbb{Z}_{n}\text{.}\)</span> Para dos enteros <span class="process-math">\(A\)</span> y <span class="process-math">\(B\text{,}\)</span> la adición módulo <span class="process-math">\(n\)</span> : <span class="process-math">\((A + B) \pmod{n} \text{,}\)</span> será el resto de <span class="process-math">\(A + B\)</span> cuando es dividido por <span class="process-math">\(n\text{.}\)</span> La multiplicación módulo <span class="process-math">\(n\text{,}\)</span> esta definida cómo: <span class="process-math">\((A
+\otimes B) \pmod{n}\text{,}\)</span> se corresponde con el resto de <span class="process-math">\(A \otimes B\)</span> cuando es dividido por <span class="process-math">\(n\text{.}\)</span>
+</div>
+<div class="para" id="particion-modular-7">Existe una relación entre la partición modular y la función totiente de Euler (también conocida como la función phi de Euler). La función totiente de Euler, está relacionada con la cantidad de números enteros positivos menores o iguales a <span class="process-math">\(n\)</span> que son coprimos con <span class="process-math">\(n\)</span> (es decir, tienen el máximo común divisor igual a 1). Ambos conceptos están relacionados con las propiedades de los números enteros.</div>
+<article class="definition definition-like" id="funcion-totien"><h4 class="heading">
+<span class="type">Definición</span><span class="space"> </span><span class="codenumber">2.2.12</span><span class="period">.</span><span class="space"> </span><span class="title">Función Totien de Euler.</span>
+</h4> <div class="para" id="funcion-totien-2-1">La función totien (de Leonard Euler; 1707-1783), <span class="process-math">\(\varphi (n)\)</span> es igual al número de enteros <span class="process-math">\(k\text{,}\)</span> entre <span class="process-math">\(1\)</span> y <span class="process-math">\(N\text{,}\)</span> que son relativamente primos a <span class="process-math">\(N\)</span> [Relativamente primo significa que el mayor divisor común de <span class="process-math">\(k\)</span> y <span class="process-math">\(N\)</span> es <span class="process-math">\(1\)</span>].</div> <details id="funcion-totien-3" class="hiddenproof born-hidden-knowl"><summary><h5 class="heading"><span class="type">Demostración<span class="period">.</span></span></h5></summary><article class="hiddenproof"><div class="para" id="funcion-totien-3-1">Ejemplo: Para <span class="process-math">\(N=10\text{.}\)</span> Resulta: <span class="process-math">\(\varphi(1) + \varphi(2) + \varphi(5) +
+\varphi(10) = 1 + 1 + 4 + 4 = 10\text{.}\)</span> Esto no es una casualidad; es cierto para cualquier entero positivo <span class="process-math">\(N\text{.}\)</span> En Sage el la función totien de Euler (<span class="process-math">\(\varphi\)</span>) se obtiene mediante: euler_phi. Explicación para <span class="process-math">\(N = 10\text{,}\)</span> considere <span class="process-math">\(10\)</span> fracccines, de <span class="process-math">\(1/10\)</span> a <span class="process-math">\(10/10\text{:}\)</span> <span class="process-math">\(\frac{1}{10},
+\frac{2}{10},\frac{3}{10},\frac{4}{10},\frac{5}{10},\frac{6}{10},\frac{7}{10},\frac{8}{10},\frac{9}{10},\frac{10}{10}\)</span> .</div> <div class="para" id="funcion-totien-3-2">Simplificando:</div> <div class="para" id="funcion-totien-3-3">
+<span class="process-math">\(\frac{1}{10},\frac{1}{5},\frac{3}{10},\frac{2}{5},\frac{1}{2},\frac{3}{5},\frac{7}{10},\frac{4}{5},\frac{9}{10},\frac{1}{1}\text{.}\)</span> Resultan 4 fracciones con denominadores <span class="process-math">\(10\text{,}\)</span> lo que es igual a <span class="process-math">\(\varphi(10)=4\text{.}\)</span> El milagro es: si tomamos solo los divisores de <span class="process-math">\(10\text{,}\)</span> podemos sumar los resultados: <span class="process-math">\(\varphi(1) + \varphi(2) + \varphi(5) +
+\varphi(10) = 1 + 1 + 4 + 4 = 10\text{.}\)</span>
+</div></article></details></article><div class="para" id="particion-modular-10">La relación entre la partición modular y la función totiente de Euler puede no ser evidente de inmediato, ya que abordan aspectos diferentes de la teoría de números. Sin embargo, ambas áreas se centran en propiedades y descomposiciones de números enteros, y es posible que haya conexiones específicas en otra área de la matemática (como el álgebra abstracta) en contextos más avanzados o teorías matemáticas más especializadas: como las Curvas Elípticas.</div></section><section class="subsection" id="relaciones-10"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="space"> </span><span class="title">Ejecicios y Ejemplos</span>
+</h3>
+<article class="computation computation-like" id="relaciones-10-2"><h4 class="heading">
+<span class="type">Sage:</span><span class="space"> </span><span class="codenumber">2.2.13</span><span class="period">.</span><span class="space"> </span><span class="title">Aritmética modular.</span>
+</h4> <div class="para" id="relaciones-10-2-2">Es práctico y conveniente realizar operaciones de aritmética modular con SageMath [<a href="aritmetica-modulo-n.html" class="internal" title="Sección A.3: Aritmética modular">Sección A.3</a>]; considere seguir un <a class="external" href="https://doc.sagemath.org/html/es/tutorial/" target="_blank"><code class="code-inline tex2jax_ignore">tutorial</code></a> para profundizar sobre este tema y la herramienta computacional; especializada para cálculos algebraicos, simbólicos y numéricos.</div></article><details id="ejemplo-adicion-groupos-zn" class="example example-like born-hidden-knowl"><summary><h4 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.2.14</span><span class="period">.</span><span class="space"> </span><span class="title">Aritmética modular.</span>
+</h4></summary><article class="example example-like"> <div class="para logical" id="ejemplo-adicion-groupos-zn-2">
+<div class="para">Los siguientes ejemplos ilustran la arítmetica módulo <span class="process-math">\(n\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/modulo-n.html" id="ejemplo-adicion-groupos-zn-2-2">
+\begin{gather*}
+7 \oplus 4  \equiv 1 \pmod{5} \qquad 7 \otimes 3  \equiv 1
+\pmod{5}\\
+3 \oplus 5  \equiv 0 \pmod{8} \qquad 3 \otimes 5  \equiv 7
+\pmod{8}\\
+3 \oplus 4  \equiv 7 \pmod{9} \qquad 3 \otimes 9  \equiv 0
+\pmod{9}\text{.}
+\end{gather*}
+</div>
+<div class="para">En particular, note que es posible que el producto de dos números (no ceros) módulo <span class="process-math">\(n\text{,}\)</span> puede ser equivalente a <span class="process-math">\(0 \pmod{n}\text{.}\)</span> Se pueden verificar los ejemplo en Sage; <a href="" class="xref" data-knowl="./knowl/xref/modulo-n.html" title="Nota A.3.1: Cálculo del módulo de un número">Nota A.3.1</a>.</div>
+</div></article></details><details id="aritmetica-grupo-zn" class="example example-like born-hidden-knowl"><summary><h4 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.2.15</span><span class="period">.</span><span class="space"> </span><span class="title">Tabla de Multiplicar para <span class="process-math">\(\mathbb{Z}_{8}\)</span>.</span>
+</h4></summary><article class="example example-like"> <div class="para" id="aritmetica-grupo-zn-2">Algunas leyes de la aritmética se mantienen para la suma y la multiplicación modular <span class="process-math">\(\mathbb{Z}_{n}\text{.}\)</span> Pero, no es necesariamente cierto que siempre exista un inverso multiplicativo [<a href="" class="xref" data-knowl="./knowl/xref/inverso-multiplicativo-sage.html" title="Nota A.2.6: Inverso Multiplicativo">Nota A.2.6</a>]. Considere la tabla de multiplicar para <span class="process-math">\(\mathbb{Z}_{8}\)</span> [<a href="" class="xref" data-knowl="./knowl/xref/table-mult-z8.html" title="Figura 2.10">Figura 2.10</a>], observe que <span class="process-math">\(2\text{,}\)</span> <span class="process-math">\(4\text{,}\)</span> y <span class="process-math">\(6\)</span> no tienen inversos multiplicativos; esto es, para <span class="process-math">\(n = 2\text{,}\)</span> <span class="process-math">\(4\text{,}\)</span> o <span class="process-math">\(6\text{,}\)</span> no existe un entero <span class="process-math">\(k\)</span> tal que <span class="process-math">\(k \otimes n \equiv 1
+\pmod{8}\text{.}\)</span>
+</div> <figure class="figure figure-like" id="table-mult-z8"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c|cccccccc}
+\otimes &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7
+\\
+\hline
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\
+2 &amp; 0 &amp; 2 &amp; 4 &amp; 6 &amp; 0 &amp; 2 &amp; 4 &amp; 6 \\
+3 &amp; 0 &amp; 3 &amp; 6 &amp; 1 &amp; 4 &amp; 7 &amp; 2 &amp; 5 \\
+4 &amp; 0 &amp; 4 &amp; 0 &amp; 4 &amp; 0 &amp; 4 &amp; 0 &amp; 4 \\
+5 &amp; 0 &amp; 5 &amp; 2 &amp; 7 &amp; 4 &amp; 1 &amp; 6 &amp; 3 \\
+6 &amp; 0 &amp; 6 &amp; 4 &amp; 2 &amp; 0 &amp; 6 &amp; 4 &amp; 2 \\
+7 &amp; 0 &amp; 7 &amp; 6 &amp; 5 &amp; 4 &amp; 3 &amp; 2 &amp; 1
+\end{array}
+\end{equation*}
+</div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.10<span class="period">.</span></span><span class="space"> </span>Tabla de Multiplicar para <span class="process-math">\(\mathbb{Z}_{8}\text{.}\)</span></figcaption></figure></article></details><details id="relaciones-10-5" class="example example-like born-hidden-knowl"><summary><h4 class="heading">
+<span class="type">Ejemplo</span><span class="space"> </span><span class="codenumber">2.2.16</span><span class="period">.</span><span class="space"> </span><span class="title">Código corrector del RIF venezolano; <span class="process-math">\(\pmod{11}\)</span>.</span>
+</h4></summary><article class="example example-like"> <article class="computation computation-like" id="relaciones-10-5-2"><h5 class="heading">
+<span class="type">Sage:</span><span class="space"> </span><span class="codenumber">2.2.17</span><span class="period">.</span><span class="space"> </span><span class="title">RIF Venezuela.</span>
+</h5> <div class="para" id="relaciones-10-5-2-2">Código Python, corrector para el RIF venezolano; SageMath [<a href="" class="xref" data-knowl="./knowl/xref/rif-venezuela.html" title="Nota A.4.3: RIF Venezuela; programa del código corrector">Nota A.4.3</a>].</div></article> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:35%;"><figure class="figure figure-like" id="rif-image"><img src="external/./images/rif_rommel.jpg" class="contained"><figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">2.11<span class="period">.</span></span><span class="space"> </span></figcaption></figure></div>
+<div class="sbspanel middle" style="width:60%;"><div class="para" id="relaciones-10-5-3-2">El RIF personal o jurídico es un número de registro que se asigna a cada persona natural o jurídica. Está relacionado con la solvencia de los impuestos, tasas y otros afines en la República Bolivariana de Venezuela. En general, respecto a las personas naturales, a cada número de cédula de identidad, se le agrega un código de validación complementario.</div></div>
+</div></div> <div class="para" id="relaciones-10-5-4">El código corrector, permite validar la transcripción de datos, evitando la presencia de errores en las bases de datos; de no usarse, un error de transcripción pudiera hacer que un impuesto sea cobrado a otro ciudadano. Los analistas ante la presencia de un error pueden corregir exactamente el RIF equivocado. Este código no está presente en los números de cédulas de identidad; es una de las causas de la necesidad del RIF.</div> <div class="para logical" id="relaciones-10-5-5">
+<div class="para">El código de validación es calculado de acuerdo al siguiente algoritmo:</div>
+<ol class="decimal">
+<li id="relaciones-10-5-5-1-1"><div class="para" id="relaciones-10-5-5-1-1-1">Si es persona natural y su documento de identidad inicia con <code class="code-inline tex2jax_ignore">V</code> (ej., <code class="code-inline tex2jax_ignore">V08446211</code>), una variable base toma el valor <code class="code-inline tex2jax_ignore">4</code>, si inicia con <code class="code-inline tex2jax_ignore">
+                    E</code>, la base toma el valor <code class="code-inline tex2jax_ignore">8</code>. Si es persona jurídica y su código inicia con <code class="code-inline tex2jax_ignore">J</code>, la variable base toma el valor <code class="code-inline tex2jax_ignore">12</code>.</div></li>
+<li id="relaciones-10-5-5-1-2"><div class="para" id="relaciones-10-5-5-1-2-1">Cada uno de los <code class="code-inline tex2jax_ignore">8</code> digitos del documento de identidad se parea con los dígitos constantes <span class="process-math">\([0,3,2,7,6,5,4,3,2]\text{,}\)</span> resultando para el ejemplo: <span class="process-math">\([(V=4),(0,3),(8,2),(4,7),(4,6),(6,5),(2,4),(1,3),(1,2)]\text{.}\)</span>
+</div></li>
+<li id="relaciones-10-5-5-1-3"><div class="para logical" id="relaciones-10-5-5-1-3-1">
+<div class="para">Calculan la suma resultante del producto de los pares ordenados:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+val=[(4)+(0)+(16)+(28)+(24)+(30)+(8)+(3)+(2)]
+= 105\text{.}
+\end{equation*}
+</div>
+</div></li>
+<li id="relaciones-10-5-5-1-4"><div class="para logical" id="relaciones-10-5-5-1-4-1">
+<div class="para">Calcula el <span class="process-math">\(\pmod{11}\)</span> de la operación anterior: Resta de <code class="code-inline tex2jax_ignore">11</code> el resto de la suma anterior dividido entre <code class="code-inline tex2jax_ignore">11</code>. El código de verificación resultante es:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+código = 11 - Resto (val / 11) = 6\text{.}
+\end{equation*}
+</div>
+</div></li>
+</ol>
+</div></article></details><section class="exercises" id="Ejercicio"><h4 class="heading hide-type">
+<span class="type">Ejercicios</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">Ejercicios</span>
+</h4>
+<article class="exercise exercise-like" id="Ejercicio-1"><h5 class="heading"><span class="codenumber">1<span class="period">.</span></span></h5>
+<div class="para logical" id="Ejercicio-1-1-1">
+<div class="para">En el conjunto</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A = \left\{0, 1, 2, 3, 4 ,5, 6, 7, 8, 9\right\}\text{,}
+\end{equation*}
+</div>
+<div class="para">se considera la relacion <span class="process-math">\(a \mathcal{R} b\text{,}\)</span> si y sólo si <span class="process-math">\(a \ominus b\)</span> es múltiplo de <span class="process-math">\(3\text{.}\)</span>
+</div>
+</div>
+<div class="solutions">
+<details id="Ejercicio-1-2" class="hint solution-like born-hidden-knowl"><summary><span class="type">Pista</span><span class="period">.</span></summary><div class="hint solution-like"><div class="para" id="Ejercicio-1-2-1">Probar que la relación es de equivalencia, y hallar las clases de equivalencia y el conjunto cociente.</div></div></details><details id="Ejercicio-1-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solución</span><span class="period">.</span></summary><div class="solution solution-like">
+<div class="para" id="Ejercicio-1-3-1">Verificación del cumplimiento de las propiedades de las relaciones de equivalencia:</div> <div class="para logical" id="Ejercicio-1-3-2">
+<div class="para">Obsérvese que <span class="process-math">\(a \ominus b\)</span> es múltiplo de <span class="process-math">\(3 \Longleftrightarrow a
+\ominus b = 3 \odot K\text{;}\)</span> <span class="process-math">\(k \in \mathbb{Z}\text{,}\)</span> la relación puede escribirse de la forma: <span class="process-math">\(a \mathcal{R} b \Longleftrightarrow a \ominus b =
+3 \odot K\text{;}\)</span> con <span class="process-math">\(k \in \mathbb{Z}\text{.}\)</span>
+</div>
+<ul class="disc">
+<li id="Ejercicio-1-3-2-6-1"><div class="para" id="Ejercicio-1-3-2-6-1-1">Reflexividad: Para cada <span class="process-math">\(a \in A\)</span> se verifica que <span class="process-math">\(a
+\ominus a = 0\text{,}\)</span> que puede escribirse como <span class="process-math">\(a \ominus a = 3
+\odot 0; 0
+\in \mathbb{Z}\text{;}\)</span> luego es cierto <span class="process-math">\(a \mathcal{R} a\)</span> .</div></li>
+<li id="Ejercicio-1-3-2-6-2"><div class="para" id="Ejercicio-1-3-2-6-2-1">Simetría: Si <span class="process-math">\(a\)</span> y <span class="process-math">\(b\)</span> son cualquier elemento de <span class="process-math">\(A\text{,}\)</span> tales que <span class="process-math">\(a \mathcal{R} b\text{,}\)</span> entonces <span class="process-math">\(a \ominus b = 3
+\odot k; k \in
+\mathbb{Z}\text{.}\)</span> Lo que implica que <span class="process-math">\(b \ominus a = 3 \odot
+(-k); -k \in
+\mathbb{Z}\text{;}\)</span> y por lo tanto <span class="process-math">\(b \mathcal{R} a\text{.}\)</span>
+</div></li>
+<li id="Ejercicio-1-3-2-6-3"><div class="para" id="Ejercicio-1-3-2-6-3-1">Transitividad: Si <span class="process-math">\(a,b,c\)</span> son cualquiera elementos de <span class="process-math">\(A\)</span> tales que <span class="process-math">\(a \mathcal{R} b\)</span> y <span class="process-math">\(b \mathcal{R} c\text{,}\)</span> entonces <span class="process-math">\(a
+\ominus b = 3 \odot k_{1}; k_{1} \in \mathbb{Z}\)</span> y <span class="process-math">\(b
+\ominus c = 3
+\odot k_{2}; k_{2} \in \mathbb{Z}\text{.}\)</span> Si sumamos miembro a miembro ambas identidades, se tiene que: <span class="process-math">\(a \ominus c = 3
+\odot (k_{1} \oplus k_{2});
+k_{1} \oplus k_{2} \in \mathbb{Z}\text{;}\)</span> luego <span class="process-math">\(a
+\mathcal{R} c\)</span> es verdadero.</div></li>
+</ul>
+</div> <div class="para" id="Ejercicio-1-3-3">Determinación de las Clases de Equivalencia:</div> <div class="para logical" id="Ejercicio-1-3-4">
+<div class="para">Si <span class="process-math">\(a \in A\text{,}\)</span> entonces,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x \in
+\left[a\right] \Longleftrightarrow x
+\mathcal{R} a
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x \in \left[a\right] \Longleftrightarrow x
+\ominus a = 3
+\odot k; k \in \mathbb{Z}\text{,}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x \in \left[a\right]
+\Longleftrightarrow x =
+a \oplus 3 \odot k;
+k \in \mathbb{Z}\text{,}
+\end{equation*}
+</div>
+<div class="para">luego</div>
+<div class="displaymath process-math" id="Ejercicio-1-3-4-5">
+\begin{align*}
+\left[ a\right] &amp; = \left\{x: x = a \oplus 3 \odot k; k
+\in \mathbb{Z} \right\}\\
+\left[ 0 \right] &amp; =
+\left\{x: x =
+3 \odot k; k \in \mathbb{Z} \right\}= \left\{ 0,3,6,9 \right\}\\
+\left[
+1 \right] &amp; = \left\{x: x = 1 \oplus 3 \odot k; k \in
+\mathbb{Z}
+\right\}= \left\{ 1,4,7 \right\}\\
+\left[ 2 \right]
+&amp; =
+\left\{x: x = 2 \oplus 3 \odot k; k \in \mathbb{Z} \right\}=
+\left\{ 2,5,8
+\right\} 
+\end{align*}
+</div>
+</div> <div class="para logical" id="Ejercicio-1-3-5">
+<div class="para">El Conjunto Cociente será:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A / \mathcal{R} =
+\left\{\left\{0,3,6,9\right\},\left\{1,4,7\right\},\left\{2,5,8\right\}
+\right\} \text{.}
+\end{equation*}
+</div>
+</div>
+</div></details>
+</div></article></section></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="cap_2-3.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="parte-segunda.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+</body>
+</html>

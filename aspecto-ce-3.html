@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="es-ES" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>El aspecto de la curva elíptica</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Curvas Elípticas">
+<meta property="book:author" content="Rommel J. Contreras G.">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_oscarlevin.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Salta al contenido principal</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="curvas-elipticas.html"><span class="title">Curvas Elípticas:</span> <span class="subtitle">Base criptográfica de las monedas electrónicas</span></a></h1>
+<p class="byline">Rommel J. Contreras G., RJCG (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Índice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Índice</span></button><a class="index-button button" href="backmatter-4.html" title="Índice Alfabético"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Índice Alfabético</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Resultados encontrados: </h2>
+<div id="searchempty" class="searchempty"><span>Ningún resultado.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="curvas-elipticas-3.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="up-button button" href="cap_3.html" title="Arriba"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Arriba</span></a><a class="next-button button" href="mas-alla-noresuelto-3.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb R}
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth3 parts"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Páginas preliminares</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="front-colophon.html" class="internal"><span class="title">Colofón</span></a></div></li>
+<li class="toc-item toc-biography"><div class="toc-title-box"><a href="author-bio.html" class="internal"><span class="title">Biografía del autor</span></a></div></li>
+<li class="toc-item toc-dedication"><div class="toc-title-box"><a href="dedicatoria.html" class="internal"><span class="title">Dedicatoria</span></a></div></li>
+<li class="toc-item toc-acknowledgement"><div class="toc-title-box"><a href="reconocimiento.html" class="internal"><span class="title">Agradecimientos</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="prefacio.html" class="internal"><span class="title">Prefacio</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="parte-primera.html" class="internal"><span class="codenumber">I</span> <span class="title">El Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminares</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="lenguaje-matematico.html" class="internal"><span class="codenumber">1.1</span> <span class="title">El lenguaje de los matemáticos</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#los-babilonios" class="internal"><span class="codenumber">1.1.1</span> <span class="title">El Pretérito del Número; Mesopotamia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#los-griegos" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Los Griegos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#los-indios" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Los Indios</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#diofanto" class="internal"><span class="codenumber">1.1.4</span> <span class="title">Diofanto de Alejandría</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#los-arabes" class="internal"><span class="codenumber">1.1.5</span> <span class="title">Los Árabes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#descartes" class="internal"><span class="codenumber">1.1.6</span> <span class="title">René Descartes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="lenguaje-matematico.html#algebra-elemental" class="internal"><span class="codenumber">1.1.7</span> <span class="title">Diversidad numérica y las reglas del álgebra</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_2.html" class="internal"><span class="codenumber">2</span> <span class="title">La Nueva Álgebra</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="la-nueva-algebra.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Álgebra Moderna</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="la-nueva-algebra.html#algebra-abstracta" class="internal"><span class="codenumber">2.1.1</span> <span class="title">El álgebra abstracta</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="la-nueva-algebra.html#ejemplos-objetos" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Ejemplos de objetos matemáticos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="relaciones.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Relaciones Binarias</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relaciones-binarias" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Relación Binaria</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#relacion-equivalencia-2" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Relaciones de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#clase-equivalencia" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Clase de Equivalencia</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#conjunto-de-cociente" class="internal"><span class="codenumber">2.2.4</span> <span class="title">Conjunto Cociente</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#enteros-mod-n-2" class="internal"><span class="codenumber">2.2.5</span> <span class="title">Los enteros módulo <span class="process-math">\(n\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#aritmetica-modular" class="internal"><span class="codenumber">2.2.6</span> <span class="title">Reglas o axiomas de la Aritmética Modular</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="relaciones.html#particion-modular" class="internal"><span class="codenumber">2.2.7</span> <span class="title">Partición modular</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="relaciones.html#relaciones-10" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejecicios y Ejemplos</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="relaciones.html#Ejercicio" class="internal"><span class="codenumber">2.2.8</span> <span class="title">Ejercicios</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="estructuras-matematicas.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Las estructuras matemáticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#lci-estructuras" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Leyes de Composición Interna</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#base-axiomatica" class="internal"><span class="codenumber">2.3.2</span> <span class="title">La base axiomática</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#grupo" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Grupos</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#permutacion-notacion" class="internal"><span class="codenumber">2.3.4</span> <span class="title">Notación de las permutaciones</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-matricial" class="internal"><span class="codenumber">2.3.4.1</span> <span class="title">Notación Matricial</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#notacion-ciclica" class="internal"><span class="codenumber">2.3.4.2</span> <span class="title">Notación Cíclica</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="estructuras-matematicas.html#estructuras-matematicas-7" class="internal"><span class="codenumber">2.3.5</span> <span class="title">Grupos de Simetrías Diedral</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#simetria-triangulo" class="internal"><span class="codenumber">2.3.5.1</span> <span class="title">Simetrías de un triangulo</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#cuerpo" class="internal"><span class="codenumber">2.3.6</span> <span class="title">Cuerpos o Campo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#complejos" class="internal"><span class="codenumber">2.3.7</span> <span class="title">Los Números Complejos</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="estructuras-matematicas.html#campos-de-galois-2" class="internal"><span class="codenumber">2.3.8</span> <span class="title">Cuerpos Finitos o Campos de Galois</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="parte-segunda.html" class="internal"><span class="codenumber">II</span> <span class="title">Praxis Moderna del Álgebra</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cap_3.html" class="internal"><span class="codenumber">3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="generales-3.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Generalidades</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#aprox-al-lenguaje-matematico" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Aproximación al lenguaje matemático</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="generales-3.html#universo-de-variables-3" class="internal"><span class="codenumber">3.1.2</span> <span class="title">El Universo de Variables</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="abstracciones-3.html" class="internal"><span class="codenumber">3.2</span> <span class="title">El poder de la abstracción</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="abstracciones-3.html#campos-de-galois-3" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Los Campos de Galois</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="curvas-elipticas-3.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Curvas Elípticas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="curvas-elipticas-3.html#curvas-elipticas-etc-3" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Ecuación de Weierstrass: Forma general de una Curva Elíptica</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="curvas-elipticas-3.html#subsec-propiedades" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Algunas Propiedades de las Curvas Elípticas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="curvas-elipticas-3.html#ley-de-grupos-c" class="internal"><span class="codenumber">3.3.3</span> <span class="title">La Ley de Grupo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="aspecto-ce-3.html" class="internal"><span class="codenumber">3.4</span> <span class="title">El aspecto de la curva elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="aspecto-ce-3.html#aspecto-ce-3-3" class="internal"><span class="codenumber">3.4.1</span> <span class="title">El plano afín y el plano proyectivo</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="aspecto-ce-3.html#subsubsec-El-Plano-Afin" class="internal"><span class="codenumber">3.4.1.1</span> <span class="title">El Plano Afín</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="aspecto-ce-3.html#subsubsec-El-Plano-Proyectivo" class="internal"><span class="codenumber">3.4.1.2</span> <span class="title">El Plano Proyectivo</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="aspecto-ce-3.html#ce-plano-real-3" class="internal"><span class="codenumber">3.4.2</span> <span class="title">En el plano real:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="aspecto-ce-3.html#ce-plano-comlejo-3" class="internal"><span class="codenumber">3.4.3</span> <span class="title">En el plano complejo:</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="aspecto-ce-3.html#ce-plano-recional-3" class="internal"><span class="codenumber">3.4.4</span> <span class="title">El plano racional:</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="mas-alla-noresuelto-3.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Más allá de lo no resuelto</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="mas-alla-noresuelto-3.html#conjetura-taniyama-shimura-weill-3" class="internal"><span class="codenumber">3.5.1</span> <span class="title">La conjetura de Taniyama-Shimura-Weill</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="mas-alla-noresuelto-3.html#logaritmo-discreto" class="internal"><span class="codenumber">3.5.2</span> <span class="title">El Logaritmo Discreto</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cap_4.html" class="internal"><span class="codenumber">4</span> <span class="title">Criptografía Elíptica</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="criptografia-con-ce-3.html" class="internal"><span class="codenumber">4.1</span> <span class="title">La criptografía con curvas elípticas</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="criptografia-con-ce-3.html#limetes-calculo-ce-3" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Cálculo elíptico minimalista</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="avances-en-criptografia.html" class="internal"><span class="codenumber">4.2</span> <span class="title">El Algoritmo <abbr class="acronym">RSA</abbr></span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-5.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Algoritmos de encriptación elíptica</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-5.html#subsec-intercambio-DH" class="internal"><span class="codenumber">4.3.1</span> <span class="title">El intercambio de claves por canales inseguros</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cap_4-6.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Las Monedas Electrónicas</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-3" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Criptografía elíptica en la vida real</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">El Bitcoin</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#logaritmo-eliptico" class="internal"><span class="codenumber">4.4.2.1</span> <span class="title">El problema del logaritmo discreto en curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-7" class="internal"><span class="codenumber">4.4.2.2</span> <span class="title">Algoritmo de firma digital de curva elíptica</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="cap_4-6.html#cap_4-6-4-9" class="internal"><span class="codenumber">4.4.2.3</span> <span class="title">Computo de la firma y verificación ECDSA</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cap_4-7.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Límites del “cálculo elíptico”</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Páginas finales</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="backmatter-1.html" class="internal"><span class="title">Referencias y lecturas recomendadas</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sagemath.html" class="internal"><span class="codenumber">A</span> <span class="title">Tutorial SageMath</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Introducción</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="tutorial-sage.html" class="internal"><span class="codenumber">A.2</span> <span class="title">Aritmética Básica</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="aritmetica-modulo-n.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Aritmética modular</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-ejemplos-varios.html" class="internal"><span class="codenumber">A.4</span> <span class="title">Ejemplos Varios</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-curvas-elipticas.html" class="internal"><span class="codenumber">A.5</span> <span class="title">Curvas Elípticas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="notacion.html" class="internal"><span class="codenumber">B</span> <span class="title">Notación</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Índice Alfabético</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-5.html" class="internal"><span class="title">Colofón</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="aspecto-ce-3"><h2 class="heading hide-type">
+<span class="type">Sección</span><span class="space"> </span><span class="codenumber">3.4</span><span class="space"> </span><span class="title">El aspecto de la curva elíptica</span>
+</h2>
+<section class="introduction" id="aspecto-ce-3-2"><div class="para" id="aspecto-ce-3-2-1">No siempre es posible visualizar una forma algebraica abstracta desde el punto de vista de nuestras referencias geométricas cotidianas. El aspecto de una curva elíptica depende del campo <span class="process-math">\(k\)</span> donde se encuentre definida.</div></section><section class="subsection" id="aspecto-ce-3-3"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">3.4.1</span><span class="space"> </span><span class="title">El plano afín y el plano proyectivo</span>
+</h3>
+<div class="para" id="aspecto-ce-3-3-2">Las curvas elípticas a menudo se estudian en el contexto de geometría algebraica, donde el plano afín y el plano proyectivo juegan roles fundamentales.</div>
+<section class="subsubsection" id="subsubsec-El-Plano-Afin"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">3.4.1.1</span><span class="space"> </span><span class="title">El Plano Afín</span>
+</h4>
+<div class="para" id="subsubsec-El-Plano-Afin-2">El plano afín es un espacio geométrico que se asemeja al plano euclidiano, pero sin la necesidad de tener un origen fijo. En el plano afín, se pueden realizar operaciones vectoriales como suma y resta, pero no necesariamente multiplicación por escalares. Las transformaciones afines (traslaciones, reflexiones, etc.) son ejemplos comunes de transformaciones en el plano afín.</div>
+<div class="para" id="subsubsec-El-Plano-Afin-3">El plano afín se denota comúnmente como <span class="process-math">\(\mathbb{A}^2\text{,}\)</span> que representa el conjunto de todos los puntos en el plano con coordenadas reales.</div>
+<div class="para" id="subsubsec-El-Plano-Afin-4">En el plano afín <span class="process-math">\(\mathbb{A}^2\text{,}\)</span> una curva elíptica puede representarse por una ecuación polinómica como <a href="" class="xref" data-knowl="./knowl/xref/ecu-a.html" title="Ecuación 3.3.1">(3.3.1)</a>. Por ejemplo, la curva elíptica <span class="process-math">\(y^2=x^3-3x+4\text{;}\)</span> donde <span class="process-math">\(a =0\)</span> y <span class="process-math">\(b=3\text{.}\)</span> Un punto de la curva podría ser: <span class="process-math">\((2,3)\text{;}\)</span> ya que <span class="process-math">\(3^2=2^3-3 . 2 +4 \text{.}\)</span>
+</div></section><section class="subsubsection" id="subsubsec-El-Plano-Proyectivo"><h4 class="heading hide-type">
+<span class="type">Subsubsección</span><span class="space"> </span><span class="codenumber">3.4.1.2</span><span class="space"> </span><span class="title">El Plano Proyectivo</span>
+</h4>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-2">El plano proyectivo <span class="process-math">\(\mathbb {P}^2\)</span> se utiliza para manejar puntos en el infinito, lo que simplifica ciertos aspectos de la teoría de curvas elípticas. Introduce una notación homogénea y permite una mayor flexibilidad matemática. La ecuación homogénea asociada a una curva elíptica en el plano proyectivo puede ser de la forma <span class="process-math">\(Y^2Z=X^3-aXZ^2+bZ^3\text{;}\)</span> donde <span class="process-math">\(X\text{,}\)</span> <span class="process-math">\(Y\)</span> y <span class="process-math">\(Z\)</span> son coordenadas homogéneas.</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-3">El uso del plano proyectivo facilita el tratamiento de puntos en el infinito y permite un enfoque más uniforme en la aritmética de curvas elípticas. El plano proyectivo se puede ver como una “completación” del plano afín al agregar puntos a lo largo de las direcciones paralelas.</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-4">En el estudio de las curvas elípticas, la notación utilizada en el plano proyectivo a menudo se expresa como <span class="process-math">\(E(\mathbb{F}_q)\text{;}\)</span> donde <span class="process-math">\(E\)</span> es la curva elíptica y <span class="process-math">\(\mathbb{F}_q\)</span> representa al cuerpo finito donde está definida.</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-5">En el plano proyectivo <span class="process-math">\(\mathbb {P}^2\text{,}\)</span> se utilizan coordenadas homogéneas. La ecuación homogénea asociada a la curva elíptica <span class="process-math">\(y^2=x^3-3x+4\)</span> sería: <span class="process-math">\(Y^2Z=X^3-3XZ^2+4Z^3\text{.}\)</span> Un punto de esa curva elíptica en coordenadas homogéneas podría ser: <span class="process-math">\((X,Y,Z) = (1,3,1)\text{;}\)</span> ya que satisface la ecuación: <span class="process-math">\(Y^2Z=3^2.1=1^3-3.1.1^2+4.1^3\text{.}\)</span>
+</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-6">Las coordenadas homogéneas se escriben comúnmente como <span class="process-math">\((X:Y:Z)\text{;}\)</span> en el caso específico de <span class="process-math">\((1,3,1)\text{,}\)</span> se podría representar de la siguiente manera: <span class="process-math">\((1,3,1)
+= (X:Y:Z) = (2:6:2)\text{;}\)</span> hemos multiplicado todas las coordenadas por 2 para obtener una representación equivalente. En el contexto de las coordenadas homogéneas, cualquier múltiplo no nulo de las coordenadas representa el mismo punto en el plano proyectivo.</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-7">Es común no distinguir entre la curva afín definida por una ecuación de Weierstrass y su cierre proyectivo, que contiene exactamente un punto <span class="process-math">\(\mathcal
+{O}\)</span> adicional en el infinito; con coordenadas homogéneas: <span class="process-math">\([0:1:0]\text{.}\)</span>
+</div>
+<div class="para" id="subsubsec-El-Plano-Proyectivo-8">Si el discriminante de la ecuación de una curva elíptica: <span class="process-math">\(\triangle = 0\text{,}\)</span> la ecuación define una curva suave (sin singularidades), en ese caso —si y solo si— el cierre proyectivo resulta una curva elíptica.</div></section></section><section class="subsection" id="ce-plano-real-3"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">3.4.2</span><span class="space"> </span><span class="title">En el plano real:</span>
+</h3>
+<div class="para" id="ce-plano-real-3-2"> Siempre es posible visualizar la imagen de la traza (forma de la curva) de una curva elíptica <span class="process-math">\(E(\mathbb{R})\)</span> en <span class="process-math">\(\mathbb{R}^2\text{;}\)</span> la cual puede presentar dos componentes conectadas. El plano real es un plano afín, se puede considerar como un conjunto de puntos bidimensionales en el espacio euclidiano real; simples pares ordenados de números reales <span class="process-math">\((x,y)\text{.}\)</span> Por ejemplo, el gráfico de la solución real (en números reales) de una ecuación elíptica expresada mediante la forma corta de Weierstrass: <span class="process-math">\(y^2=x^3+Ax+B\)</span> [<a href="curvas-elipticas-3.html#curvas-elipticas-etc-3" class="internal" title="Subsección 3.3.1: Ecuación de Weierstrass: Forma general de una Curva Elíptica">Subsección 3.3.1</a>]; es una construcción simple que puede ser elaborada a “mano” (o con la ayuda de una computadora) por cualquier estudiante de matemáticas; <a href="" class="xref" data-knowl="./knowl/xref/geometria-ley-de-grupo-c-e.html" title="Figura 3.3">Figura 3.3</a>.</div></section><section class="subsection" id="ce-plano-comlejo-3"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">3.4.3</span><span class="space"> </span><span class="title">En el plano complejo:</span>
+</h3>
+<div class="para" id="ce-plano-comlejo-3-2"> La “forma” de una curva elíptica <span class="process-math">\(E(\mathbb{C})\text{,}\)</span> con coordenadas en <span class="process-math">\(\mathbb{C}\text{,}\)</span> no tienen “forma” fácilmente visualizable en el sentido geométrico tradicional; suelen tener formas más abstractas y complicadas debido a la naturaleza de los números complejos y su estructura algebraica. Para facilitar la visualización y comprensión, a menudo se proyectan las curvas elípticas a un subconjunto bidimensional del espacio euclidiano real <span class="process-math">\(\mathbb{R}^2\text{;}\)</span> donde podemos visualizarlas de una manera más ajustada a la intuición geométrica clásica; esta proyección implica representar los puntos complejos como pares ordenados de números reales.</div>
+<div class="para" id="ce-plano-comlejo-3-3">Geométricamente hablando, en <span class="process-math">\(\mathbb{C}\)</span> las curvas elípticas son isomorfas a un toroide -superficies topológicas con un agujero-, se presentan similares a un toro (‘dona’ o ‘rosquilla’;<a href="" class="xref" data-knowl="./knowl/xref/forma-dona-ce-plano-complejo-3.html" title="Figura 4.3">Figura 4.3</a>); construidas de puntos que conforman una retícula.</div>
+<div class="para" id="ce-plano-comlejo-3-4">Podemos formar un toroide mediante construcción geométrica a partir de dos números complejos <span class="process-math">\(\omega_1,\omega_2 \in\mathbb{C}\text{,}\)</span> usándolos como dos lados de un paralelogramo, y luego identificar los lados opuestos (<a href="" class="xref" data-knowl="./knowl/xref/reticula-generatriz-ce-plano-complejo-3.html" title="Figura 3.5">Figura 3.5</a>). Los complejos <span class="process-math">\(\omega_1,\omega
+_2\)</span> son llamados períodos de <span class="process-math">\(E\text{;}\)</span> definen un par de generadores, o períodos, de la retícula. Dos números complejos, <span class="process-math">\(\omega_1,\omega_2\text{,}\)</span> que son independientes entre sí cuando se consideran como vectores en el plano complejo (linealmente independientes<a class="xref" id="ce-plano-comlejo-3-4-6" href="" data-knowl="./knowl/fn/ce-plano-comlejo-3-4-6.html" title="Nota a pie de página 3.4.1"><sup> 1 </sup></a>), sus partes reales e imaginarias sean números reales.</div>
+<div class="para" id="ce-plano-comlejo-3-5">La curva elíptica en el campo de los números complejos, se puede ver como una superficie de Riemann. Esto se debe a que los números complejos proporcionan una estructura geométrica y algebraica que permite tratar las coordenadas complejas de la curva de manera suave y holomórfica; derivable en un conjunto abierto en el plano complejo. La holomorficidad es la extensión del concepto de diferenciabilidad en el contexto de números complejos. Una superficie de Riemann es una variedad compleja (una variedad diferenciable compleja) que localmente se parece al plano complejo.</div>
+<div class="para" id="ce-plano-comlejo-3-6">Cuando se grafican los períodos complejos de una curva elíptica sobre el conjunto de números complejos <span class="process-math">\(\mathbb{C}\text{,}\)</span> los ejes del sistema de coordenadas son la parte real (eje <span class="process-math">\(X\)</span>) y la parte imaginaria (eje <span class="process-math">\(Y\)</span>) de los números complejos que representan los períodos.</div>
+<div class="para" id="ce-plano-comlejo-3-7">Los períodos reticulares se puede describir por la Ley de Grupo sobre <span class="process-math">\(E(\mathbb{C})\)</span> como:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/forma-dona-ce-plano-complejo-3.html ./knowl/xref/reticula-generatriz-ce-plano-complejo-3.html ./knowl/xref/ecu-b.html ./knowl/xref/sage-periodos-reticulares.html ./knowl/xref/conjetura-taniyama-shimura-weill-3.html" id="ecu-b">
+\begin{equation}
+L=: \{ {n_1 \omega _1+n_2 \omega _2 \mid n_1,n_2 \in \mathbb{Z}}
+\subset \mathbb{C} \}\tag{3.4.1}
+\end{equation}
+</div>
+<figure class="figure figure-like" id="reticula-generatriz-ce-plano-complejo-3"><div class="image-box" style="width: 35%; margin-left: 32.5%; margin-right: 32.5%;"><img src="external/images/forma-toroidal-ce-plano-complejo.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">3.5<span class="period">.</span></span><span class="space"> </span>Períodos complejos de una curva elíptica sobre <span class="process-math">\(E(\mathbb{C}\)</span>); generadores del toroide (de la curva elíptica en sí).</figcaption></figure><div class="para" id="ce-plano-comlejo-3-10">La ecuación <a href="" class="xref" data-knowl="./knowl/xref/ecu-b.html" title="Ecuación 3.4.1">(3.4.1)</a> define una retícula (red o enrejado) de punto regularmente espaciados en <span class="process-math">\(\mathbb{C}\text{,}\)</span> que conforma un subgrupo de los números complejos. Para describir la Ley de Grupo geométrica, extendemos la red de los períodos de <span class="process-math">\(E\text{;}\)</span> generando nuevos puntos.</div>
+<article class="computation computation-like" id="ce-plano-comlejo-3-11"><h4 class="heading">
+<span class="type">Sage:</span><span class="space"> </span><span class="codenumber">3.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Obtención de los períodos reticulares de una curva elíptica <span class="process-math">\(E\)</span>.</span>
+</h4> <div class="para" id="ce-plano-comlejo-3-11-2">Algoritmo Sage utilizado para calcular los períodos reticulares asociados a una curva elíptica. [<a href="" class="xref" data-knowl="./knowl/xref/sage-periodos-reticulares.html" title="Nota A.5.3: Períodos Reticulares">Nota A.5.3</a>]. Los períodos reticulares se obtienen utilizando métodos específicos de la teoría de funciones elípticas y la aritmética compleja asociada a las curvas elípticas.</div></article><figure class="figure figure-like" id="forma-reticular-ce-plano-complejo-3"><div class="image-box" style="width: 55%; margin-left: 22.5%; margin-right: 22.5%;"><img src="external/images/puntos_del_toro_de_una_ce.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">3.6<span class="period">.</span></span><span class="space"> </span>Puntos generatrices del toro correspondiente a la curva elíptica <span class="process-math">\(E(\mathbb{C})\text{.}\)</span></figcaption></figure><div class="para" id="ce-plano-comlejo-3-13">En topología<a class="xref" id="ce-plano-comlejo-3-13-1" href="" data-knowl="./knowl/fn/ce-plano-comlejo-3-13-1.html" title="Nota a pie de página 3.4.2"><sup> 2 </sup></a>, un toro está definido como una superficie cerrada, resultado del producto cartesiano de dos circunferencias unitarias (denotadas como: <span class="process-math">\(S^{1}
+\times S^{1}\)</span>), más estrictamente: una superficie cerrada orientable de género 1 (el género se refiere al número de agujeros que puede tener la figura<a class="xref" id="genero" href="" data-knowl="./knowl/fn/genero.html" title="Nota a pie de página 3.4.3"><sup> 3 </sup></a>).</div>
+<div class="para" id="ce-plano-comlejo-3-14">
+<span class="process-math">\(S^{1}\)</span>denota una circunferencia unitaria en el plano, es decir, un círculo de radio 1 centrado en el origen; cuyos puntos satisfacen la ecuación: <span class="process-math">\(x^2+y^2=1\text{.}\)</span>
+</div>
+<div class="para" id="ce-plano-comlejo-3-15">El producto cartesiano de dos circunferencias unitarias <span class="process-math">\(S^{1} \times S^{1}\text{,}\)</span> implica emparejar cada punto de una circunferencia con cada punto de la otra; creando una malla o ‘tejido’ en el plano. Visualmente, se puede imaginar, como el emparejamiento de cada punto de una circunferencia con todos los puntos de la otra circunferencia; lo que formaría una especie de cuadrícula. La malla resultante tiene un contorno cerrado, ya que siempre puedes dar la vuelta y regresar al punto de partida. Esto hace que sea una “superficie cerrada”. El término ‘orientable’ significa que puedes asignar una orientación consistente a la superficie; es como darle una dirección a cada pequeña parte de la superficie de manera coherente. Visualmente, se puede imaginar como el emparejamiento de puntos en dos circunferencias y la creación de una malla que se enrolla alrededor de un toro.</div>
+<div class="para" id="ce-plano-comlejo-3-16">Los períodos complejos de una curva elíptica son modulares. Existe una conexión profunda entre las curvas elípticas y las funciones modulares. Al mencionar esta conexión, es importante destacar que nos referimos a funciones específicas asociadas a las propiedades algebraicas de las curvas elípticas. Como antes mencionamos, esta conexión tiene importantes implicaciones en diversas áreas de las matemáticas, incluida la teoría de números y la criptografía. La conjetura de Taniyama-Shimura establece esa conexión y sus profundidades [<a href="mas-alla-noresuelto-3.html#conjetura-taniyama-shimura-weill-3" class="internal" title="Subsección 3.5.1: La conjetura de Taniyama-Shimura-Weill">3.5.1</a>].</div>
+<div class="para" id="ce-plano-comlejo-3-17">Es preciso resaltar que el toro isomorfo<a class="xref" id="ce-plano-comlejo-3-17-1" href="" data-knowl="./knowl/fn/ce-plano-comlejo-3-17-1.html" title="Nota a pie de página 3.4.4"><sup> 4 </sup></a> a la curva elíptica <span class="process-math">\(E(\mathbb{C})\text{,}\)</span> es solo una superficie bidimensional: <span class="process-math">\(T^2=S^{1} \times S^{1}\text{;}\)</span> “es un toro cuadrático”. Como grupo abstracto, no sólo tiene el aspecto de <span class="process-math">\(E(\mathbb{C})\text{,}\)</span> sino que es precisamente la curva elíptica <span class="process-math">\(E(\mathbb{C})\text{.}\)</span> Su construcción no difiere matemáticamente de la forma geométrica-algebraica aditiva que usamos para generar la curva en <span class="process-math">\(R^2\text{.}\)</span> La curva elíptica queda definida por los puntos finitos <span class="process-math">\(P\)</span> de orden divisivo <span class="process-math">\(m\text{;}\)</span> el toro <span class="process-math">\(S^{1} \times
+S^{1}\text{,}\)</span> con <span class="process-math">\(m \geq 1 \mid m \in \mathbb{Z}\text{;}\)</span> con (<span class="process-math">\(m\)</span> entero<a class="xref" id="ce-plano-comlejo-3-17-13" href="" data-knowl="./knowl/fn/ce-plano-comlejo-3-17-13.html" title="Nota a pie de página 3.4.5"><sup> 5 </sup></a>):</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/forma-dona-ce-plano-complejo-3.html ./knowl/xref/reticula-generatriz-ce-plano-complejo-3.html ./knowl/xref/ecu-b.html ./knowl/xref/sage-periodos-reticulares.html ./knowl/xref/conjetura-taniyama-shimura-weill-3.html" id="ecu-3">
+\begin{equation}
+E(\mathbb{C})_N =: \{ P \in E(\mathbb{C}) \mid mP = \mathcal {O} \}\tag{3.4.2}
+\end{equation}
+</div>
+<figure class="figure figure-like" id="toroide-reticular-ce-plano-complejo-3"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/estructura_reticular_de_la_ce_compleja.png" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">3.7<span class="period">.</span></span><span class="space"> </span>Estructura reticular bidimensional «finita» de una curva elíptica <span class="process-math">\(E(\mathbb{C})\text{;}\)</span> regularmente espaciada construida según la Ley de grupo <span class="process-math">\(L\text{,}\)</span> por la extensión de los períodos <span class="process-math">\(\omega_1,\omega _2\text{.}\)</span></figcaption></figure><article class="note remark-like" id="visualizando_al_toro"><h4 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">3.4.2</span><span class="period">.</span><span class="space"> </span><span class="title">Asociando la curvatura a la modularidad.</span>
+</h4> <div class="para logical" id="visualizando_al_toro-2"><ul class="">
+<li id="visualizando_al_toro-2-1-1"><div class="para" id="visualizando_al_toro-2-1-1-1">Retícula y Modularidad: Comencemos con la idea de la retícula generada por los períodos <span class="process-math">\(\omega_1\)</span> y <span class="process-math">\(\omega_2\text{.}\)</span> La modularidad significa que, al considerar combinaciones lineales de estos períodos, generamos puntos en la curva elíptica que son equivalentes en términos de la curva.</div></li>
+<li id="visualizando_al_toro-2-1-2"><div class="para" id="visualizando_al_toro-2-1-2-1">Trayectoria en el Espacio de la Curva: La modularidad permite que, al moverse en cualquier dirección a lo largo de la retícula, se esté cubriendo esencialmente la misma porción de la curva elíptica una y otra vez. Esto implica que, en el espacio de la curva elíptica, se pueda viajar en cualquier dirección y, eventualmente, regresar al punto de origen.</div></li>
+<li id="visualizando_al_toro-2-1-3"><div class="para" id="visualizando_al_toro-2-1-3-1">Espacio Complejo (<span class="process-math">\(\mathbb{C}\)</span>): La complejidad adicional proviene del hecho de que estamos trabajando en el espacio complejo (<span class="process-math">\(\mathbb{C}\)</span>), donde los puntos son números complejos con partes real e imaginaria. Moverse en cualquier dirección en <span class="process-math">\(\mathbb{C}\)</span> significa considerar combinaciones de ambos períodos <span class="process-math">\(\omega_1\)</span> y <span class="process-math">\(\omega_2\text{,}\)</span> lo que implica movimientos en dos direcciones (real e imaginaria) simultáneamente.</div></li>
+<li id="visualizando_al_toro-2-1-4"><div class="para" id="visualizando_al_toro-2-1-4-1">Representación Toroidal: La conexión con el toroide radica en que, al identificar lados opuestos de la retícula, estamos esencialmente ‘enrollando’ la curva elíptica alrededor de sí misma, formando una estructura que se asemeja a un toroide.</div></li>
+</ul></div></article></section><section class="subsection" id="ce-plano-recional-3"><h3 class="heading hide-type">
+<span class="type">Subsección</span><span class="space"> </span><span class="codenumber">3.4.4</span><span class="space"> </span><span class="title">El plano racional:</span>
+</h3>
+<div class="para" id="ce-plano-recional-3-2"> En 1922, L. J. Mordell plantó las bases de la llamada moderna teoría de las ecuaciones diofantinas. La solución de las ecuaciones polinomiales de Diofanto, usando números enteros o racionales: establece que todos los puntos <span class="process-math">\(k\)</span>-racionales de una curva elíptica pueden generarse a partir de un número finito de ellos; lo que había sido conjeturado por Poincaré en 1901. Es decir, todas las soluciones racionales de una de aquellas ecuaciones cúbicas que estudiaba Diofanto pueden construirse a partir de un número finito de ellas; empleando una variación de su método de la secante y tangentes.</div>
+<div class="para" id="ce-plano-recional-3-3">El Teorema de Mordell; establece que el grupo de puntos racionales en una curva elíptica definida sobre los números racionales es finitamente generado. En otras palabras, si <span class="process-math">\(E\)</span> es una curva elíptica definida sobre <span class="process-math">\(\mathbb{Q}\text{;}\)</span> entonces el conjunto de puntos racionales <span class="process-math">\(E(\mathbb{Q})\text{,}\)</span> forman un grupo finitamente generado.</div></section><article class="theorem theorem-like" id="theorema-mordell"><h3 class="heading">
+<span class="type">Teorema</span><span class="space"> </span><span class="codenumber">3.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Mordell (1922).</span>
+</h3>
+<div class="para" id="theorema-mordell-3-1">Sea <span class="process-math">\(E\)</span> una curva elíptica dada por la ecuación:</div>
+<div class="displaymath process-math" id="ecu-mordell">
+\begin{equation}
+E =: \{ y^2 = x^3 + Ax + B \mid A, B \in \mathbb{Q} \}\tag{3.4.3}
+\end{equation}
+</div>
+<div class="para" id="theorema-mordell-3-3">Entonces el grupo de puntos racionales <span class="process-math">\(E(\mathbb{Q})\)</span> es un grupo finitamente generado. Existe un conjunto finito de puntos <span class="process-math">\(P_1,\cdots,P_{(t)}
+\in E(\mathbb{Q})\)</span> tal que cada punto <span class="process-math">\(P \in E(\mathbb{Q})\)</span> puede ser escrito de la forma: <span class="process-math">\(P=n_1 P_1 + n_2 P_2 + \cdots + n_t P_t\text{;}\)</span> para algunas <span class="process-math">\(n_1,n_2,\cdots,n_t
+\in \mathbb{Q}\text{.}\)</span>
+</div></article><div class="para" id="aspecto-ce-3-8">Una forma estándar del teorema de Mordell (extendido por Weil), especifica que el grupo abeliano  <span class="process-math">\(E(\mathbb{Q})\)</span> va a ser isomorfo al producto <span class="process-math">\(r\)</span> veces de <span class="process-math">\(\mathbb{Z}\)</span> multiplicado por una cierta cantidad de grupos finitos <a href="" class="xref" data-knowl="./knowl/xref/problema_milenio.html" title="Entrada bibliográfica 24: El Problema del Milenio sobre Curvas Elípticas">[24]</a>.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ecu-a.html ./knowl/xref/curvas-elipticas-etc-3.html ./knowl/xref/geometria-ley-de-grupo-c-e.html ./knowl/xref/forma-dona-ce-plano-complejo-3.html ./knowl/xref/reticula-generatriz-ce-plano-complejo-3.html ./knowl/xref/ecu-b.html ./knowl/xref/sage-periodos-reticulares.html ./knowl/xref/conjetura-taniyama-shimura-weill-3.html ./knowl/xref/problema_milenio.html ./knowl/xref/theorema-mordell.html ./knowl/xref/ecu-mordell-ext-weill.html ./knowl/xref/puntos-singulares-3.html ./knowl/xref/ce-racional-3.html ./knowl/xref/ley-de-grupos-c.html ./knowl/xref/verif-secante-tangente.html ./knowl/xref/wiles_2.html" id="ecu-mordell-ext-weill">
+\begin{equation}
+E(\mathbb{Q}) \cong \underbrace{  \mathbb{Z} \times \mathbb{Z}
+\times \cdots}_{r \; copias} \times \mathbb{Z} \times (Grupo \; Finito)\tag{3.4.4}
+\end{equation}
+</div>
+<section class="paragraphs" id="aspecto-ce-3-10"><h3 class="heading"><span class="title">Rango de una Curva Eíptica.</span></h3> <div class="para" id="aspecto-ce-3-10-2">Al factor multiplicador <span class="process-math">\(r \geq 0\)</span> se le conoce como rango de la curva; el rango es una invariante de isogenia; la isogenia es una relación de equivalencia<a class="xref" id="aspecto-ce-3-10-2-2" href="" data-knowl="./knowl/fn/aspecto-ce-3-10-2-2.html" title="Nota a pie de página 3.4.6"><sup> 6 </sup></a>. El rango de una curva elíptica <span class="process-math">\(E\)</span> definida sobre los números racionales (<span class="process-math">\(\mathbb{Q}\)</span>) se denota como: <span class="process-math">\(r(E)\text{,}\)</span> y se refiere al número de generadores independientes en el grupo de puntos racionales <span class="process-math">\(E(\mathbb{Q})\text{.}\)</span> En otras palabras, si <span class="process-math">\(P_1, P_2, \cdot \cdot \cdot , P_r(E)\)</span> son puntos racionales independientes en la curva, entonces el rango es el número <span class="process-math">\(r(E)\text{,}\)</span> que puede ser finito o infinito. El “rango” de una curva elíptica es una medida de la cantidad de puntos racionales en la curva.</div></section><section class="paragraphs" id="aspecto-ce-3-11"><h3 class="heading"><span class="title">Torsión de una Curva Elíptica.</span></h3> <div class="para" id="aspecto-ce-3-11-2">Se refiere a la parte de la curva que tiene puntos con coordenadas racionales (los <span class="process-math">\(k\)</span>-racionales); aquellos puntos cuyas coordenadas pueden expresarse como fracciones enteras. El teorema de Mordell establece que para una curva elíptica definida sobre los números racionales (<a href="" class="xref" data-knowl="./knowl/xref/theorema-mordell.html" title="Teorema 3.4.3: Mordell (1922)">Teorema 3.4.3</a>), el conjunto de puntos <span class="process-math">\(k\)</span>-racionales en la curva forma un grupo finitamente generado. La torsión de una curva elíptica es precisamente la parte del grupo de puntos racionales que tiene orden finito; estos son los puntos que, cuando se agregan a sí mismos repetidamente, eventualmente llegan al punto identidad del grupo.</div> <div class="para" id="aspecto-ce-3-11-3">La extensión de Mordell-Weil generaliza el teorema de Mordell al considerar una curva elíptica definida sobre un cuerpo de números <span class="process-math">\(K\text{,}\)</span> donde <span class="process-math">\(K\)</span> puede ser un campo de números finito, un campo de números algebraicos, o un campo de funciones; al grupo de puntos racionales finitamente generado, se agrega la suma directa de un grupo cíclico infinitamente generado <a href="" class="xref" data-knowl="./knowl/xref/ecu-mordell-ext-weill.html" title="Ecuación 3.4.4">(3.4.4)</a>.</div></section><div class="para" id="aspecto-ce-3-12">La invariancia de la torsión, del rango y de otras propiedades de las curvas elípticas (bajo isogenia), son resultados importantes … y hermosos; que implican la comprensión de las propiedades estructurales de las curvas elípticas y de los grupos de torsión; proporcionando información sobre la estructura y el comportamiento de la curva en relación con los números enteros y racionales. Un área rica y profunda en la teoría de números y la geometría algebraica.</div>
+<div class="para" id="aspecto-ce-3-13">Existe una conexión directa con la multiplicación escalar, que se explica a través de la estructura de grupo de la curva elíptica; la ley de grupo en una curva elíptica permite sumar puntos de la curva y, por lo tanto, realizar multiplicación escalar.</div>
+<div class="para" id="aspecto-ce-3-14">Si la curva es singular (<a href="" class="xref" data-knowl="./knowl/xref/puntos-singulares-3.html" title="Nota 3.1.1">Nota 3.1.1</a>), el teorema de Mordell no se puede aplicar; ya que <span class="process-math">\(E(\mathbb{Q})\)</span> sería isomorfo a <span class="process-math">\(\mathbb{Q}\)</span> con la suma (o a <span class="process-math">\(\mathbb{Q}^{\ast}\)</span> con la multiplicación); los cuales no son grupos finitamente generados.</div>
+<div class="para" id="aspecto-ce-3-15">El estudio del grupo <span class="process-math">\(E(\mathbb{Q})\)</span> ha desempeñado y continúa desempeñando un roll fundamentan en el desarrollo de muchas áreas de la teoría de número. Esta curva elíptica o grupo de puntos racionales <span class="process-math">\(E(\mathbb{Q})\text{,}\)</span> es un subgrupo del grupo de puntos reales <span class="process-math">\(E(\mathbb{R})\text{.}\)</span> No podemos obtener una buena imagen de <span class="process-math">\(E(\mathbb{Q})\)</span> posicionándonos dentro de <span class="process-math">\(E(\mathbb{R})\text{.}\)</span> Lo que si podemos hacer es graficar la imagen de los números racionales <span class="process-math">\(\mathbb{Q}\text{,}\)</span> posicionándonos dentro del cuerpo de los números reales <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div>
+<div class="para" id="aspecto-ce-3-16">¿Cuántos generadores existen? ¿Necesitamos generarlos todos? y ¿Cómo encontrar un generador inicial? La respuesta a la primera pregunta aún no se conoce, pero los matemáticos están a mitad para resolverla. Respecto a las otras: El mecanismo de consecución de puntos mediante la «construcciones de secantes y de tangentes» permite probar que la recta <span class="process-math">\(L\)</span> corta a la curva <span class="process-math">\(E\)</span> en tres puntos, y verificar: que si dos soluciones son números racionales, entonces la tercera solución (o punto de corte) también será un número racional como se muestra graficamente en la <a href="" class="xref" data-knowl="./knowl/xref/ce-racional-3.html" title="Figura 3.8">Figura 3.8</a>; o en la <a href="curvas-elipticas-3.html#ley-de-grupos-c" class="internal" title="Subsección 3.3.3: La Ley de Grupo">Subsección 3.3.3</a>
+</div>
+<div class="para" id="aspecto-ce-3-17">Cuando se verifica el sistema de ecuaciones <a href="" class="xref" data-knowl="./knowl/xref/verif-secante-tangente.html" title="Ecuación 3.3.4">(3.3.4)</a>, los puntos que corta la recta <span class="process-math">\(L: P,Q,R\)</span> (con <span class="process-math">\(m\text{,}\)</span><span class="process-math">\(b\text{,}\)</span><span class="process-math">\(A\)</span> y <span class="process-math">\(B\)</span> números racionales), resulta que esos tripletes de puntos <span class="process-math">\(P,Q,R \)</span> tienen coordenadas en números racionales (no enteros); lo que genera la interrogante: ¿por qué se obtienen soluciones racionales? …</div>
+<figure class="figure figure-like" id="ce-racional-3"><div class="image-box" style="width: 65%; margin-left: 17.5%; margin-right: 17.5%;"><img src="external/images/figura_curva_eliptica_racional.jpg" class="contained"></div>
+<figcaption><span class="type">Figura</span><span class="space"> </span><span class="codenumber">3.8<span class="period">.</span></span><span class="space"> </span>Usando la aritmética elíptica y el álgebra es posible verificar que: la recta <span class="process-math">\(L\)</span> corta a la curva <span class="process-math">\(E\)</span> en tres puntos. Igualmente permite corroborar que: si dos soluciones son números racionales, entonces la tercera solución (o punto de corte) también será un número racional; definido sobre un campo <span class="process-math">\(k\)</span> subyacente cerrado algebraicamente.</figcaption></figure><div class="para" id="aspecto-ce-3-19">En consecuencia, sobreviene una nueva pregunta ¿Hay infinitas soluciones racionales? ¿Cómo se pueden corroborar? Los teóricos y estudiosos de la teoría de números han adelantados respuestas parciales, pero aún andan buscando resultados concluyentes para estas y otras interrogantes referidas a las curvas elípticas. Una ecuación cúbica en dos variables puede no tener soluciones racionales, solo una solución racional, un número finito de soluciones o infinitas soluciones. Desafortunadamente, no conocemos ningún algoritmo que arroje todas las soluciones racionales de una ecuación cúbica, aunque existen algoritmos conjeturales <a href="" class="xref" data-knowl="./knowl/xref/wiles_2.html" title="Entrada bibliográfica 37: Andrew Wiles lectured on his current work around Elliptic Curves">[37]</a>.</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="curvas-elipticas-3.html" title="Anterior"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Ant.</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="mas-alla-noresuelto-3.html" title="Siguiente"><span class="name">Sig.</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+</body>
+</html>

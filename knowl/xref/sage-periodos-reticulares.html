@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.5.3</span><span class="period">.</span><span class="space"> </span><span class="title">Períodos Reticulares.</span>
+</h2> <div class="para">La clase EllipticCurve, contiene la función period_lattice(), que devuelve una lista de dos elementos, correspondientes a los dos períodos reticulares. Estos valores son calculados internamente por Sage utilizando métodos específicos de la teoría de funciones elípticas y la aritmética compleja asociada a las curvas elípticas. La función basis() se usa para obtener la base asociada a los períodos reticulares.</div> <pre id="sage-periodos-reticulares-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage"># Definir la curva elíptica (ejemplo)
+a, b = -25, 0
+E = EllipticCurve([a, b])
+
+# Calcular los períodos reticulares
+periods = E.period_lattice().basis()
+
+print("Primer periodo reticular (W1):", periods[0])
+print("Segundo periodo reticular (W2):", periods[1])
+</script></pre></article><span class="incontext"><a class="internal" href="sec-curvas-elipticas.html#sage-periodos-reticulares">en contexto</a></span>
+</body>
+</html>

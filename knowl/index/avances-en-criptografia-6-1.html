@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="li"><h3 class="heading">
+<span class="type">Item</span><span class="period">.</span>
+</h3>
+<div class="para"><em class="alert">Generación de Claves <abbr class="acronym">RSA</abbr>:</em></div>
+<div class="para">Se escogen dos números primos grandes, <span class="process-math">\(p\)</span> y <span class="process-math">\(q\text{.}\)</span>
+</div>
+<div class="para">Luego se calcula el producto <span class="process-math">\(n = p \times q\text{.}\)</span>
+</div>
+<div class="para">Se calcula la función totient de Euler [<a href="" class="xref" data-knowl="./knowl/xref/funcion-totien.html" title="Definición 2.2.12: Función Totien de Euler">Definición 2.2.12</a>]: <span class="process-math">\(\varphi(n)
+= (p - 1) \times (q - 1)\text{.}\)</span>
+</div>
+<div class="para">Se elige un número entero <span class="process-math">\(e\)</span> tal que: <span class="process-math">\(1 \lt e \lt \varphi (n)\)</span> y <span class="process-math">\(mcd(e,
+\varphi (n))= 1\text{;}\)</span> con <span class="process-math">\(e\)</span> y <span class="process-math">\(\varphi (n)\)</span> coprimos. Lo correcto sería utilizar una <span class="process-math">\(e\)</span> aleatoria, generada por un algoritmo aleatorio o por ejemplo: por una función que utilice los movimientos aleatorios del ratón.</div>
+<div class="para">Por último se encuentra un número <span class="process-math">\(d\)</span> tal que <span class="process-math">\((d \times e) \div \varphi
+(n) = 1\)</span> (es decir, <span class="process-math">\(d\)</span> es el inverso multiplicativo modular de [<a href="" class="xref" data-knowl="./knowl/xref/inverso-multiplicativo-sage.html" title="Nota A.2.6: Inverso Multiplicativo">Nota A.2.6</a>]: <span class="process-math">\(e
+\pmod{\varphi(n)}\)</span>).</div></article><span class="incontext"><a class="internal" href="avances-en-criptografia.html#avances-en-criptografia-6-1">en contexto</a></span>
+</body>
+</html>

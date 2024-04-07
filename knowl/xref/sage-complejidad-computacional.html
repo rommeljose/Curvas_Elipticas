@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="note remark-like"><h2 class="heading">
+<span class="type">Nota</span><span class="space"> </span><span class="codenumber">A.5.5</span><span class="period">.</span><span class="space"> </span><span class="title">Gráfica de la Complejidad Computacional.</span>
+</h2> <div class="para">Complejidad exponencial y subexponencial asociada con la factorización entera en <abbr class="acronym">RSA</abbr>&gt;, en	contraste con la eficiencia temporal polinómica de las operaciones de multiplicación escalar en curvas elípticas.</div> <pre id="sage-complejidad-computacional-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">import matplotlib.pyplot as plt
+import numpy as np
+# Definir el rango de x
+x_values = np.linspace(1, 10, 100)
+# Funciones
+exponential_func = lambda x: 2** (6/5*x)
+subexponential_func = lambda x: np.exp(7/10*x)
+polynomial_func = lambda x: x**2 + 3*x + 5
+
+# Evaluar las funciones en los valores de x
+y_exponential = [exponential_func(x) for x in x_values]
+y_subexponential = [subexponential_func(x) for x in x_values]
+y_polynomial = [polynomial_func(x) for x in x_values]
+# Graficar
+plt.figure(figsize=(10, 7))
+plt.plot(x_values, y_exponential, label='Exponencial', linestyle='--',
+color='red')
+plt.plot(x_values, y_subexponential, label='Subexponencial', linestyle='-.',
+color='green')
+plt.plot(x_values, y_polynomial, label='Polinómica', linestyle=':',
+color='blue')
+# Configurar notación científica en el eje y
+plt.ticklabel_format(axis='y', style='sci', scilimits=(0,0))
+# Configuraciones adicionales
+plt.title('Entrada del algoritmo criptográfico vs. Complejidad Computacional')
+plt.xlabel('Tamaño de la Clave en bits')
+plt.ylabel('Complejidad Computacional (número de operaciones fundamentales )')
+plt.legend()
+plt.grid(True)
+#plt.savefig('exponential_function.png', dpi=600)
+plt.show()
+</script></pre></article><span class="incontext"><a class="internal" href="sec-curvas-elipticas.html#sage-complejidad-computacional">en contexto</a></span>
+</body>
+</html>
